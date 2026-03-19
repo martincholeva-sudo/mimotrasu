@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="cs" style="background:#000;">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Mimo trasu</title>
+  <meta name="description" content="Napiš mi cokoliv opravdového – dotaz, spolupráce nebo jen pozdrav.">
+  <link rel="stylesheet" href="css/styl.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer-styl.css">
+  <link rel="canonical" href="https://mimotrasu.cz/kontakt-mimo-trasu.html" />
+  <meta property="og:title" content="Kontakt – Mimo trasu" />
+  <meta property="og:description" content="Nejde o síť. Jde o spojení." />
+  <meta property="og:image" content="https://mimotrasu.cz/img/martin-oranzovy.png" />
+  <meta property="og:url" content="https://mimotrasu.cz/kontakt-mimo-trasu.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@mimotrasu" />
+  <meta name="twitter:title" content="Kontakt – Mimo trasu" />
+  <meta name="twitter:description" content="Nejde o síť. Jde o spojení." />
+  <meta name="twitter:image" content="https://mimotrasu.cz/img/martin-oranzovy.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+  <style>
+    .kontakt-wrapper {
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .kontakt-wrapper h1 {
+      font-family: inherit;
+      font-weight: 300;
+      font-size: 3rem;
+      text-transform: uppercase;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+    .kontakt-wrapper h1 span {
+      color: #ff7e00;
+    }
+    .intro {
+      font-size: 1.3rem;
+      color: #ccc;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .kontakt-flexbox {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .kontakt-column {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .kontakt-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .kontakt-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .kontakt-link.email .kontakt-icon path {
+      fill: #1e90ff;
+    }
+    .kontakt-link.email:hover {
+      color: #ff7e00;
+    }
+    .kontakt-link.email:hover .kontakt-icon path {
+      fill: #ff7e00 !important;
+    }
+    .kontakt-link.instagram:hover {
+      color: #ff7e00;
+    }
+    .kontakt-link.instagram:hover .kontakt-icon path,
+    .kontakt-link.instagram:hover .kontakt-icon stop {
+      fill: #ff7e00 !important;
+      stop-color: #ff7e00 !important;
+    }
+    .kontakt-text {
+      font-size: 1rem;
+      word-break: break-word;
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+    .kopirovano-msg {
+      color: #ff7e00;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .kontakt-vyzva-line {
+      font-family: inherit;
+      font-weight: 300;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 5rem 0 0.5rem;
+      line-height: 1.4;
+    }
+    .kontakt-vyzva-line.white {
+      color: #ffffff;
+    }
+    .kontakt-vyzva-line.orange {
+      color: #ff7e00;
+      margin: 0;
+    }
+    .ml-embedded {
+      max-width: 100%;
+      margin: 0 auto 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .kontakt-column {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .kontakt-link.email {
+        flex-direction: column;
+        align-items: center;
+      }
+      .kontakt-text,
+      .kopirovano-msg {
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+      .intro {
+        text-align: center !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="background:transparent;">
+  <div id="header-placeholder"></div>
+  <script src="js/header.js"></script>
+
+  <section class="kontakt-wrapper">
+    <h1>SPOJME SE<br><span>„MIMO TRASU“</span></h1>
+    <p class="intro">Nejde o síť. Jde o spojení.</p>
+
+    <div class="kontakt-flexbox">
+      <div class="kontakt-column">
+        <div class="kontakt-link email" onclick="zkopirujEmail()" id="email-wrapper">
+          <svg class="kontakt-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v1l-10 6L2 5V4zm0 3.236l9.445 5.667a1 1 0 001.11 0L22 7.236V20a2 2 0 01-2 2H4a2 2 0 01-2-2V7.236z"></path>
+          </svg>
+          <div class="kontakt-text" id="email-text">martin@mimotrasu.cz</div>
+          <div class="kopirovano-msg" id="kopirovano-msg">Zkopírováno!</div>
+        </div>
+      </div>
+
+      <div class="kontakt-column">
+        <a class="kontakt-link instagram" href="https://www.instagram.com/mimotrasu" target="_blank">
+          <svg class="kontakt-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ig-gradient-final" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#f09433"></stop>
+                <stop offset="25%" stop-color="#e6683c"></stop>
+                <stop offset="50%" stop-color="#dc2743"></stop>
+                <stop offset="75%" stop-color="#cc2366"></stop>
+                <stop offset="100%" stop-color="#bc1888"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm4.25 4.5a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm5.5-.625a1.125 1.125 0 110 2.25 1.125 1.125 0 010-2.25z" fill="url(#ig-gradient-final)"></path>
+          </svg>
+          <div class="kontakt-text">@mimotrasu</div>
+        </a>
+      </div>
+    </div>
+
+    <p class="kontakt-text">Nehledám komunitu.</p>
+    <p class="kontakt-text">Nehledám lajky.</p>
+    <p class="kontakt-text">Ale pokud máš něco opravdového, napiš.</p>
+    <p class="kontakt-text">Možná si odpovíme.</p>
+    <p class="kontakt-text">Možná ne.</p>
+
+    <p class="kontakt-vyzva-line white">Třeba to bude jen věta.</p>
+    <p class="kontakt-vyzva-line orange">Třeba začátek.</p>
+
+    <div class="ml-embedded" data-form="bYVmM5"></div>
+    <script>
+      (function(m, a, i, l, e, r) {
+        m['MailerLiteObject'] = e;
+        function f() {
+          var c = { a: arguments, q: [] };
+          var r = this.push(c);
+          return "function" != typeof r ? r : f;
+        }
+        f.q = [];
+        m[e] = m[e] || f;
+      })(window, document, 0, 0, 'ml');
+      window.ml('forms', 'bYVmM5', 'show');
+    </script>
+
+    <div class="podpis" style="text-align:center; margin-top:2rem;">
+      <picture>
+        <source srcset="img/martin-oranzovy.webp" type="image/webp" />
+        <img src="img/martin-oranzovy.png" alt="Podpis Martin" style="max-width:200px; height:auto; pointer-events:none;" loading="lazy" draggable="false" />
+      </picture>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/footer.js"></script>
+
+  <script>
+    function zkopirujEmail() {
+      const emailText = document.getElementById("email-text");
+      const kopirovanoMsg = document.getElementById("kopirovano-msg");
+
+      navigator.clipboard.writeText(emailText.innerText).then(() => {
+        emailText.style.display = "none";
+        kopirovanoMsg.style.display = "block";
+
+        setTimeout(() => {
+          kopirovanoMsg.style.display = "none";
+          emailText.style.display = "block";
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

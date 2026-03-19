@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="cs" style="min-height:100vh;background:#000 url('img/bg-textura-big.webp') center/cover no-repeat fixed;">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zápisy na trase – Rozcestník</title>
+<meta name="description" content="Rozcestník syrových příběhů a životních změn na Mimo Trasu.">
+
+<link rel="stylesheet" href="css/styl.css"/>
+<link rel="stylesheet" href="css/header.css"/>
+<link rel="stylesheet" href="css/footer-styl.css"/>
+
+<style>
+html,body{
+  background:#000;
+  color:#f5f5f5;
+  font-family:system-ui,sans-serif;
+  font-size:1.1rem;
+  line-height:1.7;
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+/* Hero sekce */
+.hero {
+  text-align: center;
+  margin-top: 2rem;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 0;
+}
+.hero .subtitle {
+  font-size: 1.2rem;
+  color: #ff7e00;
+  margin-top: 0.5rem;
+}
+
+/* Boxy */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+.cat {
+  background: rgba(0,0,0,0.7);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #f5f5f5;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  display: block;
+}
+.cat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(255,126,0,0.4);
+  border-color: #ff7e00;
+}
+.cat h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+.cat p {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin: 0;
+}
+
+/* RESPONSIVNÍ úpravy pro mobil */
+@media (max-width:600px) {
+  /* Vycentrování celé sekce s boxy na střed */
+  .categories {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 1rem 1rem; /* menší padding pro mobil */
+    gap: 1rem;          /* menší mezera mezi boxy */
+  }
+
+  /* Boxy */
+  .categories .cat {
+    width: 90% !important;
+    max-width: 300px !important;
+    margin: 0.5rem auto !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center !important;
+  }
+
+  /* Texty uvnitř boxů */
+  .categories .cat h2,
+  .categories .cat p {
+    text-align: center !important;
+  }
+
+  /* Podnadpis pod hlavním titulkem */
+  .hero .subtitle {
+    text-align: center !important;
+    margin-bottom: 1rem; /* snížení mezery pod podnadpisem */
+  }
+
+  /* Mezera mezi hero a prvními boxy */
+  .hero {
+    margin-bottom: 1rem; /* zmenšení mezery dolů */
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
+</style>
+
+<!-- Open Graph + Twitter -->
+<meta property="og:title" content="Zápisy na trase – Rozcestník"/>
+<meta property="og:description" content="Syrové příběhy a životní změny"/>
+<meta property="og:image" content="https://mimotrasu.cz/img/mimo-trasu-logo.png"/>
+<meta property="og:url" content="https://mimotrasu.cz/zapisy-rozcestnik.html"/>
+<meta property="og:type" content="article"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zápisy na trase – Rozcestník",
+  "description": "Syrové příběhy a životní změny",
+  "image": "https://mimotrasu.cz/img/mimo-trasu-logo.png",
+  "author": { "@type": "Person", "name": "Martin" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mimo Trasu",
+    "logo": { "@type": "ImageObject", "url": "https://mimotrasu.cz/img/mimo-trasu-og.jpg" }
+  },
+  "datePublished": "2025-08-06"
+}
+</script>
+<link rel="canonical" href="https://mimotrasu.cz/zapisy-rozcestnik.html"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@mimotrasu"/>
+<meta name="twitter:title" content="Zápisy na trase – Rozcestník"/>
+<meta name="twitter:description" content="Syrové příběhy a životní změny"/>
+<meta name="twitter:image" content="https://mimotrasu.cz/img/mimo-trasu-logo.png"/>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png"/>
+</head>
+
+<body style="background:transparent;">
+
+<!-- Logo -->
+<div class="logo-top" style="text-align:center; padding:1rem 0;">
+  <a href="index.html">
+    <img src="img/mimo-trasu-logo.png" alt="Mimo Trasu – návrat na hlavní rozcestník" loading="lazy" style="max-width:160px; height:auto; cursor:pointer;">
+  </a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Zápisy na trase</h1>
+  <p class="subtitle">Syrové příběhy a životní změny</p>
+</section>
+
+<!-- Úvodní box -->
+<div class="categories">
+  <a class="cat" href="zapisy.html">
+    <h2>STOPY NA CESTĚ</h2>
+    <p>Otisky myšlenek, které se neřídí mapou</p>
+  </a>
+</div>
+
+<!-- Další boxy -->
+<section class="categories">
+  <a class="cat" href="muzska-zmena.html"><h2>Mužská změna</h2><p>Začni cestu k silnějšímu já</p></a>
+  <a class="cat" href="umeni-nechat-byt.html"><h2>Umění nechat být</h2><p>Jak pustit věci, co nedržíš</p></a>
+  <a class="cat" href="samota-neni-slabost.html"><h2>Samota není slabost</h2><p>Proč být sám je občas nezbytné</p></a>
+  <a class="cat" href="do-nepohodli.html"><h2>Do nepohodlí</h2><p>Růst začíná mimo komfort</p></a>
+  <a class="cat" href="studena-sprcha.html"><h2>Studená sprcha</h2><p>Každodenní trénink disciplíny</p></a>
+  <a class="cat" href="zivot-bez-vymluv.html"><h2>Život bez výmluv</h2><p>Začni jednat místo omluv</p></a>
+  <a class="cat" href="vlastni-cesta.html"><h2>Vlastní cesta</h2><p>Najdi směr, který je jen tvůj</p></a>
+  <a class="cat" href="digitalni-dieta.html"><h2>Digitální dieta</h2><p>Méně hluku, víc klidu</p></a>
+  <a class="cat" href="ranni-chuze.html"><h2>Ranní chůze</h2><p>Začni den pohybem a čistou hlavou</p></a>
+  <a class="cat" href="tvrdost-chlapa.html"><h2>Tvrdost chlapa</h2><p>Tvrdé věci dělají tvrdé chlapy</p></a>
+  <a class="cat" href="charisma-chlapa.html"><h2>Charisma chlapa</h2><p>Jak působit přirozeně silně</p></a>
+  <a class="cat" href="eskapismus.html"><h2>Eskapismus</h2><p>Kdy útěk pomáhá a kdy škodí</p></a>
+  <a class="cat" href="48-zakonu-moci.html"><h2>48 zákonů moci</h2><p>Principy moci v moderním světě</p></a>
+  <a class="cat" href="tezke-obdobi.html"><h2>Těžké období</h2><p>Jak přežít a vyrůst z bolesti</p></a>
+  <a class="cat" href="chlap-a-selhani.html"><h2>Chlap a selhání</h2><p>Jak se zvednout, když padneš</p></a>
+  <a class="cat" href="chlap-do-50.html"><h2>Věci, co by měl umět chlap do 50</h2><p>Dovednosti pro druhou půlku života</p></a>
+  <a class="cat" href="ticho-chlapa.html"><h2>Ticho chlapa</h2><p>Proč je ticho klíčem k síle</p></a>
+  <a class="cat" href="proc-potrebujes-pravidla.html"><h2>Proč potřebuješ pravidla</h2><p>Svoboda bez řádu je chaos</p></a>
+  <a class="cat" href="hranice-chlapa.html"><h2>Hranice chlapa</h2><p>Proč jsou hranice nutné a jak si je nastavit</p></a>
+  <a class="cat" href="ocenuj-bolest.html"><h2>Oceňuj bolest</h2><p>Bolest je kompas, nauč se ho číst</p></a>
+  <a class="cat" href="ztraceny-rytir.html"><h2>Ztracený rytíř</h2><p>Proč dnes chlapi neví, kým být</p></a>
+  <a class="cat" href="sebekontrola-emoci.html"><h2>Sebekontrola emocí</h2><p>Chlap, který neovládne vztek, je otrok</p></a>
+  <a class="cat" href="budovani-charismatu.html"><h2>Budování charismatu</h2><p>Proč tě lidi buď následují, nebo ignorují</p></a>
+  <a class="cat" href="smysl-zivota-chlapa.html"><h2>Smysl života chlapa</h2><p>Co po Tobě zůstane?</p></a>
+  <a class="cat" href="chlap-a-zavislosti.html"><h2>Chlap a závislosti</h2><p>Upřímně a bez keců: alkohol, porno a práce</p></a>
+  <a class="cat" href="zadny-plan-planuje-selhani.html"><h2>Žádný plán plánuje selhání</h2><p>Svoboda bez směru je chaos</p></a>
+  <a class="cat" href="24hod-reset.html"><h2>Za 24 hodin zpátky v sedle</h2><p>Vrať se do sedla za jeden den</p></a>
+  <a class="cat" href="pondeli-zacni-tvrde.html"><h2>PONDĚLÍ</h2><p>Nastav tón týdne hned ráno</p></a>
+  <a class="cat" href="nechlub-se-bolesti.html"><h2>NECHLUB SE BOLESTÍ</h2><p>Chlub se tím, že ji vydržíš</p></a>
+  <a class="cat" href="digitalni-pust-offline-jako-sila.html"><h2>DIGITÁLNÍ PŮST</h2><p>Offline jako síla</p></a>
+  <a class="cat" href="moderni-valecnik-bez-valky.html"><h2>MODERNÍ VÁLEČNÍK</h2><p>Bez války - kde bojovat dnes</p></a>
+  <a class="cat" href="vztek-zavist-zarlivost.html"><h2>Vztek, závist a žárlivost</h2><p>Jak tě ničí a jak je zkrotit</p></a>
+  <a class="cat" href="patek-neni-uleva-trenink.html"><h2>Pátek není úleva</h2><p>Je to tvůj trénink</p></a>
+  <a class="cat" href="posledni-mustek.html"><h2>Poslední můstek</h2><p>Příběh o bolesti, strachu a návratu k sobě</p></a>
+  <a class="cat" href="zase-v-sedle.html"><h2>Zase v sedle</h2><p>Návrat do rytmu bez heroismu</p></a>
+  <a class="cat" href="posledni-potahnuti.html"><h2>Poslední potáhnutí</h2><p>Tichá čára. Jedu bez nikotinu.</p></a>
+  <a class="cat" href="ticho-po-poslednim-potahnuti.html"><h2>Ticho po posledním potáhnutí</h2><p>Deset dní bez nikotinu.</p></a>
+  <a class="cat" href="mala-pauza-na-trase.html"><h2>Malá pauza na trase</h2><p>Bilance přeed koncem roku.</p></a>
+  <a class="cat" href="konec-roku-pohled-do-zrcadla.html"><h2>Konec roku</h2><p>Pohled do zrcadla.</p></a>
+
+
+
+
+</section>
+
+<!-- Monitoring -->
+<script src="https://browser.sentry-cdn.com/7.0.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  Sentry.init({ dsn: 'https://YOUR_DSN@sentry.io/YOUR_PROJECT_ID' });
+  (function(){
+    function sendMetric({ name, delta, id }) {
+      Sentry.captureMessage(name + ' ' + delta, { level: 'info', tags: { id } });
+    }
+    import('https://unpkg.com/web-vitals?module').then(({ getCLS, getFID, getLCP }) => {
+      getCLS(sendMetric);
+      getFID(sendMetric);
+      getLCP(sendMetric);
+    });
+  })();
+</script>
+</body>
+</html>
+
