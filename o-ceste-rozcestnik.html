@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="cs" style="min-height:100vh;background:#000 url('img/bg-textura-big.webp') center/cover no-repeat fixed;">
+<head>
+    <meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O cestě „MIMO TRASU“ – Rozcestník</title>
+<meta content="Rozcestník stránek o cestě MIMO TRASU – proč to celé vzniklo a kam směřuje." name="description"/>
+<link href="https://mimotrasu.cz/img/favicon.png" rel="icon" type="image/png"/>
+<link href="css/styl.css" rel="stylesheet"/>
+<link href="css/header.css" rel="stylesheet"/>
+<link href="css/footer-styl.css" rel="stylesheet"/>
+
+<style>
+/* Základní styly */
+html, body {
+  background:#000;
+  color:#f5f5f5;
+  font-family:system-ui,sans-serif;
+  font-size:1.1rem;
+  line-height:1.7;
+  margin:0;
+  padding:0;
+  height:100%;
+}
+body {
+  background:#000 url('img/bg-textura-big.webp') center/cover no-repeat fixed;
+}
+.logo-top {
+  text-align:center;
+  padding:1rem 0;
+}
+.logo-top img {
+  max-width:160px;
+  height:auto;
+  cursor:pointer;
+}
+.hero {
+  text-align:center;
+  margin-top:2rem;
+}
+.hero h1 {
+  font-size:3rem;
+  font-weight:300;
+  text-transform:uppercase;
+  margin:0;
+}
+.hero .subtitle {
+  font-size:1.2rem;
+  color:#ff7e00;
+  margin-top:0.5rem;
+}
+
+/* Boxy */
+.categories {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:1.5rem;
+  padding:3rem 2rem;
+  max-width:1000px;
+  margin:auto;
+}
+.cat {
+  background:rgba(0,0,0,0.7);
+  padding:1.5rem;
+  border-radius:10px;
+  text-align:center;
+  text-decoration:none;
+  color:#f5f5f5;
+  transition:all 0.3s ease;
+  border:1px solid transparent;
+  display:block;
+}
+.cat:hover {
+  transform:translateY(-5px);
+  box-shadow:0 0 15px rgba(255,126,0,0.4);
+  border-color:#ff7e00;
+}
+.cat h2 {
+  font-size:1.5rem;
+  margin:0 0 0.5rem;
+  text-transform:uppercase;
+}
+.cat p {
+  font-size:0.95rem;
+  color:#aaa;
+  margin:0;
+}
+
+/* Mobilní úpravy */
+@media (max-width:600px) {
+  .hero h1 {
+    font-size:2.2rem;
+    margin-bottom:0.3rem;
+  }
+  .hero .subtitle {
+    font-size:1.1rem;
+    text-align:center;
+    margin-bottom:1rem;
+  }
+
+  /* Boxy – vycentrování a kompaktní mezery */
+  .categories {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:1.5rem 1rem 3rem;
+    gap:1rem;
+  }
+  .categories .cat {
+    width:90% !important;
+    max-width:300px !important;
+    margin:0 auto;
+    text-align:center !important;
+  }
+  .categories .cat * {
+    text-align:center !important;
+  }
+}
+</style>
+
+<!-- Meta OG / Twitter -->
+<meta content="O cestě „MIMO TRASU“ – Rozcestník" property="og:title"/>
+<meta content="Proč to celé vzniklo a kudy vede tahle cesta" property="og:description"/>
+<meta content="https://mimotrasu.cz/img/mimo-trasu-logo.png" property="og:image"/>
+<meta content="https://mimotrasu.cz/o-ceste-rozcestnik.html" property="og:url"/>
+<meta content="article" property="og:type"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "O cestě „MIMO TRASU“ – Rozcestník",
+  "description": "Proč to celé vzniklo a kudy vede tahle cesta",
+  "image": "https://mimotrasu.cz/img/mimo-trasu-logo.png",
+  "author": { "@type": "Person", "name": "Martin" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mimo Trasu",
+    "logo": { "@type": "ImageObject", "url": "https://mimotrasu.cz/img/mimo-trasu-og.jpg" }
+  },
+  "datePublished": "2025-08-06"
+}</script>
+<link href="https://mimotrasu.cz/o-ceste-rozcestnik.html" rel="canonical"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@mimotrasu" name="twitter:site"/>
+<meta content="O cestě „MIMO TRASU“ – Rozcestník" name="twitter:title"/>
+<meta content="Proč to celé vzniklo a kudy vede tahle cesta" name="twitter:description"/>
+<meta content="https://mimotrasu.cz/img/mimo-trasu-logo.png" name="twitter:image"/>
+<link href="/manifest.json" rel="manifest"/>
+<link href="/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+</head>
+
+<body style="background:transparent;">
+<!-- Logo -->
+<div class="logo-top">
+  <a href="index.html">
+    <img alt="Mimo Trasu – návrat na hlavní rozcestník" loading="lazy" src="img/mimo-trasu-logo.png"/>
+  </a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>O cestě „MIMO TRASU“</h1>
+  <p class="subtitle">Proč to celé vzniklo a kudy vede tahle cesta</p>
+</section>
+
+<!-- Boxy -->
+<section class="categories">
+  <a class="cat cat-orange" href="cesta-muze-mimo-trasu.html">
+    <h2>Cesta muže „MIMO TRASU“</h2>
+    <p>Úvod do celé myšlenky a filozofie</p>
+  </a>
+  <a class="cat cat-orange" href="moje-cesta.html">
+    <h2>Moje cesta</h2>
+    <p>Osobní příběh, jak to celé začalo</p>
+  </a>
+  <a class="cat cat-orange" href="kodex-chlapa.html">
+    <h2>Kodex chlapa</h2>
+    <p>Principy, které definují cestu mimo trasu</p>
+  </a>
+</section>
+
+<!-- Monitoring -->
+<script crossorigin="anonymous" src="https://browser.sentry-cdn.com/7.0.0/bundle.min.js"></script>
+<script>
+  Sentry.init({ dsn: 'https://YOUR_DSN@sentry.io/YOUR_PROJECT_ID' });
+  (function(){
+    function sendMetric({ name, delta, id }) {
+      Sentry.captureMessage(name + ' ' + delta, { level: 'info', tags: { id } });
+    }
+    import('https://unpkg.com/web-vitals?module').then(({ getCLS, getFID, getLCP }) => {
+      getCLS(sendMetric);
+      getFID(sendMetric);
+      getLCP(sendMetric);
+    });
+  })();
+</script>
+</body>
+</html>
