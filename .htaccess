@@ -1,0 +1,88 @@
+# ---- Komprese ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>
+
+# ---- Cache ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                       "access plus 1 year"
+  ExpiresByType application/javascript         "access plus 1 year"
+  ExpiresByType image/webp                     "access plus 1 year"
+  ExpiresByType image/jpeg                     "access plus 1 year"
+  ExpiresByType image/png                      "access plus 1 year"
+  ExpiresByType image/svg+xml                  "access plus 1 year"
+  ExpiresByType font/woff2                     "access plus 1 year"
+  ExpiresByType font/woff                      "access plus 1 year"
+  ExpiresDefault                               "access plus 1 month"
+</IfModule>
+
+# ---- Security hlavičky ----
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+
+# ---- Přesměrování / canonical .html ----
+RewriteEngine On
+
+# (VOLITELNÉ) Vynutit https + bez www — odkomentuj, pokud chceš
+#RewriteCond %{HTTPS} !=on [OR]
+#RewriteCond %{HTTP_HOST} ^www\.mimotrasu\.cz$ [NC]
+#RewriteRule ^ https://mimotrasu.cz%{REQUEST_URI} [R=301,L]
+
+# =========================================================
+# Legacy WordPress → statické .html + úklid zbytečných URL
+# =========================================================
+
+# 1) WP query: známé page_id (příklady)
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} (?:^|&)page_id=2116(?:&|$) [NC]
+RewriteRule ^$ / [R=301,L,QSD]
+
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} (?:^|&)page_id=3270(?:&|$) [NC]
+RewriteRule ^$ /stoicismus.html [R=301,L,QSD]
+
+# 2) CATCH-ALL: jakékoli další ?page_id=123 → domovka
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} (?:^|&)page_id=\d+(?:&|$) [NC]
+RewriteRule ^$ / [R=301,L,QSD]
+
+# 3) Staré WP ?p=123 → domovka (pokud neznáš cílový článek)
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{QUERY_STRING} (?:^|&)p=\d+(?:&|$) [NC]
+RewriteRule ^$ / [R=301,L,QSD]
+
+# 4) Interní výsledky vyhledávání → domovka
+#   (např. /?s=stoicismus nebo /?search_term_string=...)
+RewriteCond %{QUERY_STRING} (?:^|&)(?:s|search_term_string)=[^&]+ [NC]
+RewriteRule ^$ / [R=301,L,QSD]
+
+# 5) Feed / kategorie / tagy – nejsou potřeba v indexu
+RewriteRule ^feed/?$ / [R=301,L]
+RewriteRule ^category/.*$ / [R=301,L]
+RewriteRule ^tag/.*$ / [R=301,L]
+
+# 6) Příklady starých „složkových“ cest → .html (doplň podle potřeby)
+RewriteRule ^muzska-zmena/?$ muzska-zmena.html [R=301,L]
+RewriteRule ^cerveny-pilulky/nejaky-stary-clanek/?$ nejaky-stary-clanek.html [R=301,L]
+
+# -----------------------
+# Canonical domovky a .html
+# -----------------------
+DirectoryIndex index.html
+# /index.html -> /
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Neřeš reálné soubory/složky (css/js/img atd.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Bez přípony → .html (např. /proc-planu → /proc-planu.html)
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [R=301,L]
+
+# Zahoď trailing slash u ne-složek (čistší URL)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="cs" style="background:#000;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Za 24 hodin zpátky v sedle – vrať se do sedla za jeden den | Mimo Trasu</title>
+  <meta name="description" content="Jednodenní protokol návratu do režimu: ráno bez mobilu, 20–30 minut pohybu, dva pracovní bloky 90/15, večerní vypnutí a krátký stoický zápis."/>
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
+
+  <link rel="canonical" href="https://www.mimotrasu.cz/24hod-reset.html"/>
+
+  <!-- OG / Twitter -->
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Za 24 hodin zpátky v sedle – vrať se do sedla za jeden den"/>
+  <meta property="og:description" content="Praktický jednodenní protokol: tělo → práce → klid → zápis. Žádné výmluvy."/>
+  <meta property="og:url" content="https://www.mimotrasu.cz/24hod-reset.html"/>
+  <meta property="og:image" content="https://www.mimotrasu.cz/img/og-24hod-reset.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Za 24 hodin zpátky v sedle – vrať se do sedla za jeden den"/>
+  <meta name="twitter:description" content="Jednodenní protokol návratu do režimu. Krok za krokem."/>
+  <meta name="twitter:image" content="https://www.mimotrasu.cz/img/og-24hod-reset.jpg"/>
+
+  <!-- Globální CSS (stejně jako na fungujících stránkách) -->
+  <link rel="stylesheet" href="css/styl.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/footer-styl.css"/>
+
+  <!-- Stránkový styl -->
+  <style>
+    :root{--bg:#000;--fg:#f5f5f5;--muted:#c7c7c7;--brand:#ff7e00;--card:#0a0a0a;--line:#1a1a1a}
+    html,body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;font-size:18px;line-height:1.7;margin:0;padding:0}
+    main{max-width:860px;margin:0 auto;padding:4rem 1rem 6rem}
+    h1{font-size:2.2rem;text-transform:uppercase;color:var(--brand);letter-spacing:.5px;text-align:center;margin-bottom:.3rem}
+    .subtitle{font-size:1.25rem;color:#fff;text-align:center;font-weight:400;margin-top:0;margin-bottom:2rem}
+    h2{font-weight:700;font-size:1.45rem;color:#fff;margin:1.6rem 0 .6rem}
+    p{margin:1rem 0}
+    .lead{font-size:1.08rem;color:#e7e7e7;text-align:center;margin:0 auto 1.8rem;max-width:680px;line-height:1.6}
+    .meta{font-size:.95rem;color:var(--muted);text-align:center;margin-bottom:2rem}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;margin:1rem 0;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    .tag{display:inline-block;font-size:.78rem;letter-spacing:.3px;padding:.2rem .5rem;border:1px solid #2a2a2a;border-radius:999px;color:#d8d8d8;margin-right:.4rem}
+    .steps{display:grid;gap:.8rem}
+    .step{border-left:4px solid var(--brand);padding:.55rem .8rem;background:#0c0c0c;border-radius:10px}
+    .check{display:grid;gap:.5rem;margin:.6rem 0}
+    .check input{accent-color:var(--brand)}
+    .note{font-size:.95rem;color:var(--muted)}
+    .cta{margin:1.8rem 0;text-align:center}
+    .highlight{text-align:center;font-size:1.8rem;color:var(--brand)}
+    .hr{height:1px;background:var(--line);margin:1.6rem 0}
+    a{color:#f7b37a;text-decoration:none}
+    a:hover{color:#ff7e00;text-decoration:none}
+    figure{margin:1rem 0}
+    figcaption{font-size:.9rem;color:var(--muted);text-align:center}
+    @media (max-width:560px){h1{font-size:1.85rem}.subtitle{font-size:1.05rem}}
+
+    /* 1) Zmenšit obrázek v úvodu (a vycentrovat) */
+    figure.card { display: flex; justify-content: center; }
+    figure.card img { width: 85%; max-width: 720px; height: auto; margin: 0 auto; }
+
+    /* 2) Text v boxech pod RÁNO/DOPOLEDNE/POLEDNE/ODPOLEDNE/VEČER doleva */
+    .steps, .steps .step { text-align: left; }
+
+    /* 3) „RYCHLÁ POMOC (5 minut)“ – seznam zarovnat doleva k puntíkům */
+    ul { text-align: left; list-style-position: outside; margin-left: 1.25rem; padding-left: 0; }
+
+    /* (volitelně) na mobilech může být obrázek o chlup větší */
+    @media (max-width: 560px) { figure.card img { width: 92%; } }
+
+    /* Větší mezery nad a pod nadpisy sekcí */
+    h2 { margin-top: 3rem; margin-bottom: 1.2rem; }
+
+    /* Zvýrazněné nadpisy (oranžové) – taky větší mezery */
+    h2.highlight { margin-top: 3.5rem; margin-bottom: 1.5rem; }
+
+    /* Větší mezera pod CTA boxem „Stáhni si deník“ */
+    .cta { margin: 2.5rem 0; }
+
+    /* === CTA tlačítko – úprava hover efektu === */
+    .cta a {
+      display: inline-block;
+      background: var(--brand);
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      padding: .75rem 1.05rem;
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(255,126,0,.25);
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+    }
+    .cta a:hover {
+      background: #000;
+      color: var(--brand);
+      border-color: var(--brand);
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+
+    /* === MOBIL (max 640px) – jen responsivní doladění === */
+    @media (max-width: 640px){
+      main{ padding:3rem 1rem 5rem !important; }
+      h1{ font-size:1.75rem !important; }
+      .subtitle{ font-size:1.05rem !important; }
+      .lead{ font-size:1rem !important; max-width:94% !important; }
+      h2{ margin-top:2.6rem !important; margin-bottom:1rem !important; }
+      h2.highlight{ margin-top:3rem !important; margin-bottom:1.2rem !important; }
+      .meta .tag{ margin:0 .25rem .5rem !important; }
+      .meta{ margin-bottom:1.5rem !important; }
+      .card{ padding:.85rem .9rem !important; border-radius:12px !important; }
+      .steps{ gap:.7rem !important; }
+      .step{ padding:.5rem .7rem !important; }
+      .check label{ line-height:1.5 !important; display:block !important; }
+      ul{ margin-left:1rem !important; }
+      .cta{ margin:2.2rem 0 !important; }
+      figure{ text-align:center !important; }
+      figure > .card[style*="width:min("]{
+        width: min(94vw, 520px) !important;
+        max-width: 94vw !important;
+        padding: .5rem !important;
+        display: inline-block !important;
+      }
+      figure > .card[style*="width:min("] img{
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        display: block !important;
+      }
+      figure figcaption{
+        font-size:.95rem !important;
+        margin-top:.6rem !important;
+        text-align:center !important;
+      }
+      .note{ text-align:center !important; }
+      .note p{ text-align:center !important; margin:.4rem 0 !important; }
+      .note a{ display:inline-block !important; }
+    }
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Za 24 hodin zpátky v sedle – vrať se do sedla za jeden den","description":"Kompaktní jednodenní protokol návratu do sedla: ráno bez mobilu, 20–30 minut pohybu, dva bloky práce 90/15, večerní vypnutí a krátký zápis.","author":{"@type":"Person","name":"Martin – Mimo Trasu"},"publisher":{"@type":"Organization","name":"Mimo Trasu","logo":{"@type":"ImageObject","url":"https://www.mimotrasu.cz/img/mimo-trasu-logo.png"}},"mainEntityOfPage":"https://www.mimotrasu.cz/24hod-reset.html"}
+  </script>
+
+  <script defer data-domain="mimotrasu.cz" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <!-- Záhlaví (stejně jako jinde) -->
+  <div id="header-placeholder"></div>
+  <script src="js/header.js?v=2"></script>
+
+  <main>
+    <article>
+      <p class="meta">
+        <span class="tag">disciplína chlapa</span>
+        <span class="tag">restart chlapa</span>
+        <span class="tag">chlap versus stoicismus</span>
+      </p>
+
+      <h1>Za 24 hodin zpátky v sedle</h1>
+      <p class="subtitle">Vrať se do sedla za jeden den</p>
+
+ <p class="meta">Publikováno: <strong>12. září 2025</strong> │ Autor: Martin</p>
+
+      <p class="lead">
+        Jednodenní protokol. Jasné kroky, žádné výmluvy.<br>
+        Tělo → práce → klid → zápis do deníku.
+      </p>
+
+      <figure style="text-align:center; margin:2rem 0;">
+        <!-- Rámeček má vlastní šířku, obepíná jen fotku -->
+        <div class="card" style="display:inline-block; padding:0.6rem; border-radius:12px; width:min(90vw, 560px);">
+          <img
+            src="img/24hod-reset.jpg"
+            alt="Černobílý detail ruky a zápisníku – 24hodinový reset"
+            style="display:block; width:100%; height:auto; border-radius:8px; pointer-events:none; user-select:none;"
+            draggable="false" oncontextmenu="return false"
+          />
+        </div>
+
+        <figcaption style="margin-top:0.8rem; font-size:1rem; color:#ccc; text-align:center;">
+          Jeden den. Jasná pravidla.
+        </figcaption>
+      </figure>
+
+      <div class="hr"></div>
+
+      <h2>RÁNO</h2>
+      <div class="steps">
+        <div class="step"><strong>10 minut bez mobilu.</strong> Studená sprcha, otevřené okno, ticho a klid.</div>
+        <div class="step"><strong>20–30 minut ranního pohybu.</strong> 3× (20 kliků + 30 dřepů + 40 s prkno).</div>
+        <div class="step"><strong>1 věta do deníku.</strong> „Dneska vyhraju nad ____.“</div>
+      </div>
+      <p class="note">Hodí se ti mrknout na stránku <a href="stoicky-denik.html">stoický deník</a> (stáhni si ho <a href="stoicky-denik-ke-stazeni.html">tady</a>).</p>
+
+      <h2>DOPOLEDNE</h2>
+      <div class="card" style="text-align:left;">
+        <p><strong>Blok 90/15.</strong> 90 minut pracuješ soustředěně na jednom úkolu, 15 minut si dáš pauzu - projdeš se a odreaguješ se. Mobil máš mimo stůl.</p>
+        <div class="check">
+          <label><input type="checkbox"> Soustředěně pracuješ na jednom úkolu.</label>
+          <label><input type="checkbox"> Neexistují pro tebe sociální sítě. (mrkni na článek: <a href="digitalni-dieta.html">digitální dieta</a>)</label>
+          <label><input type="checkbox"> Poznámky si píšeš na papír</label>
+        </div>
+      </div>
+
+      <h2>POLEDNE</h2>
+      <p><strong>10 minut chůze bez mobilu.</strong> Jen tvůj dech, krok a souznění se zemí. Dáš si krátké protažení nebo studenou sprchu, pokud máš tu možnost.</p>
+      <p class="note">Mrkni na článek <a href="ranni-chuze.html">ranní chůzi</a> – nejjednodušší reset.</p>
+
+      <h2>ODPOLEDNE</h2>
+      <div class="card">
+        <p><strong>Druhý blok 90/15.</strong> Na začátku si vytyč 3 mini-cíle, na konci si zaškrtni, zda jsi je splnil.</p>
+        <p style="text-align:center;margin-top:0.8rem;">Co příště udělám jinak?</p>
+      </div>
+
+      <h2>VEČER</h2>
+      <div class="steps">
+        <div class="step"><strong>60 minut nerušeného klidu.</strong> Žádné sociální sítě ani zprávy a telefon máš v módu "Letadlo".</div>
+        <div class="step"><strong>Napiš si 5 řádků do deníku a zhodnoť svůj den:</strong> Co šlo, co drhlo a jedna věc, kterou příště změníš.</div>
+        <div class="step"><strong>Připrav si klidné ráno.</strong> Připrav si oblečení, zápisník, věci na chůzi nebo na cvičení.</div>
+      </div>
+
+      <div class="hr"></div>
+
+      <h2 class="highlight">PROČ TO FUNGUJE? </h2>
+      <p>Neřešíš svou náladu, řešíš <strong>aby to šlapalo</strong>. Tělo v pohybu nastartuje tvůj mozek, soustředění nastartuje výkon, klid zase spánek a zápis do deníku další den.</p>
+
+      <h2 class="highlight">RYCHLÁ POMOC (5 minut)</h2>
+      <ul>
+        <li>Vypusť a odstraň rušivé věci ze svého dohledu a života.</li>
+        <li>Zamakej si - třeba 20 pomalých kliků.</li>
+        <li>Napiš si 1 větu do deníku: „Dneska jsem vyhrál nad ___.“</li>
+      </ul>
+      <h2 class="highlight">DRŽ RYTMUS, I KDYŽ SE TI NECHCE</h2>
+      <p>
+        Není to o náladě. Není to o tom, jestli máš chuť nebo ne. 
+        Je to o tom, že uděláš to, co sis řekl. 
+        Jeden krok za druhým – i když jsi unavený, i když tě to nebaví. 
+        Právě v těch chvílích se tvoří tvoje síla. 
+        Tam se rodí chlap, který se nezlomí hned při prvním odporu.
+      </p>
+      <p>
+        Nepotřebuješ čekat na pondělí, na nový rok nebo na “lepší náladu”. 
+        Všechno, co máš, je dnešek. 
+        A v něm stačí udělat jednu jedinou věc – začít znovu. 
+        To je celé kouzlo návratu do sedla.
+      </p>
+
+       <div class="cta">
+        <a href="stoicky-denik-ke-stazeni.html">Stáhni si deník a drž rytmus chlapa MIMO TRASU.</a>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="note" style="text-align:center;">
+        <p>Navazující články:</p>
+        <p><a href="do-nepohodli.html">Do nepohodlí</a></p>
+        <p><a href="studena-sprcha.html">Studená sprcha</a></p>
+        <p><a href="digitalni-dieta.html">Digitální dieta</a></p>
+        <p><a href="chlap-a-selhani.html">Chlap a selhání</a></p>
+      </div>
+
+      <!-- Podpis -->
+      <div style="display:flex; justify-content:center; margin-top:2rem;">
+        <picture>
+          <source src="img/martin-oranzovy.webp" type="image/webp"/>
+          <img src="img/martin-oranzovy.png" alt="Podpis Martin" loading="lazy" style="max-width:200px; height:auto; pointer-events:none;" draggable="false" oncontextmenu="return false"/>
+        </picture>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- Zápatí (stejně jako jinde) -->
+  <div id="footer-placeholder"></div>
+  <script src="js/footer.js?v=2"></script>
+ <!-- Script pro otevírání odkazů v novém okně -->
+  <script>
+    document.querySelectorAll('a[href]').forEach(a => {
+      if (a.getAttribute('href').startsWith('http') || a.getAttribute('href').endsWith('.html')) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  </script>
+</body>
+</html>
