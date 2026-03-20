@@ -31,7 +31,7 @@ function resolveLogoTarget(pathname) {
 const DESIRED_LOGO_HREF = resolveLogoTarget(location.pathname);
 
 // ===== Načtení headeru =====
-const VERSION = "v1"; // klidně zvyš, když měníš header.html
+const VERSION = "v2"; // klidně zvyš, když měníš header.html
 fetch(`header.html?${VERSION}`)
   .then(res => res.text())
   .then(html => {
