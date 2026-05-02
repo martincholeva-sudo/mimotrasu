@@ -10,13 +10,18 @@
     <div class="footer-links">
       <!-- Mail – otevřít v novém okně + zkopírovat adresu -->
       <a id="copy-email-link" class="footer-link"
-         href="mailto:mimotrasu.photo@gmail.com"
-         data-copy="mimotrasu.photo@gmail.comz"
+         href="mailto:martin@mimotrasu.cz"
+         data-copy="martin@mimotrasu.cz"
          target="_blank" rel="noopener"
          title="Otevře e-mail v novém okně a zkopíruje adresu">
-        mimotrasu.photo@gmail.com
+        martin@mimotrasu.cz
       </a>
 
+      <!-- Instagram -->
+      <a class="footer-link" href="https://www.instagram.com/mimotrasu" rel="noopener" target="_blank" title="Instagram @mimotrasu">
+        @mimotrasu
+      </a>
+    </div>
 
     <p class="footer-copy">
       © <span id="current-year"></span> MIMO TRASU – <span class="footer-slogan">Právě proto.</span>
@@ -31,6 +36,18 @@
     </a>
   </div>
 
+  <!-- Newsletter -->
+  <section id="newsletter" class="newsletter-box">
+    <h2>Stopa týdne</h2>
+    <p style="margin-bottom:2rem;">
+      Krátká facka do reality každý týden. Bez keců.<br/>
+      <span style="display:block; text-align:center;">Bez spamu.</span>
+    </p>
+    <form action="newsletter.php" class="newsletter-form ml-block-form" method="post" target="_blank">
+      <input name="fields[email]" placeholder="Tvůj e-mail" required type="email"/>
+      <input class="hidden-input" name="botcheck" type="text"/>
+      <button type="submit">Přidej se</button>
+    </form>
   </section>
 </footer>
 
