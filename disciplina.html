@@ -6,23 +6,81 @@
     <title>Disciplína | MIMO TRASU</title>
     <style>
         body { background-color: #000; color: #ccc; font-family: 'Segoe UI', sans-serif; margin: 0; line-height: 1.8; }
-        nav { padding: 30px; text-align: center; }
+        nav { padding: 20px; text-align: center; }
         nav a { color: #fff; text-decoration: none; margin: 0 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
         
         .header-image {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9)), url('img/disciplina-header.jpg'); /* Tady si pak dáš svou fotku */
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Lead text - kompletně vycentrovaný pod nadpisem */
+        .intro-lead {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 50px 20px;
+            text-align: center; /* Tohle zarovná celý blok na střed */
+        }
+
+        .intro-lead p {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 300;
+            line-height: 2;
+            letter-spacing: 5px; /* Styl jako v parallaxu */
+            text-transform: uppercase;
+            margin: 0;
+            text-align: center; /* Tohle zarovná každý jednotlivý řádek na střed */
+        }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 20px 20px 40px 20px; }
+        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: 8px; font-weight: 300; margin: 0; }
+        h2 { color: #ff7e00; font-weight: 400; text-transform: uppercase; border-top: 1px solid #333; padding-top: 20px; margin-top: 50px; }
+        p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; }
+
+        .highlight {
+            color: #fff;
+            font-style: italic;
+            border-left: 3px solid #ff7e00;
+            padding-left: 15px;
+            margin: 30px 0;
+            font-weight: 400;
+        }
+
+        .center-text { text-align: center; color: #ff7e00; font-weight: 400; font-size: 1.2rem; }
+
+        /* Parallax předěly */
+        .parallax-photo {
+            width: 100%;
+            height: 50vh;
+            margin: 20px 0;
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .container { max-width: 700px; margin: 0 auto; padding: 60px 20px; }
-        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: 5px; font-weight: 300; }
-        h2 { color: #ff7e00; font-weight: 400; text-transform: uppercase; border-top: 1px solid #333; padding-top: 20px; margin-top: 50px; }
-        p { font-size: 1.1rem; margin-bottom: 25px; }
+        .separator-label {
+            background: rgba(0,0,0,0.7);
+            color: #ff7e00;
+            padding: 15px 35px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-size: 1.3rem;
+            border: 1px solid #ff7e00;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .parallax-photo { background-attachment: scroll; height: 35vh; }
+            .intro-lead p { font-size: 0.8rem; letter-spacing: 3px; }
+            .header-image { height: 25vh; }
+        }
     </style>
 </head>
 <body>
@@ -32,23 +90,93 @@
     </nav>
 
     <header class="header-image">
-        <h1 style="font-size: 3rem;">Disciplína</h1>
+        <h1 style="font-size: clamp(2.5rem, 8vw, 4rem);">Disciplína</h1>
     </header>
 
+    <div class="intro-lead">
+        <p>
+            Disciplína pro mě není trest. Je to svoboda. <br>
+            Je to nástroj, který mi dovoluje ovládat své tělo i svou mysl, <br>
+            místo aby ony ovládaly mě.
+        </p>
+    </div>
+
+    <!-- PARALLAX PŘEDĚL ČINKY -->
+    <div class="parallax-photo" style="background-image: url('img/cinky.jpg');">
+        <div class="separator-label">Trénink a tělo</div>
+    </div>
+
     <div class="container">
-        <p>
-            Disciplína pro mě není trest. Je to svoboda. Je to nástroj, který mi dovoluje ovládat své tělo i svou mysl, místo aby ony ovládaly mě.
-        </p>
+        <h2>Proč cvičím</h2>
+        <p>Cvičení pro mě není jen fyzická aktivita. Je to způsob, jak se spojit sám se sebou. Jak zklidnit hlavu a rozhýbat tělo. Jak najít disciplínu, když se všechno kolem rozpadá. V posilovně nebo venku s vlastní vahou. Nejde o to vypadat dobře na fotce – jde o to být silný, když přijde krize. A ty přicházejí.</p>
+        
+        <p class="highlight">Cvičení je moje kotva.<br>Moje jistota.<br>Můj způsob, jak být každý den trochu lepší, než jsem byl včera.</p>
 
-        <h2>Trénink a tělo</h2>
-        <p>
-            Tady můžeš rozepsat svůj přístup ke cvičení...
-        </p>
+        <h2>Tělo jako zrcadlo disciplíny</h2>
+        <p>Nezáleží jen na tom, jak tělo vypadá. Ale co všechno říká. Říká, jak žiješ. Jak spíš. Co jíš. Jak se o sebe staráš. Tělo nelže. Neschováš za něj výmluvy. Ať už se cítíš dobře, nebo ne – tělo to ukáže. A právě v tom je cvičení brutálně upřímné. Každý trénink je hlasování: hlasuju pro sílu. Pro vůli. Pro respekt k sobě. Každý trénink je připomínka, že na sobě makám – i když se mi nechce.</p>
 
-        <h2>Strava a řád</h2>
-        <p>
-            A tady zase to, jak přemýšlíš o jídle...
-        </p>
+        <h2>Síla není jen o svalech</h2>
+        <p>Svaly jsou jen bonus. Síla je v hlavě. Ve vytrvalosti. V tom, že neustoupíš, i když máš chuť všechno vzdát. Síla je o tom jít na trénink, i když je venku tma a prší. Síla je o tom vstát, i když tě všechno bolí. Cvičení tě učí zvládat tlak. Bolest. Nepohodlí. A když zvládneš tohle, zvládneš víc i v životě.</p>
+        <p class="highlight">Nejsi jen silnější fyzicky – ale i psychicky.</p>
+
+        <h2>Řád, rytmus, rutina</h2>
+        <p>Největší síla je v opakování. V tom, že cvičíš, i když nemáš náladu. Že držíš rámec. Ranní protažení. Pravidelný pohyb. Něco, co děláš pro sebe – ne pro lajky. Nemusíš jet podle tabulek. Stačí vědět, co děláš a proč. A držet si v tom rytmus. Cvičení není jednorázový sprint. Je to dlouhá cesta. A čím víc ji žiješ, tím víc se stává součástí tebe.</p>
+
+        <h2>Co necvičím a proč</h2>
+        <p>Necvičím věci, které ničí tělo. Nejdu za výkonem za každou cenu. Neporuším techniku kvůli egu. Nehoním čísla na čince, pokud za nimi není kontrola. Nesrovnávám se s ostatními. Nesoutěžím s Instagramem. Cvičím tak, abych byl zdravý. Funkční. Schopný zvládnout reálný život. Cvičení mě má posilovat, ne ničit. A hlavně – má mi dávat smysl.</p>
+
+        <h2>Co funguje mně</h2>
+        <p>Jednoduchost. Vlastní váha. Činky. Základní pohyby. Dřepy, shyby, kliky, mrtvý tah. Nehoním složitosti. Hledám sílu v základech. V tom, co funguje po generace. Přidávám postupně. Tělo poslouchám. Netlačím ho tam, kde ještě není připravené. Ale zároveň si neustupuju. Každý trénink si zapisuju. Vím, kde jsem a kam jdu.</p>
+
+        <h2>Běžný tréninkový den</h2>
+        <p>Není každý den stejný. Ale držím si strukturu. Ráno protahuju. Cvičím 3–4× týdně. Ne víc – ale naplno. Každý trénink má začátek, cíl a konec. Nechodím si jen „zacvičit“. Jdu si něco dokázat. Tělu i hlavě. Když tělo říká dost, nejdu přes čáru. Ale když hlava fňuká, právě tehdy přidám.</p>
+        <p class="highlight">Rozlišuju mezi leností a únavou.</p>
+
+        <h2>Cvičení a hlava</h2>
+        <p>Když cvičím, moje hlava zpomalí. Zpřesní se. Zmizí chaos. Jsem v těle. V pohybu. V přítomnosti. A právě proto cvičím. Ne kvůli bicepsu. Ale kvůli klidu. Cvičení je moje terapie. Můj způsob, jak zpracovat napětí. Vztek. Strach. Místo, kde nemusím mluvit – ale kde všechno ventiluju.</p>
+
+        <h2>Tělo jako nástroj chlapa</h2>
+        <p>Tělo je nástroj. A nástroje se udržují. Kalí. Čistí. Posilují. Ne kvůli egu – ale kvůli připravenosti. Chlap má být připravený. Na výzvu. Na těžký den. Na zodpovědnost. Slabé tělo znamená slabý rámec. A já nechci být slabý. Chci být pevný. Ne kvůli obdivu.</p>
+
+        <h2>Proč na sobě makat</h2>
+        <p>Každý den se můžu rozhodnout. Zda si to ulehčím – nebo jestli se postavím výzvě. Cvičení mi každý den připomíná, že síla není zadarmo. Že růst bolí. Ale že to stojí za to. Protože skrze bolest rostu. Skrze únavu sílím. A skrze disciplínu si stavím pevný rámec.</p>
+    </div>
+
+    <!-- PARALLAX PŘEDĚL JÍDLO -->
+    <div class="parallax-photo" style="background-image: url('img/jidlo.jpg');">
+        <div class="separator-label">Strava a řád</div>
+    </div>
+
+    <div class="container">
+        <p class="center-text">Strava není komplikovaná. Je vědomá.</p>
+
+        <h2>Proč záleží na jídle</h2>
+        <p>Když jsem se začal víc zajímat o svůj život, tělo a disciplínu, pochopil jsem jednu věc:</p>
+        <p class="center-text" style="font-style: italic;">Všechno začíná u stolu.</p>
+        <p>Ne u motivačních citátů. Ne v posilovně. Ale u toho, co si dávám na talíř. Jídlo není jen otázka chuti nebo zvyku. Je to volba. A každá volba ukazuje, jestli mám kontrolu já nad svým životem – nebo jestli ji dávám do rukou lenosti, pohodlnosti, slabosti.</p>
+        <p>Pro mě je jídlo odrazem postoje. Pokud se o sebe nestarám u stolu, proč bych se o sebe měl starat jinde? Pokud se přežírám, když se cítím mizerně, jak zvládnu stres nebo krizi? Jídlo ukazuje, jak si vážím svého času, zdraví i budoucnosti.</p>
+
+        <h2>Jídlo jako zrcadlo disciplíny</h2>
+        <p>Můžeš si říkat, že nejsi typ, co řeší jídlo. Že to není důležité. Ale každý den jíš – a každý den tím něco říkáš. Sám sobě buď potvrzuješ, že na sobě makáš, nebo si potvrzuješ, že ti na sobě moc nezáleží. Disciplína není jen o tom vstát ráno z postele nebo jít si zaběhat. Je i o tom, co dáš do pusy a kdy.</p>
+        <p>Zjistil jsem, že když jím vědomě, mám větší sílu i mimo stůl. Nepřejídám se. Nehoním cukr. Neutíkám ke sladkému, když se něco posere. Z jídla se stává nástroj, ne slabost.</p>
+
+        <h2>Hlad vs. chuť – stoické rozpoznání</h2>
+        <p>Dlouho jsem nepoznával rozdíl mezi tím, kdy mám hlad, a kdy jen chuť. Automaticky jsem šel ke skříni a něco si dal. Bez otázky proč. Ale stoický přístup mě naučil zpomalit a ptát se: Co to je? Je to hlad, nebo snaha utéct z nudy, stresu či napětí?</p>
+        <p>Hlad je tichý, chuť hlasitá. Hlad není urgentní, chuť často křičí. Když chápu, co se ve mně děje, mohu se rozhodnout vědomě. Už nejím jen tak, jím, když tělo potřebuje – ne když hlava panikaří.</p>
+
+        <h2>Rituály, řád, jednoduchost</h2>
+        <p>Nevedu si složité tabulky. Ale mám rámec. Rituály. Ráno piju vodu, dám si kávu bez cukru a často odkládám první jídlo na později. Využívám přerušovaný půst – ne jako dogma, ale jako nástroj.</p>
+        <p class="center-text">Méně jím – víc si vážím toho, co jím.</p>
+        <p>Jídlo není zábava. Je to palivo. A stejně jako si nedám špatný benzín do auta, nedám ani nesmysl do svého těla.</p>
+
+        <h2>Co nejím a proč</h2>
+        <p>Neřeším módní diety. Ale vím, co mi nedělá dobře. Cukr mě sráží dolů – fyzicky i mentálně. Mám výkyvy nálad, ospalost, podrážděnost. Proto ho omezuju. Vyhýbám se sladkým pitím, zpracovaným potravinám a fastfoodu. Omezil jsem pečivo a úplně vyřadil průmyslové sračky.</p>
+        <p class="highlight">Nejsem otrok chutí. Jsem muž, který si vybírá, co ho posiluje.</p>
+
+        <h2>Jídlo, tělo a duševní klid</h2>
+        <p>Když jím dobře, mám lepší náladu, čistou hlavu i kvalitní spánek. Mozek a tělo jsou propojené. Když tělo jede na cukru a odpadech, mozek jede v mlze.</p>
+        <p class="center-text">Klid v hlavě často začíná v břiše.<br>A klid v břiše začíná tím, co si tam dám.</p>
+
     </div>
 
     <footer style="text-align: center; padding: 50px; color: #444; font-size: 0.8rem;">
