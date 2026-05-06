@@ -13,6 +13,9 @@
             margin: 0; 
             line-height: 1.8;
             scroll-behavior: smooth;
+            /* Ochrana proti označování textu/obrazků */
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         /* ===== NAVIGACE ===== */
@@ -102,17 +105,30 @@
             font-weight: 300;
         }
 
-        /* ===== FOTO ===== */
+        /* ===== FOTO S OCHRANOU ===== */
         .photo-container {
             max-width: 1000px;
             margin: 40px auto;
+            position: relative; /* Nutné pro ochrannou vrstvu */
             text-align: center;
         }
+
         .photo-container img {
             width: 100%;
             height: auto;
             display: block;
             filter: grayscale(20%);
+            pointer-events: none; /* Zakáže interakci s fotkou */
+        }
+
+        .protection-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
         }
 
         /* ===== ROZCESTNÍK ===== */
@@ -149,6 +165,7 @@
             color: #777;
             font-size: 0.95rem;
             margin-bottom: 0;
+            user-select: none;
         }
 
         /* ===== FOOTER ===== */
@@ -162,7 +179,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Globální zákaz pravého tlačítka -->
 
 <!-- ===== NAV ===== -->
 <nav>
@@ -193,8 +210,10 @@
     </p>
 </div>
 
+<!-- Fotka s ochrannou vrstvou -->
 <div class="photo-container">
-    <img src="img/canon-2000d-II.jpg" alt="Můj společník Canon EOS 2000D">
+    <div class="protection-layer"></div>
+    <img src="img/canon-2000d-II.jpg" alt="Můj společník Canon EOS 2000D" draggable="false">
 </div>
 
 <div class="content-block">
@@ -218,7 +237,8 @@
         <p>Jak si udržet směr, když se všechno sype.</p>
     </a>
 
-    <a href="#" class="nav-card">
+    <!-- Odkaz opraven na pohledy.html -->
+    <a href="pohledy.html" class="nav-card">
         <h3>Pohledy</h3>
         <p>Svět skrz hledáček. Zpomalení.</p>
     </a>
@@ -228,6 +248,17 @@
 <div class="footer" id="kontakt">
     © 2026 MIMO TRASU | Martin | Bez filtru.
 </div>
+
+<script>
+    // Blokace F12 a dalších zkratek pro zobrazení kódu
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+    }
+</script>
 
 </body>
 </html>

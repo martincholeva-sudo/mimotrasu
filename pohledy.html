@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pohledy | MIMO TRASU</title>
+    <style>
+        body { 
+            background-color: #000; 
+            color: #ccc; 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            line-height: 1.8;
+            /* Ochrana proti označování */
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        nav { padding: 20px; text-align: center; }
+        nav a { color: #fff; text-decoration: none; margin: 0 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: color 0.3s; }
+        nav a:hover { color: #ff7e00; }
+        
+        .header-image { height: 30vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: 8px; font-weight: 300; margin: 0; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Mřížka náhledů */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .grid-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: #111;
+            aspect-ratio: 1 / 1;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+            pointer-events: none; /* Zakáže interakci s fotkou */
+        }
+
+        .grid-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Ochranná vrstva */
+        .protection-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10;
+            background: transparent;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            pointer-events: none; /* Ochrana i ve vyskakovacím okně */
+        }
+
+        .lightbox-caption {
+            color: #ff7e00;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: #fff; font-size: 40px; cursor: pointer;
+            font-weight: 200;
+        }
+
+        footer { text-align: center; padding: 50px; color: #444; font-size: 0.8rem; }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <!-- Zákaz pravého tlačítka -->
+
+<nav>
+    <a href="index.html">Zpět na úvod</a>
+</nav>
+
+<header class="header-image">
+    <h1>Pohledy</h1>
+</header>
+
+<div class="container">
+    <div class="grid">
+        
+        <!-- Fotka 1: Barrandov -->
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (12).jpg', 'Barrandovské terasy – ozvěny minulosti')">
+            <div class="protection-layer"></div>
+            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg" alt="Barrandov" draggable="false">
+        </div>
+
+        <!-- Fotka 2: Pupen -->
+        <div class="grid-item" onclick="openLightbox('img/2026.04.11 - pupen.jpg', 'Nová síla. Trpělivost v detailech')">
+            <div class="protection-layer"></div>
+            <img src="img/2026.04.11 - pupen.jpg" alt="Pupen" draggable="false">
+        </div>
+
+        <!-- Fotka 3: Vltava -->
+        <div class="grid-item" onclick="openLightbox('img/1000029836.jpg', 'Klid na hladině. Západ slunce nad Vltavou')">
+            <div class="protection-layer"></div>
+            <img src="img/1000029836.jpg" alt="Vltava" draggable="false">
+        </div>
+
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-btn">&times;</span>
+    <div style="position: relative;">
+        <div class="protection-layer"></div> <!-- Ochrana i v Lightboxu -->
+        <img id="lightbox-img" src="" draggable="false">
+    </div>
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+<footer>
+    © 2026 MIMO TRASU | Martin | Bez filtru.
+</footer>
+
+<script>
+    function openLightbox(src, caption) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-caption').innerText = caption;
+        document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Blokace kláves a vývojářských nástrojů
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+    }
+</script>
+
+</body>
+</html>

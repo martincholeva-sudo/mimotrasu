@@ -12,6 +12,9 @@
             font-family: 'Segoe UI', sans-serif; 
             margin: 0; 
             line-height: 1.8; 
+            /* Globální ochrana proti označování */
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         nav { 
@@ -26,7 +29,9 @@
             text-transform: uppercase; 
             letter-spacing: 2px; 
             font-size: 0.8rem; 
+            transition: color 0.3s;
         }
+        nav a:hover { color: #ff7e00; }
 
         .header-image {
             height: 30vh;
@@ -89,11 +94,19 @@
             border: 1px solid #333;
         }
 
-        .contact-box a {
+        /* ✅ VÝJIMKA PRO EMAIL: Povolení označení a kopírování */
+        .allow-copy {
+            user-select: all !important;
+            -webkit-user-select: all !important;
             color: #ff7e00;
             text-decoration: none;
             font-size: 1.2rem;
             letter-spacing: 2px;
+            display: inline-block;
+            transition: opacity 0.3s;
+        }
+        .allow-copy:hover {
+            opacity: 0.8;
         }
 
         .final-motto {
@@ -124,7 +137,7 @@
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
 <nav>
     <a href="index.html">Zpět na úvod</a>
@@ -146,7 +159,7 @@
 
     <p class="highlight">
         Pokud máš potřebu napsat, napiš.
-        Pokud ne, je to v pořádku.
+        Pokud ne, je mi to jedno.
     </p>
 
     <p>
@@ -162,7 +175,7 @@
 
     <div class="contact-box">
         <p>Napiš mi:</p>
-        <a href="mailto:mimotrasu.photo@gmail.com">mimotrasu.photo@gmail.com</a>
+        <a href="mailto:mimotrasu.photo@gmail.com" class="allow-copy">mimotrasu.photo@gmail.com</a>
     </div>
 
     <p class="highlight">
@@ -177,8 +190,19 @@
 </div>
 
 <footer>
-    © 2026 MIMO TRASU
+    © 2026 MIMO TRASU | Martin | Bez filtru.
 </footer>
+
+<script>
+    // Blokace technických kláves, ale ponechání standardních funkcí pro klikání
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123) return false; // F12
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+    }
+</script>
 
 </body>
 </html>
