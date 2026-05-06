@@ -4,85 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postoj | MIMO TRASU</title>
-<meta name="description" content="Postoj k životu v době digitálního šumu. O hodnotě času, vědomém rozhodování a reakcích na věci, které nemůžeme ovlivnit.">
+    <meta name="description" content="Postoj k životu v době digitálního šumu. O hodnotě času, vědomém rozhodování a reakcích na věci, které nemůžeme ovlivnit.">
     <style>
         body { 
             background-color: #000; 
             color: #ccc; 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; 
-            line-height: 1.8; 
-            /* Ochrana proti označování */
+            line-height: 1.7; 
             user-select: none;
             -webkit-user-select: none;
+            overflow-x: hidden; /* Pojistka proti přetečení do stran */
         }
 
         nav { 
-            padding: 20px; 
+            padding: 25px 15px; 
             text-align: center; 
         }
 
         nav a { 
             color: #fff; 
             text-decoration: none; 
-            margin: 0 20px; 
+            margin: 0 15px; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             transition: color 0.3s;
+            font-weight: 300;
         }
         nav a:hover { color: #ff7e00; }
 
         .header-image {
-            height: 30vh;
+            height: 25vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 0 20px;
         }
 
         h1 { 
             color: #ff7e00; 
             text-transform: uppercase; 
-            letter-spacing: 8px; 
+            letter-spacing: clamp(4px, 2vw, 10px); 
             font-weight: 300; 
             margin: 0; 
         }
 
         .intro-lead {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px 60px 20px;
-        }
-
-        .intro-lead p {
-            font-size: 1rem;
-            color: #fff;
-            font-weight: 300;
-            line-height: 2.4;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin: 0;
+            padding: 0 25px 40px 25px;
             text-align: center;
         }
 
-        /* Sekce s parallaxem a ochranou */
+        .intro-lead p {
+            font-size: clamp(0.8rem, 4vw, 1rem);
+            color: #fff;
+            font-weight: 300;
+            line-height: 2;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Parallax sekce */
         .parallax-container {
             position: relative;
             width: 100%;
+            margin: 30px 0;
         }
 
         .parallax-photo {
             width: 100%;
-            height: 45vh;
+            height: 40vh;
+            background-image: url('img/postoj.jpg?v=1');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Parallax pro PC */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;
-            pointer-events: none; /* Zamezí přímé interakci s pozadím */
         }
 
         .protection-layer {
@@ -95,65 +97,67 @@
         .separator-label {
             position: relative;
             z-index: 10;
-            background: rgba(0,0,0,0.65);
+            background: rgba(0,0,0,0.7);
             color: #ff7e00;
-            padding: 15px 35px;
+            padding: 12px 25px;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            font-size: 1.2rem;
+            letter-spacing: 6px;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             border: 1px solid #ff7e00;
             text-align: center;
         }
 
         .container { 
-            max-width: 700px; 
+            max-width: 750px; 
             margin: 0 auto; 
-            padding: 40px 20px; 
+            padding: 40px 25px; 
         }
 
         p { 
             font-size: 1.1rem; 
             margin-bottom: 25px; 
-            text-align: justify; 
+            text-align: left; /* Lepší čitelnost na mobilu než justify */
+            font-weight: 300;
         }
 
         .quote {
             text-align: center;
             font-style: italic;
             color: #fff;
-            margin: 10px 0 35px 0;
+            margin: 40px 0;
             letter-spacing: 1px;
             font-size: 1.15rem;
+            line-height: 1.8;
+            border-left: none;
         }
 
         .final-motto {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             color: #ff7e00;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 8px;
             font-weight: 300;
         }
 
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 60px 20px;
             color: #444;
             font-size: 0.8rem;
+            border-top: 1px solid #111;
         }
 
+        /* MOBILNÍ OPTIMALIZACE */
         @media (max-width: 768px) {
             .parallax-photo { 
-                background-attachment: scroll; 
-                height: 35vh; 
+                background-attachment: scroll; /* Vypnutí parallaxu pro plynulost na mobilu */
+                height: 30vh; 
             }
-            .intro-lead p { 
-                font-size: 0.8rem; 
-                letter-spacing: 3px; 
-            }
-            .header-image { height: 25vh; }
-            .final-motto { font-size: 1.3rem; }
+            .container { padding: 20px 20px; }
+            p { font-size: 1.05rem; }
+            nav a { margin: 0 10px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -165,7 +169,7 @@
 </nav>
 
 <header class="header-image">
-    <h1 style="font-size: clamp(2.5rem, 8vw, 4rem);">Postoj</h1>
+    <h1 style="font-size: clamp(2rem, 8vw, 3.5rem);">Postoj</h1>
 </header>
 
 <div class="intro-lead">
@@ -178,7 +182,7 @@
 
 <div class="parallax-container">
     <div class="protection-layer"></div>
-    <div class="parallax-photo" style="background-image: url('img/postoj.jpg');">
+    <div class="parallax-photo">
         <div class="separator-label">Postoj</div>
     </div>
 </div>
@@ -186,65 +190,62 @@
 <div class="container">
 
     <p>
-        V dnešním světě se na nás z každého kouta hrne spousta informací, notifikací a různých dalších podnětů.
-        Ovlivňuje to rozhodování, myšlení a pak samozřejmě i naše výsledné chování.
+        V dnešním světě se na nás z každého kouta hrne spousta informací, notifikací a různých dalších podnětů. 
+        Ovlivňuje to naše rozhodování, myšlení a pak samozřejmě i naše výsledné chování.
     </p>
 
     <p>
-        Tohle všechno jsem si uvědomil v době, kdy jsem začal přemýšlet o změně životního stylu.
-        Zažil jsem i tu dobu bez notifikací a bez sociálních sítí.
+        Tohle všechno jsem si uvědomil v době, kdy jsem začal přemýšlet o změně životního stylu. 
+        Zažil jsem i tu dobu bez notifikací a bez sociálních sítí. 
         Fungoval jsem naprosto normálně a vyrostl jsem v dospělého člověka bez sebemenších problémů.
     </p>
 
     <p>
-        Jednou jsem si spočítal, kolik minut denně zabíjím tupým sledováním pohybujících se obrázků,
-        které mi nic nedají a za deset minut po tom nevím, co jsem viděl.
-        Obětoval jsem v tento moment to nejcennější, co jsem v životě dostal: ČAS.
+        Jednou jsem si spočítal, kolik minut denně zabíjím tupým sledováním pohybujících se obrázků, 
+        které mi nic nedají a za deset minut po tom už nevím, co jsem viděl. 
+        Obětoval jsem v ten moment to nejcennější, co jsem v životě dostal: <strong>ČAS</strong>.
     </p>
 
     <p>
-        Kdykoli mám potřebu vzít do ruky telefon, podívat se na sociální sítě,
-        mám vždy na paměti, že mi to bere nejdrahocenější věc, kterou jsem dostal.
-        Čas není neomezený.
-        Dostal jsem ho jako dar do vínku na jasně danou dobu.
-        Jak je ta doba dlouhá, to nevím.
+        Kdykoli mám potřebu vzít do ruky telefon a podívat se na sociální sítě, 
+        mám vždy na paměti, že mi to bere nejdrahocennější věc, kterou jsem dostal. 
+        Čas není neomezený. 
+        Dostal jsem ho jako dar do vínku na jasně danou dobu. 
+        Jak je ta doba dlouhá, to nevím. 
         Uvědomil jsem si, že chci s takovým darem nakládat uvážlivě.
     </p>
 
     <p>
-        Začal jsem si vybírat, na které podněty chci vědomě reagovat a na které ne.
-        Co si pustím do svého života a co do mého života nepatří a nechci v něm mít.
+        Začal jsem si vybírat, na které podněty chci vědomě reagovat a na které ne. 
+        Co si pustím do svého života a co do něj nepatří. 
         Pro mě to byla velmi důležitá změna.
     </p>
 
     <p>
-        Vědomě si vybírám, čemu věnuji svou pozornost a tím i čas a čemu ne.
-        Katastrofické zprávy, negativní zprávy a sociální sítě do nich nepatří.
-        A pokud se tomu nevyhnu, pak pouze na dobu nezbytně nutnou.
+        Vědomě si vybírám, čemu věnuji svou pozornost a tím i čas. 
+        Katastrofické zprávy, negativní vlny a nekonečné sociální sítě do mého světa nepatří. 
+        A pokud se jim nevyhnu, pak pouze na dobu nezbytně nutnou.
     </p>
 
     <p>
-        Změna myšlení a mého postoje k životu zahrnuje i mou vědomou volbu,
-        na co budu reagovat a na co reagovat nebudu.
-        Učím se, že na věci a situace, které nemůžu ovlivnit, reagovat nebudu.
-        Prostě čas plyne a situace se dějí.
-        Reaguju jen na ty věci, které mohu změnit a ovlivnit.
+        Změna myšlení a mého postoje k životu zahrnuje i mou vědomou volbu v tom, 
+        na co budu reagovat. Učím se, že na věci a situace, které nemohu ovlivnit, 
+        reagovat nebudu. Prostě čas plyne a situace se dějí. 
+        Reaguji jen na ty věci, které mohu změnit.
     </p>
 
     <p>
-        Pokud venku prší, tak prostě prší.
-        Déšť neovlivním a neudělám z deště slunce.
+        Pokud venku prší, tak prostě prší. 
+        Déšť neovlivním a neudělám z deště slunce. 
         Mohu ale ovlivnit svou reakci na to, že venku prší.
     </p>
 
     <p>
-        Budu z toho mrzutý a nechám si zkazit další den jen proto,
-        že jsem nebyl schopen rozlišit, čemu věnuji svůj čas a energii?
-        Pokud se rozčílím a budu naštvaný, že venku prší,
-        mám zkažený den svým vlastním rozhodnutím
-        a ten čas mi nikdo nevrátí.
-        Promrhal jsem část svého daru na něco,
-        čo není v mých silách ovlivnit.
+        Budu z toho mrzutý a nechám si zkazit den jen proto, 
+        že jsem nebyl schopen rozlišit, čemu věnuji svou energii? 
+        Pokud se naštvu kvůli dešti, mám zkažený den svým vlastním rozhodnutím. 
+        Ten čas mi nikdo nevrátí. Promrhal jsem část svého daru na něco, 
+        co není v mých silách změnit.
     </p>
 
     <p class="quote">
@@ -264,7 +265,16 @@
 </footer>
 
 <script>
-    // Blokace F12 a dalších zkratek pro zobrazení kódu
+    // 1. ČIŠTĚNÍ SERVICE WORKERŮ (Cache killer)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+
+    // 2. OCHRANA KÓDU
     document.onkeydown = function(e) {
         if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;

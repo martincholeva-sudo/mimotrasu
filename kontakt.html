@@ -4,95 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | MIMO TRASU</title>
-<meta name="description" content="Chceš se ozvat? Pokud ti texty dávají smysl nebo se naše cesty dotýkají, napiš mi na mimotrasu.photo@gmail.com.">
+    <meta name="description" content="Chceš se ozvat? Pokud ti texty dávají smysl nebo se naše cesty dotýkají, napiš mi na mimotrasu.photo@gmail.com.">
 
     <style>
         body { 
             background-color: #000; 
             color: #ccc; 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; 
-            line-height: 1.8; 
+            line-height: 1.7; 
             /* Globální ochrana proti označování */
             user-select: none;
             -webkit-user-select: none;
+            overflow-x: hidden;
         }
 
         nav { 
-            padding: 20px; 
+            padding: 25px 15px; 
             text-align: center; 
         }
 
         nav a { 
             color: #fff; 
             text-decoration: none; 
-            margin: 0 20px; 
+            margin: 0 15px; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             transition: color 0.3s;
+            font-weight: 300;
         }
         nav a:hover { color: #ff7e00; }
 
         .header-image {
-            height: 30vh;
+            height: 25vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 0 20px;
         }
 
         h1 { 
             color: #ff7e00; 
             text-transform: uppercase; 
-            letter-spacing: 8px; 
+            letter-spacing: clamp(4px, 2vw, 10px); 
             font-weight: 300; 
             margin: 0; 
+            font-size: clamp(2rem, 8vw, 3.5rem);
         }
 
         .intro-lead {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px 60px 20px;
-        }
-
-        .intro-lead p {
-            font-size: 1rem;
-            color: #fff;
-            font-weight: 300;
-            line-height: 2.4;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin: 0;
+            padding: 0 25px 40px 25px;
             text-align: center;
         }
 
+        .intro-lead p {
+            font-size: clamp(0.85rem, 4vw, 1rem);
+            color: #fff;
+            font-weight: 300;
+            line-height: 2;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
         .container { 
-            max-width: 700px; 
+            max-width: 750px; 
             margin: 0 auto; 
-            padding: 40px 20px; 
+            padding: 40px 25px; 
         }
 
         p { 
             font-size: 1.1rem; 
             margin-bottom: 25px; 
-            text-align: justify; 
+            text-align: left; 
+            font-weight: 300;
         }
 
         .highlight {
             color: #fff;
             font-style: italic;
             border-left: 3px solid #ff7e00;
-            padding-left: 15px;
+            padding: 10px 0 10px 20px;
             margin: 35px 0;
             font-weight: 400;
+            background: rgba(255, 126, 0, 0.05);
         }
 
         .contact-box {
             text-align: center;
-            margin: 60px 0;
-            padding: 30px;
-            border: 1px solid #333;
+            margin: 50px 0;
+            padding: 40px 20px;
+            border: 1px solid #222;
+            background: #050505;
         }
 
         /* ✅ VÝJIMKA PRO EMAIL: Povolení označení a kopírování */
@@ -101,10 +108,11 @@
             -webkit-user-select: all !important;
             color: #ff7e00;
             text-decoration: none;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            letter-spacing: 1px;
             display: inline-block;
             transition: opacity 0.3s;
+            word-break: break-all; /* Pojistka pro velmi malé mobily */
         }
         .allow-copy:hover {
             opacity: 0.8;
@@ -112,28 +120,28 @@
 
         .final-motto {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 25px;
             color: #ff7e00;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 5vw, 2rem);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 1vw, 5px);
             font-weight: 300;
+            line-height: 1.4;
         }
 
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 60px 20px;
             color: #444;
             font-size: 0.8rem;
+            border-top: 1px solid #111;
         }
 
         @media (max-width: 768px) {
-            .intro-lead p { 
-                font-size: 0.8rem; 
-                letter-spacing: 3px; 
-            }
-            .header-image { height: 25vh; }
-            .final-motto { font-size: 1.3rem; }
+            .container { padding: 20px 20px; }
+            p { font-size: 1.05rem; }
+            nav a { margin: 0 10px; font-size: 0.7rem; }
+            .contact-box { padding: 30px 15px; }
         }
     </style>
 </head>
@@ -145,7 +153,7 @@
 </nav>
 
 <header class="header-image">
-    <h1 style="font-size: clamp(2.5rem, 8vw, 4rem);">Kontakt</h1>
+    <h1>Kontakt</h1>
 </header>
 
 <div class="intro-lead">
@@ -159,23 +167,21 @@
 <div class="container">
 
     <p class="highlight">
-        Pokud máš potřebu napsat, napiš.
+        Pokud máš potřebu napsat, napiš. 
         Pokud ne, je mi to jedno.
     </p>
 
     <p>
-        Tenhle web není projekt, není značka a není nabídka služeb.
+        Tenhle web není projekt, není značka a není nabídka služeb. 
         Je to zápisník. A kontakt beru stejně.
     </p>
 
     <p>
-        Pokud ti něco z textů dává smysl,
-        nebo máš pocit, že se naše cesty
-        v nějakém bodě dotýkají, můžeš se ozvat.
+        Pokud ti něco z textů dává smysl, nebo máš pocit, že se naše cesty v nějakém bodě dotýkají, můžeš se ozvat.
     </p>
 
     <div class="contact-box">
-        <p>Napiš mi:</p>
+        <p style="text-align: center; color: #777; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Napiš mi:</p>
         <a href="mailto:mimotrasu.photo@gmail.com" class="allow-copy">mimotrasu.photo@gmail.com</a>
     </div>
 
@@ -195,9 +201,18 @@
 </footer>
 
 <script>
-    // Blokace technických kláves, ale ponechání standardních funkcí pro klikání
+    // Cache killer pro Service Workery
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+
+    // Blokace technických kláves
     document.onkeydown = function(e) {
-        if(e.keyCode == 123) return false; // F12
+        if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;

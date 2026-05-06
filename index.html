@@ -17,6 +17,7 @@
             /* Ochrana proti označování textu/obrazků */
             user-select: none;
             -webkit-user-select: none;
+            overflow-x: hidden;
         }
 
         /* ===== NAVIGACE ===== */
@@ -31,7 +32,7 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 25px;
+            margin: 0 15px;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-size: 0.85rem;
@@ -43,7 +44,6 @@
         /* ===== HERO ===== */
         .hero-section {
             height: 100vh;
-            /* Přidán parametr ?v=1 pro vynucení načtení nového pozadí */
             background:
                 linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)),
                 url('img/schody.jpg?v=1');
@@ -54,11 +54,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 0 20px;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            letter-spacing: 12px;
+            font-size: clamp(2rem, 10vw, 5rem);
+            letter-spacing: clamp(4px, 2vw, 12px);
             text-transform: uppercase;
             font-weight: 300;
             color: #ff7e00;
@@ -88,7 +89,7 @@
         .content-block {
             max-width: 750px;
             margin: 0 auto;
-            padding: 100px 40px;
+            padding: 80px 25px;
         }
 
         h2 { 
@@ -99,12 +100,14 @@
             border-top: 1px solid #ff7e00;
             padding-top: 25px;
             margin-bottom: 30px;
+            font-size: 1.5rem;
         }
 
         p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: #bbb;
             font-weight: 300;
+            text-align: left;
         }
 
         /* ===== FOTO S OCHRANOU ===== */
@@ -113,6 +116,7 @@
             margin: 40px auto;
             position: relative;
             text-align: center;
+            padding: 0 15px;
         }
 
         .photo-container img {
@@ -136,10 +140,10 @@
         /* ===== ROZCESTNÍK ===== */
         .grid-container {
             max-width: 1000px;
-            margin: 100px auto;
+            margin: 80px auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 20px;
             padding: 0 20px;
         }
 
@@ -154,7 +158,7 @@
         .nav-card:hover {
             border-color: #ff7e00;
             background: #111;
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
         .nav-card h3 {
             color: #ff7e00;
@@ -173,32 +177,37 @@
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 80px 50px;
+            padding: 60px 20px;
             color: #444;
             font-size: 0.85rem;
             letter-spacing: 1px;
             border-top: 1px solid #111;
         }
+
+        /* MOBILNÍ ÚPRAVY */
+        @media (max-width: 600px) {
+            .hero-section { padding-top: 60px; }
+            .grid-container { grid-template-columns: 1fr; margin: 40px auto; }
+            .content-block { padding: 40px 20px; }
+            nav a { margin: 0 10px; font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<!-- ===== NAV ===== -->
 <nav>
     <a href="omne.html">O mně</a>
     <a href="kontakt.html">Kontakt</a>
 </nav>
 
-<!-- ===== HERO ===== -->
 <section class="hero-section">
-    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 10px; font-weight: 300; color: #ccc;">
+    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 10px; font-weight: 300; color: #ccc;">
         Cesta muže
     </p>
     <h1 class="hero-title">MIMO TRASU</h1>
     <a href="#zacatek" class="btn-main">Číst zápisník</a>
 </section>
 
-<!-- ===== OBSAH ===== -->
 <div id="zacatek" class="content-block">
     <h2>Uvědomění</h2>
     <p>
@@ -212,7 +221,6 @@
     </p>
 </div>
 
-<!-- Fotka s ochrannou vrstvou - přidán cache buster ?v=1 -->
 <div class="photo-container">
     <div class="protection-layer"></div>
     <img src="img/canon-2000d-II.jpg?v=1" alt="Můj společník Canon EOS 2000D" draggable="false">
@@ -227,7 +235,6 @@
     </p>
 </div>
 
-<!-- ===== ROZCESTNÍK ===== -->
 <div class="grid-container">
     <a href="disciplina.html" class="nav-card">
         <h3>Disciplína</h3>
@@ -245,19 +252,16 @@
     </a>
 </div>
 
-<!-- ===== FOOTER ===== -->
 <div class="footer" id="kontakt">
     © 2026 MIMO TRASU | Martin | Bez filtru.
 </div>
 
 <script>
     // 1. ZABIJÁK STARÝCH SERVICE WORKERŮ
-    // Toto vynutí smazání staré paměti v prohlížečích návštěvníků
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) {
                 registration.unregister();
-                console.log('Stará verze (Service Worker) odstraněna.');
             }
         });
     }

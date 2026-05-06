@@ -4,66 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disciplína | MIMO TRASU</title>
-<meta name="description" content="Disciplína jako nástroj svobody. Jak skrze pohyb a stravu ovládnout své tělo i mysl a najít udržitelný rytmus života.">
+    <meta name="description" content="Disciplína jako nástroj svobody. Jak skrze pohyb a stravu ovládnout své tělo i mysl a najít udržitelný rytmus života.">
     <style>
         body { 
             background-color: #000; 
             color: #ccc; 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; 
-            line-height: 1.8; 
-            /* Ochrana proti označování */
+            line-height: 1.7; 
             user-select: none;
             -webkit-user-select: none;
+            overflow-x: hidden;
         }
 
-        nav { padding: 20px; text-align: center; }
-        nav a { color: #fff; text-decoration: none; margin: 0 20px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: color 0.3s; }
+        nav { padding: 25px 15px; text-align: center; }
+        nav a { 
+            color: #fff; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-size: 0.75rem; 
+            transition: color 0.3s;
+            font-weight: 300;
+        }
         nav a:hover { color: #ff7e00; }
 
         .header-image {
-            height: 30vh;
+            height: 25vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 { 
+            color: #ff7e00; 
+            text-transform: uppercase; 
+            letter-spacing: clamp(4px, 2vw, 10px); 
+            font-weight: 300; 
+            margin: 0; 
+            font-size: clamp(2rem, 8vw, 3.5rem);
         }
 
         .intro-lead {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px 50px 20px;
+            padding: 0 25px 40px 25px;
             text-align: center;
         }
 
         .intro-lead p {
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 4vw, 1rem);
             color: #fff;
             font-weight: 300;
             line-height: 2;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin: 0;
-            text-align: center;
         }
 
-        /* Sekce s parallaxem a ochranou */
         .parallax-container {
             position: relative;
             width: 100%;
+            margin: 30px 0;
         }
 
         .parallax-photo {
             width: 100%;
-            height: 50vh;
-            margin: 20px 0;
+            height: 40vh;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
-            pointer-events: none; /* Zamezí interakci s pozadím */
         }
 
         .protection-layer {
@@ -78,46 +94,80 @@
             z-index: 10;
             background: rgba(0,0,0,0.7);
             color: #ff7e00;
-            padding: 15px 35px;
+            padding: 12px 25px;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            font-size: 1.3rem;
+            letter-spacing: 6px;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             border: 1px solid #ff7e00;
             text-align: center;
         }
 
-        .container { max-width: 700px; margin: 0 auto; padding: 20px 20px 40px 20px; }
-        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: 8px; font-weight: 300; margin: 0; }
-        h2 { color: #ff7e00; font-weight: 400; text-transform: uppercase; border-top: 1px solid #333; padding-top: 20px; margin-top: 50px; }
-        p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; }
+        .container { 
+            max-width: 750px; 
+            margin: 0 auto; 
+            padding: 40px 25px; 
+        }
+
+        h2 { 
+            color: #ff7e00; 
+            font-weight: 400; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            border-top: 1px solid #222; 
+            padding-top: 30px; 
+            margin-top: 60px;
+            font-size: 1.4rem;
+        }
+
+        p { 
+            font-size: 1.1rem; 
+            margin-bottom: 25px; 
+            text-align: left; /* Lepší pro mobilní čitelnost */
+            font-weight: 300;
+        }
 
         .highlight {
             color: #fff;
             font-style: italic;
             border-left: 3px solid #ff7e00;
-            padding-left: 15px;
-            margin: 30px 0;
+            padding: 10px 0 10px 20px;
+            margin: 40px 0;
             font-weight: 400;
+            background: rgba(255, 126, 0, 0.05);
         }
 
         .final-motto {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 25px;
             color: #ff7e00;
-            font-size: 1.8rem;
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: clamp(2px, 1vw, 6px);
             font-weight: 300;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid #111;
         }
 
         @media (max-width: 768px) {
-            .parallax-photo { background-attachment: scroll; height: 35vh; }
-            .intro-lead p { font-size: 0.8rem; letter-spacing: 3px; }
-            .header-image { height: 25vh; }
-            .final-motto { font-size: 1.3rem; }
+            .parallax-photo { 
+                background-attachment: scroll; 
+                height: 30vh; 
+            }
+            .container { padding: 20px 20px; }
+            p { font-size: 1.05rem; }
+            h2 { font-size: 1.2rem; margin-top: 40px; }
+            nav a { margin: 0 10px; font-size: 0.7rem; }
         }
     </style>
 </head>
+
 <body oncontextmenu="return false;">
 
 <nav>
@@ -125,7 +175,7 @@
 </nav>
 
 <header class="header-image">
-    <h1 style="font-size: clamp(2.5rem, 8vw, 4rem);">Disciplína</h1>
+    <h1>Disciplína</h1>
 </header>
 
 <div class="intro-lead">
@@ -136,106 +186,115 @@
     </p>
 </div>
 
-    <!-- SEKCE TRÉNINK S OCHRANOU -->
-    <div class="parallax-container">
-        <div class="protection-layer"></div>
-        <div class="parallax-photo" style="background-image: url('img/cinky.jpg');">
-            <div class="separator-label">Trénink a tělo</div>
-        </div>
+<!-- SEKCE TRÉNINK -->
+<div class="parallax-container">
+    <div class="protection-layer"></div>
+    <div class="parallax-photo" style="background-image: url('img/cinky.jpg?v=1');">
+        <div class="separator-label">Trénink a tělo</div>
     </div>
+</div>
 
-    <div class="container">
-        <h2>Moje cesta ke cvičení</h2>
-        <p>Nikdy jsem nebyl žádný velký sportovec. Spíše vůbec žádný sportovec a pohyb mi toho moc neříkal. Už jako dítě jsem byl dost objemný. Takový ten chlapeček, který neudělá ani kotoul, a když jsem se měl vyšplhat na tyč, tak jsem zjistil, že jsem tak 50 cm nad zemí a tím to skončilo. O laně se ani nebavím.</p>
-        <p>V tomto duchu jsem proplul pubertou až do dospělosti. Občas nějaké záchvěvy toho, že bych se začal hýbat, byly, ale vydržely mi do prvního piva a pak se to rozplynulo v minulosti, na kterou jsem nevzpomínal. Jednoho dne ten zlom přece jen přišel, i když byl malý a postupný.</p>
-        <p>Bylo to v době, kdy jsem zjistil, že vážím víc, než by se mi líbilo, a už jen zavázat si tkaničku u bot byl velký boj. Tady v tom bodě mi mysl vyplavila to, co bylo do té doby schované v mlze mých občasných záchvěvů touhy cvičit a hýbat se. Umanul jsem si, že na to musím jinak. Začal jsem chodit na kurz trenéra fitness.</p>
-        <p class="highlight">První minuta běhu na páse ve fitness centru byla docela velké utrpení.</p>
-        <p>Čas plynul a já si rozšiřoval obzory o svém těle, o tom, jak funguje, jak správně cvičit a taky jak se stravovat. Začínal jsem tomu přicházet na chuť. Chodíval jsem cvičit 3x týdně, měl jsem trenéra, měl jsem jídelníček. Výsledky se postupně dostavovaly. Začal jsem pomalu shazovat nadbytečná kila a přenášet do praxe to, co jsem se naučil v kurzu.</p>
+<div class="container">
+    <h2>Moje cesta ke cvičení</h2>
+    <p>Nikdy jsem nebyl žádný velký sportovec. Spíše vůbec žádný sportovec a pohyb mi toho moc neříkal. Už jako dítě jsem byl dost objemný. Takový ten chlapeček, který neudělá ani kotoul, a když jsem se měl vyšplhat na tyč, tak jsem zjistil, že jsem tak 50 cm nad zemí a tím to skončilo. O laně se ani nebavím.</p>
+    <p>V tomto duchu jsem proplul pubertou až do dospělosti. Občas nějaké záchvěvy toho, že bych se začal hýbat, byly, ale vydržely mi do prvního piva a pak se to rozplynulo v minulosti, na kterou jsem nevzpomínal. Jednoho dne ten zlom přece jen přišel, i když byl malý a postupný.</p>
+    <p>Bylo to v době, kdy jsem zjistil, že vážím víc, než by se mi líbilo, a už jen zavázat si tkaničku u bot byl velký boj. Tady v tom bodě mi mysl vyplavila to, co bylo do té doby schované v mlze mých občasných záchvěvů touhy cvičit a hýbat se. Umanul jsem si, že na to musím jinak. Začal jsem chodit na kurz trenéra fitness.</p>
+    <p class="highlight">První minuta běhu na páse ve fitness centru byla docela velké utrpení.</p>
+    <p>Čas plynul a já si rozšiřoval obzory o svém těle, o tom, jak funguje, jak správně cvičit a taky jak se stravovat. Začínal jsem tomu přicházet na chuť. Chodíval jsem cvičit 3x týdně, měl jsem trenéra, měl jsem jídelníček. Výsledky se postupně dostavovaly. Začal jsem pomalu shazovat nadbytečná kila a přenášet do praxe to, co jsem se naučil v kurzu.</p>
 
-        <h2>Pravidla vs. realita</h2>
-        <p>Možná tušíte, co následovalo a znáte to nejspíše i ze svého života. Pokud to nemá člověk v hlavě srovnané a nemá daná jasná pravidla, o dlouhodobém udržení nemůže být řeč. Stejné to bylo se mnou. Život vám nachystá nepravidelné směny v práci, občas onemocníte, občas nemáte chuť a zaběhlé standardy, o kterých jste si doteď mysleli, že jsou pevné a jasné, vezmou za své.</p>
-        <p>Stereotyp se opět dostal k moci – občas pivko, občas jen válení na gauči, protože lenost byla silnější. Plácal jsem se v tom pořád dokola, občas něco odcvičil, někdy následovala delší pauza a tak pořád dokola. Jedno velké plus to ovšem mělo. Zažil jsem na vlastní kůži, jaké to je „žít jinak“. Žít aktivně v tom smyslu, že se hýbete. Víte, že chcete něco změnit a ty změny malinko cítíte.</p>
+    <h2>Pravidla vs. realita</h2>
+    <p>Možná tušíte, co následovalo a znáte to nejspíše i ze svého života. Pokud to nemá člověk v hlavě srovnané a nemá daná jasná pravidla, o dlouhodobém udržení nemůže být řeč. Stejné to bylo se mnou. Život vám nachystá nepravidelné směny v práci, občas onemocníte, občas nemáte chuť a zaběhlé standardy, o kterých jste si doteď mysleli, že jsou pevné a jasné, vezmou za své.</p>
+    <p>Stereotyp se opět dostal k moci – občas pivko, občas jen válení na gauči, protože lenost byla silnější. Plácal jsem se v tom pořád dokola, občas něco odcvičil, někdy následovala delší pauza a tak pořád dokola. Jedno velké plus to ovšem mělo. Zažil jsem na vlastní kůži, jaké to je „žít jinak“. Žít aktivně v tom smyslu, že se hýbete. Víte, že chcete něco změnit a ty změny malinko cítíte.</p>
 
-        <h2>Restart a pokora</h2>
-        <p>Od života jsem dostal pár kopanců. Sednul jsem si na zadek a začal se svou životní změnou. Vzpomněl jsem si, jaké to bylo, když jsem cvičil. „Tak jo, když už změna v myšlení, tak i změna tělesná“, řekl jsem si. To jde přece ruku v ruce. „Nemůžu změnit myšlení a přitom sedět na gauči, to mi ta hlava nevezme“, říkal jsem si.</p>
-        <p>Začal jsem. Dnes je to už dva roky zpátky, kdy jsem vzal činky do ruky a začal zase cvičit. Vydrželo mi to celé dva roky tak, jak jsem si řekl? Ne, nevydrželo. Začátek jsem přepálil. Chtěl jsem hned zvednout co nejvíce kilo, chtěl jsem cvičit dvoufázově a denně chodit deset kilometrů. Vlastní zkušenost mě naučila, že je to neudržitelný stav.</p>
-        <p class="highlight">Vydržel jsem tři měsíce v tomhle tempu a pak přišla stagnace.</p>
-        <p>Vstoupila mi do toho rýmička a byl konec. Vypadl jsem ze „zaběhnutého“ rytmu a celé moje cvičení a motivace vzala čáru. Analyzoval jsem, přemýšlel a studoval, jak to dělají ostatní, že dokážou tenhle systém udržet funkční. Dal jsem si chvíli oraz, pauzu a vymyslel plán.</p>
+    <h2>Restart a pokora</h2>
+    <p>Od života jsem dostal pár kopanců. Sednul jsem si na zadek a začal se svou životní změnou. Vzpomněl jsem si, jaké to bylo, když jsem cvičil. „Tak jo, když už změna v myšlení, tak i změna tělesná“, řekl jsem si. To jde přece ruku v ruce. „Nemůžu změnit myšlení a přitom sedět na gauči, to mi ta hlava nevezme“, říkal jsem si.</p>
+    <p>Začal jsem. Dnes je to už dva roky zpátky, kdy jsem vzal činky do ruky a začal zase cvičit. Vydrželo mi to celé dva roky tak, jak jsem si řekl? Ne, nevydrželo. Začátek jsem přepálil. Chtěl jsem hned zvednout co nejvíce kilo, chtěl jsem cvičit dvoufázově a denně chodit deset kilometrů. Vlastní zkušenost mě naučila, že je to neudržitelný stav.</p>
+    <p class="highlight">Vydržel jsem tři měsíce v tomhle tempu a pak přišla stagnace.</p>
+    <p>Vstoupila mi do toho rýmička a byl konec. Vypadl jsem ze „zaběhnutého“ rytmu a celé moje cvičení a motivace vzala čáru. Analyzoval jsem, přemýšlel a studoval, jak to dělají ostatní, že dokážou tenhle systém udržet funkční. Dal jsem si chvíli oraz, pauzu a vymyslel plán.</p>
 
-        <h2>Hledání vlastního rytmu</h2>
-        <p>Postupně, po jednotlivých malých krůčcích, jsem znovu začal. Co u mě nefunguje, je systém, který třeba bude fungovat jiným. U mně ne. Striktní rozvrh toho, co musím cvičit a kdy to musím cvičit. To mě unavuje. Síla povinnosti. Koukneš se do kalendáře, máš před sebou těžký den v práci, jsi unavený už jen z toho, že ti chybí slunce, a do toho máš v kalendáři napsán trénink na hodinu. Ne, tohle vím, že je u mě zabiják všeho.</p>
-        <p>Šel jsem na to jinou cestou. Vím, jak jednotlivé cviky provádět a jak je kombinovat. Teorii ovládám. Přichází praxe. Vzal jsem do ruky činky a šel na to. Pomalu a postupně. Ne hned na krev. Po malých krůčcích – ne hned dvacet kilo a patnáct opakování. Cvičil jsem do té míry, kdy jsem cítil, že bych ještě mohl jít dál, ale nešel jsem. Odrovnal bych se a to jsem nechtěl.</p>
-        <p>Ráno jsem se chtěl postavit a cítit takové to příjemné bolení těla. To, kdy mi tělo říká: „Včera ses hýbal – až budeš chtít, pojď zase.“ Ne z povinnosti, ale z toho pocitu, co mě zaplaví potom.</p>
-        <p class="highlight">Rozlišuju mezi leností a únavou.</p>
+    <h2>Hledání vlastního rytmu</h2>
+    <p>Postupně, po jednotlivých malých krůčcích, jsem znovu začal. Co u mě nefunguje, je systém, který třeba bude fungovat jiným. U mně ne. Striktní rozvrh toho, co musím cvičit a kdy to musím cvičit. To mě unavuje. Síla povinnosti. Koukneš se do kalendáře, máš před sebou těžký den v práci, jsi unavený už jen z toho, že ti chybí slunce, a do toho máš v kalendáři napsán trénink na hodinu. Ne, tohle vím, že je u mě zabiják všeho.</p>
+    <p>Šel jsem na to jinou cestou. Vím, jak jednotlivé cviky provádět a jak je kombinovat. Teorii ovládám. Přichází praxe. Vzal jsem do ruky činky a šel na to. Pomalu a postupně. Ne hned na krev. Po malých krůčcích – ne hned dvacet kilo a patnáct opakování. Cvičil jsem do té míry, kdy jsem cítil, že bych ještě mohl jít dál, ale nešel jsem. Odrovnal bych se a to jsem nechtěl.</p>
+    <p>Ráno jsem se chtěl postavit a cítit takové to příjemné bolení těla. To, kdy mi tělo říká: „Včera ses hýbal – až budeš chtít, pojď zase.“ Ne z povinnosti, ale z toho pocitu, co mě zaplaví potom.</p>
+    <p class="highlight">Rozlišuju mezi leností a únavou.</p>
 
-        <h2>Cvičení jako terapie</h2>
-        <p>Nebudu tady mluvit o endorfinech a co mozek všechno vyplavuje. Takových článků je spousta. Píšu o pocitech. O tom, že když tu činku teď vezmu do ruky – ne proto, že mi tady cinká upomínka v kalendáři, ale proto, že chci – tak ten pocit je jiný. Je to malé vítězství. Cítím se líp.</p>
-        <p>Já sám o sobě, moje já se cítí líp v tom, že jsem se hýbal. Něco jsem tomu svému tělu dal. Myšlenky, které nebyly úplně příjemné, zmizely. Pokud nezmizely, koukám se na ně jinak. Nezasahují mě tolik. Mám na ně jiný pohled. To mi dává, krom dalších pocitů, cvičení.</p>
-        <p>Dělám to pravidelně. Pořád mám ale v hlavě jednu věc: NEPŘEPAL TO! Musí to být pořád potěšení, které vychází z tebe, ne z povinnosti. Povinnost nemám rád a ta zabíjí ten pocit radosti ze cvičení.</p>
+    <h2>Cvičení jako terapie</h2>
+    <p>Nebudu tady mluvit o endorfinech a co mozek všechno vyplavuje. Takových článků je spousta. Píšu o pocitech. O tom, že když tu činku teď vezmu do ruky – ne proto, že mi tady cinká upomínka v kalendáři, ale proto, že chci – tak ten pocit je jiný. Je to malé vítězství. Cítím se líp.</p>
+    <p>Já sám o sobě, moje já se cítí líp v tom, že jsem se hýbal. Něco jsem tomu svému tělu dal. Myšlenky, které nebyly úplně příjemné, zmizely. Pokud nezmizely, koukám se na ně jinak. Nezasahují mě tolik. Mám na ně jiný pohled. To mi dává, krom dalších pocitů, cvičení.</p>
+    <p>Dělám to pravidelně. Pořád mám ale v hlavě jednu věc: NEPŘEPAL TO! Musí to být pořád potěšení, které vychází z tebe, ne z povinnosti. Povinnost nemám rád a ta zabíjí ten pocit radosti ze cvičení.</p>
 
-        <h2>Proč a pro koho</h2>
-        <p>Trénuju doma, nechodím do fitka. Koupil jsem si činky, žíněnku a víc nepotřebuji. Mým cílem není mít břišáky, mým cílem není mít svaly jako kulturista. Cvičím a posiluju proto, abych se udržel v kondici. Chci vyšlapat kopec a nedýchat u toho, jako bych měl vyplivnout plíce.</p>
-        <p>Cvičím, abych to tělo, které mě už hodně let drží v činnosti, udržel v činnosti dál a poděkoval mu za to, že mohu chodit, pracovat a užívat si toho, co mi život dává. Proto cvičím, ne pro pozlátko. Cvičím pro sebe. To je to nejdůležitější. Pro sebe, pro své tělo a pro svůj pocit pohody a klidu.</p>
+    <h2>Proč a pro koho</h2>
+    <p>Trénuju doma, nechodím do fitka. Koupil jsem si činky, žíněnku a víc nepotřebuji. Mým cílem není mít břišáky, mým cílem není mít svaly jako kulturista. Cvičím a posiluju proto, abych se udržel v kondici. Chci vyšlapat kopec a nedýchat u toho, jako bych měl vyplivnout plíce.</p>
+    <p>Cvičím, abych to tělo, které mě už hodně let drží v činnosti, udržel v činnosti dál a poděkoval mu za to, že mohu chodit, pracovat a užívat si toho, co mi život dává. Proto cvičím, ne pro pozlátko. Cvičím pro sebe. To je to nejdůležitější. Pro sebe, pro své tělo a pro svůj pocit pohody a klidu.</p>
+</div>
+
+<!-- SEKCE STRAVA -->
+<div class="parallax-container">
+    <div class="protection-layer"></div>
+    <div class="parallax-photo" style="background-image: url('img/jidlo.jpg?v=1');">
+        <div class="separator-label">Strava a řád</div>
     </div>
+</div>
 
-    <!-- SEKCE STRAVA S OCHRANOU -->
-    <div class="parallax-container">
-        <div class="protection-layer"></div>
-        <div class="parallax-photo" style="background-image: url('img/jidlo.jpg');">
-            <div class="separator-label">Strava a řád</div>
-        </div>
-    </div>
+<div class="container">
+    <h2>Moje zkušenost s jídlem</h2>
+    <p>Stravu se snažím držet na stejném principu jako cvičení. Jak jsem už psal, nebyl jsem nikdy hubené dítě. Mohla za to i strava. Jídlo jsem neřešil v podstatě do doby nástupu do fitness kurzu. Měl jsem na něco chuť, tak jsem si to dal. Je deset hodin večer? Tělo to nepozná, ne? Tak to není problém, přece si to dát můžu.</p>
+    <p>Je ráno. Snídaně? Nemám čas. Vypiju kafe na lačný žaludek a musím běžet. Nebo jsem líný si něco uvařit a zrovna mě to nebaví. Tohle známe asi všichni. Nebyl jsem výjimkou v takovém přemýšlení a uvažování. Když jsem dodržoval jídelníček a cvičení pod dohledem trenéra, bylo to jiné. Lepší.</p>
 
-    <div class="container">
-        <h2>Moje zkušenost s jídlem</h2>
-        <p>Stravu se snažím držet na stejném principu jako cvičení. Jak jsem už psal, nebyl jsem nikdy hubené dítě. Mohla za to i strava. Jídlo jsem neřešil v podstatě do doby nástupu do fitness kurzu. Měl jsem na něco chuť, tak jsem si to dal. Je deset hodin večer? Tělo to nepozná, ne? Tak to není problém, přece si to dát můžu.</p>
-        <p>Je ráno. Snídaně? Nemám čas. Vypiju kafe na lačný žaludek a musím běžet. Nebo jsem líný si něco uvařit a zrovna mě to nebaví. Tohle známe asi všichni. Nebyl jsem výjimkou v takovém přemýšlení a uvažování. Když jsem dodržoval jídelníček a cvičení pod dohledem trenéra, bylo to jiné. Lepší.</p>
+    <p class="highlight">Zjistil jsem, že pokud si člověk myslí, že bez něčeho nepřežije, tělo ho vyvede z omylu.</p>
 
-        <p class="highlight">Zjistil jsem, že pokud si člověk myslí, že bez něčeho nepřežije, tělo ho vyvede z omylu.</p>
+    <p>U mě to byly uzeniny a salámy. Neměl jsem je v jídelníčku a ze začátku mi chyběly. Párek k večeři, chleba se salámem, dobrá šunka s čerstvým rohlíkem. Prozradím vám tajemství. Po čase, asi tak po měsíci dodržování jiného jídelníčku, mi ty uzeniny najednou nevoněly. Úplně jsem k nim ztratil chuť a vůbec by mě nenapadlo si tohle zboží v obchodě koupit.</p>
+    <p>Měl jsem jiné věci – zeleninu, hovězí maso, ryby, kuřecí maso, ale salám? Nepotřeboval jsem ho. Takhle tělo reaguje, když něco dlouhodobě nemá. Pokud si někdo myslí, že se bez určitých potravin neobejde a že je musí mít, není to pravda. Lže nám naše vlastní myšlení a náš mozek nás klame.</p>
 
-        <p>U mě to byly uzeniny a salámy. Neměl jsem je v jídelníčku a ze začátku mi chyběly. Párek k večeři, chleba se salámem, dobrá šunka s čerstvým rohlíkem. Prozradím vám tajemství. Po čase, asi tak po měsíci dodržování jiného jídelníčku, mi ty uzeniny najednou nevoněly. Úplně jsem k nim ztratil chuť a vůbec by mě nenapadlo si tohle zboží v obchodě koupit.</p>
-        <p>Měl jsem jiné věci – zeleninu, hovězí maso, ryby, kuřecí maso, ale salám? Nepotřeboval jsem ho. Takhle tělo reaguje, když něco dlouhodobě nemá. Pokud si někdo myslí, že se bez určitých potravin neobejde a že je musí mít, není to pravda. Lže nám naše vlastní myšlení a náš mozek nás klame.</p>
+    <h2>Pády a hledání systému</h2>
+    <p>Stejně, jako to bylo se cvičením, tak to bylo i s jídelníčkem. Nevydržel jsem to. Naprosto stejný vzorec. Nejsem neomylný, nejsem ideální a dokonalý člověk. Učím se, zkoumám, zkouším a mýlím se. Spadnu a pak vstávám a zkouším to jinak. Třeba tisíckrát. Takový je život. Důležité je vědět, co chci a malými kroky budovat tu sílu to udržet.</p>
+    <p>Spadl jsem do toho stereotypu znovu. Opět rychlé občerstvení a žranice v deset večer. Jedno jídlo za den a bez snídaně. Přečetl jsem spoustu rad, jak jíst, co a kdy a v jakém množství. Necítíte z toho zase ten kalendář? Já jo a to není moje parketa.</p>
 
-        <h2>Pády a hledání systému</h2>
-        <p>Stejně, jako to bylo se cvičením, tak to bylo i s jídelníčkem. Nevydržel jsem to. Naprosto stejný vzorec. Nejsem neomylný, nejsem ideální a dokonalý člověk. Učím se, zkoumám, zkouším a mýlím se. Spadnu a pak vstávám a zkouším to jinak. Třeba tisíckrát. Takový je život. Důležité je vědět, co chci a malými kroky budovat tu sílu to udržet.</p>
-        <p>Spadl jsem do toho stereotypu znovu. Opět rychlé občerstvení a žranice v deset večer. Jedno jídlo za den a bez snídaně. Přečetl jsem spoustu rad, jak jíst, co a kdy a v jakém množství. Necítíte z toho zase ten kalendář? Já jo a to není moje parketa.</p>
+    <h2>Změna myšlení a funkčnost</h2>
+    <p>Musel jsem něco změnit, aby systém fungoval. Změnil jsem myšlení. Pohled na stravu jako na celek. Potýkal jsem se s myšlenkou, že nebudu denně vařit něco nového. Nechtělo se mi vymýšlet pokaždé novou stravu, nechtělo se mi neustále nakupovat. Hledal jsem způsob, jak to udělat, abych jídlo měl, bylo celkem zdravé, nebylo to za tisíce korun na měsíc a nemusel denně vařit.</p>
+    <p>Stejně jako u cvičení, tak i u jídla – nehoním tabulky, nepočítám kalorie. Mým cílem není výstavní tělo, ale cílem je funkční tělo co nejdéle a chci, aby dostalo aspoň trochu toho, co si zaslouží. Nebo v nejhorším případě – abych ho nezatěžoval toxickým odpadem, kdy musí svou energii darovat na odbourání látek, které mu dám.</p>
 
-        <h2>Změna myšlení a funkčnost</h2>
-        <p>Musel jsem něco změnit, aby systém fungoval. Změnil jsem myšlení. Pohled na stravu jako na celek. Potýkal jsem se s myšlenkou, že nebudu denně vařit něco nového. Nechtělo se mi vymýšlet pokaždé novou stravu, nechtělo se mi neustále nakupovat. Hledal jsem způsob, jak to udělat, abych jídlo měl, bylo celkem zdravé, nebylo to za tisíce korun na měsíc a nemusel denně vařit.</p>
-        <p>Stejně jako u cvičení, tak i u jídla – nehoním tabulky, nepočítám kalorie. Mým cílem není výstavní tělo, ale cílem je funkční tělo co nejdéle a chci, aby dostalo aspoň trochu toho, co si zaslouží. Nebo v nejhorším případě – abych ho nezatěžoval toxickým odpadem, kdy musí svou energii darovat na odbourání látek, které mu dám.</p>
+    <h2>Výmluva na čas je lež</h2>
+    <p>Pokud mi někdo bude tvrdit, že ráno nemá čas si připravit snídani, vím, že lže. Mluví z něj lenost a nebojím se říct – neúcta k sobě samému. Byl jsem stejný, to přiznávám. Změna začíná myšlením v hlavě. Našel jsem si systém, který držím už pár týdnů.</p>
+    <p>Připravím si snídani na dva dny dopředu. Mám dvě skleničky. Do nich dám jogurt, ovesné vločky, ořechy, med, mražené ovoce, skořici pro chuť a hotovo. Je to práce na 5 minut každé dva dny.</p>
 
-        <h2>Výmluva na čas je lež</h2>
-        <p>Pokud mi někdo bude tvrdit, že ráno nemá čas si připravit snídani, vím, že lže. Mluví z něj lenost a nebojím se říct – neúcta k sobě samému. Byl jsem stejný, to přiznávám. Změna začíná myšlením v hlavě. Našel jsem si systém, který držím už pár týdnů.</p>
-        <p>Připravím si snídani na dva dny dopředu. Mám dvě skleničky. Do nich dám jogurt, ovesné vločky, ořechy, med, mražené ovoce, skořici pro chuť a hotovo. Je to práce na 5 minut každé dva dny.</p>
+    <p class="highlight">Když někdo řekne, že nemá čas si připravit jídlo, a pak půl hodiny scroluje TikTok, vybral si cestu sám.</p>
 
-        <p class="highlight">Když někdo řekne, že nemá čas si připravit jídlo, a pak půl hodiny scroluje TikTok, vybral si cestu sám.</p>
+    <p>Dá se to samozřejmě obměňovat a vymýšlet další různé varianty. Jde jen a pouze o přípravu. Večer si jídlo připravím a jídlo na dva dny mám hotové. Příprava je důležitá. Večer si vždycky chystám druhý den. Kompletně, od snídaně, přes oběd i oblečení. Připravím si hrnek, do něj si dám kávu, do konvice si připravím vodu a snídani mám ve skleničce v lednici.</p>
+    <p>Vstanu hodinu před odjezdem do práce, všechno mám už připravené. Absolvuju studenou sprchu, zapnu vodu na kávu a než se obleču, mám snídani. Funguje to. Už čtvrtý týden. Stejně to mám i s obědem a večeří.</p>
 
-        <p>Dá se to samozřejmě obměňovat a vymýšlet další různé varianty. Jde jen a pouze o přípravu. Večer si jídlo připravím a jídlo na dva dny mám hotové. Příprava je důležitá. Večer si vždycky chystám druhý den. Kompletně, od snídaně, přes oběd i oblečení. Připravím si hrnek, do něj si dám kávu, do konvice si připravím vodu a snídani mám ve skleničce v lednici.</p>
-        <p>Vstanu hodinu před odjezdem do práce, všechno mám už připravené. Absolvuju studenou sprchu, zapnu vodu na kávu a než se obleču, mám snídani. Funguje to. Už čtvrtý týden. Stejně to mám i s obědem a večeří.</p>
+    <h2>Realita a udržitelnost</h2>
+    <p>Jistě, že je pohodlnější jít do kantýny a nechat tam 200 Kč za jídlo, které si zaplatím. Někdo ho udělal a já ho jen sním. Otázka ovšem je, jakou hodnotu mé tělo z toho jídla dostane. Nevařím si doma žádné kulinářské speciality. Možná se mnou nebudou všichni souhlasit. Nepíšu věty proto, aby dostaly souhlas. Popisuju realitu a popisuju změnu.</p>
+    <p>Dokážu si udělat jídlo na týden dopředu. Uvařím si těstoviny, udělám si mraženou zeleninu na pánvi. Ano, mraženou. Nemám doma čerstvou zeleninu a nechodím kvůli ní každý den do obchodu. Mám mraženou zeleninu a stačí mi to dokonale. Udělám si ji na pánvi „al dente“ a k tomu těstoviny. Dvě misky, všechno zvlášť.</p>
+    <p>Z jogurtu, hořčice, koření a olivového oleje smíchám dresink. Do krabičky dám porci těstovin, zeleniny a dresinku dohromady a mám zeleninový salát. Můžu přidat restované maso, obměnit dresink, udělat to jinak. Jídlo na každý den je hotové.</p>
+    <p>Existuje spousta variant. Rýže se zeleninou a s masem, zapečené brambory se zeleninou a jiné další možnosti. Tohle je v hlavě. Tělo potřebuje pravidelnost, potřebuje rozumnou výživu. Není to vrchol gurmánského fitness jídelníčku a ani se o to nesnažím.</p>
+    <p>Snažím se o jinou věc. Najít si rytmus, najít si rutinu a vědět, že to zvládnu a že je to pro mě udržitelné. O to mi jde a to je pro mě cíl. Nejím pořád dokola to stejné. Mám den v týdnu, kdy si dám něco jiného. Třeba pečené maso a hranolky. Bez tatarky. Vytvořím si dresink z jogurtu. Hranolky peču v troubě na plechu bez oleje. Vnímám to jako pokrok a krok dopředu.</p>
 
-        <h2>Realita a udržitelnost</h2>
-        <p>Jistě, že je pohodlnější jít do kantýny a nechat tam 200 Kč za jídlo, které si zaplatím. Někdo ho udělal a já ho jen sním. Otázka ovšem je, jakou hodnotu mé tělo z toho jídla dostane. Nevařím si doma žádné kulinářské speciality. Možná se mnou nebudou všichni souhlasit. Nepíšu věty proto, aby dostaly souhlas. Popisuju realitu a popisuju změnu.</p>
-        <p>Dokážu si udělat jídlo na týden dopředu. Uvařím si těstoviny, udělám si mraženou zeleninu na pánvi. Ano, mraženou. Nemám doma čerstvou zeleninu a nechodím kvůli ní každý den do obchodu. Mám mraženou zeleninu a stačí mi to dokonale. Udělám si ji na pánvi „al dente“ a k tomu těstoviny. Dvě misky, všechno zvlášť.</p>
-        <p>Z jogurtu, hořčice, koření a olivového oleje smíchám dresink. Do krabičky dám porci těstovin, zeleniny a dresinku dohromady a mám zeleninový salát. Můžu přidat restované maso, obměnit dresink, udělat to jinak. Jídlo na každý den je hotové.</p>
-        <p>Existuje spousta variant. Rýže se zeleninou a s masem, zapečené brambory se zeleninou a jiné další možnosti. Tohle je v hlavě. Tělo potřebuje pravidelnost, potřebuje rozumnou výživu. Není to vrchol gurmánského fitness jídelníčku a ani se o to nesnažím.</p>
-        <p>Snažím se o jinou věc. Najít si rytmus, najít si rutinu a vědět, že to zvládnu a že je to pro mě udržitelné. O to mi jde a to je pro mě cíl. Nejím pořád dokola to stejné. Mám den v týdnu, kdy si dám něco jiného. Třeba pečené maso a hranolky. Bez tatarky. Vytvořím si dresink z jogurtu. Hranolky peču v troubě na plechu bez oleje. Vnímám to jako pokrok a krok dopředu.</p>
+    <h2>Naslouchání tělu</h2>
+    <p>Snažím se aktivně odbourávat chuť po jídle na sladké. Míval jsem ji a zajímavé je, že když jsem si dal „klasický“ oběd v kantýně, tak jsem měl neodolatelnou chuť na čokoládu. Když sním těstoviny a zeleninu s jogurtem, na čokoládu si ani nevzpomenu.</p>
+    <p>Stalo se vám někdy, že jste na něco měli obrovskou chuť a dali jste si to jako „mega prasárnu“? Vzpomeňte si, jak vám odpovědělo tělo. Bylo vám pak z toho špatně, dlouho jste to jídlo trávili. Tělo ví, co chce a co je pro něj dobré. My jsme bohužel zapomněli tělu naslouchat.</p>
+    <p>Vymýšlíme diety a fitness recepty a různé další blbosti, abychom tělu dali to, co si na Instagramu všichni myslí, že potřebuje. Když se vrátíme k selskému rozumu a když pochopíme a vyzkoušíme si, co nám vyhovuje a co nám dává smysl, věřte, že tělo nám poděkuje dobrým zdravím bez zbytečných návštěv u lékařů a vydáváním našich peněz za předražené léky.</p>
+</div>
 
-        <h2>Naslouchání tělu</h2>
-        <p>Snažím se aktivně odbourávat chuť po jídle na sladké. Míval jsem ji a zajímavé je, že když jsem si dal „klasický“ oběd v kantýně, tak jsem měl neodolatelnout chuť na čokoládu. Když sním těstoviny a zeleninu s jogurtem, na čokoládu si ani nevzpomenu.</p>
-        <p>Stalo se vám někdy, že jste na něco měli obrovskou chuť a dali jste si to jako „mega prasárnu“? Vzpomeňte si, jak vám odpovědělo tělo. Bylo vám pak z toho špatně, dlouho jste to jídlo trávili. Tělo ví, co chce a co je pro něj dobré. My jsme bohužel zapomněli tělu naslouchat.</p>
-        <p>Vymýšlíme diety a fitness recepty a různé další blbosti, abychom tělu dali to, co si na Instagramu všichni myslí, že potřebuje. Když se vrátíme k selskému rozumu a když pochopíme a vyzkoušíme si, co nám vyhovuje a co nám dává smysl, věřte, že tělo nám poděkuje dobrým zdravím bez zbytečných návštěv u lékařů a vydáváním našich peněz za předražené léky.</p>
-    </div>
+<div class="final-motto">
+    Tělo tvou péči pocítí a vrátí ti to.
+</div>
 
-    <div class="final-motto">
-        Tělo tvou péči pocítí a vrátí ti to.
-    </div>
-
-    <footer style="text-align: center; padding: 50px; color: #444; font-size: 0.8rem;">
-        © 2026 MIMO TRASU | Martin | Bez filtru.
-    </footer>
+<footer>
+    © 2026 MIMO TRASU | Martin | Bez filtru.
+</footer>
 
 <script>
-    // Blokace F12 a dalších zkratek pro zobrazení kódu
+    // Cache killer pro Service Workery
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+
+    // Ochrana kódu
     document.onkeydown = function(e) {
         if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
