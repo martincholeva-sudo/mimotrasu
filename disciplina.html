@@ -36,16 +36,47 @@
         
         .highlight { color: #fff; font-style: italic; border-left: 3px solid #ff7e00; padding: 10px 0 10px 20px; margin: 40px 0; font-weight: 400; background: rgba(255, 126, 0, 0.05); }
         .final-motto { text-align: center; padding: 60px 25px; color: #ff7e00; font-size: clamp(1.4rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 6px); font-weight: 300; line-height: 1.4; }
+        
+        /* DECENTNÍ ŠIPKA NAHORU */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            color: #ff7e00;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
         @media (max-width: 768px) {
             .parallax-photo { background-attachment: scroll; height: 30vh; }
             .container { padding: 20px 20px; }
             nav a { margin: 0 10px; font-size: 0.7rem; }
+            #backToTop { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<!-- Tlačítko nahoru -->
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+
 <nav><a href="index.html">Zpět na úvod</a></nav>
 <header class="header-image"><h1>Disciplína</h1></header>
 <div class="intro-lead"><p>Disciplína pro mě není trest. Je to svoboda.<br>Je to nástroj, který mi dovoluje ovládat své tělo i svou mysl,<br>místo aby ony ovládaly mě.</p></div>
@@ -111,7 +142,24 @@
 </div>
 <div class="final-motto">Tělo tvou péči pocítí a vrátí ti to.</div>
 <footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
+
 <script>
+    // Tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister(); } }); }
     document.onkeydown = function(e) { if(e.keyCode == 123) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; }
 </script>
