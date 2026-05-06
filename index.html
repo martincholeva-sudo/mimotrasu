@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIMO TRASU | Restart</title>
-<meta name="description" content="MIMO TRASU – Zápisník muže na cestě k životní změně. Autentický pohled na disciplínu, postoje a osobní rozvoj bez filtrů.">
+    <meta name="description" content="MIMO TRASU – Zápisník muže na cestě k životní změně. Autentický pohled na disciplínu, postoje a osobní rozvoj bez filtrů.">
 
     <style>
         body { 
@@ -43,9 +43,10 @@
         /* ===== HERO ===== */
         .hero-section {
             height: 100vh;
+            /* Přidán parametr ?v=1 pro vynucení načtení nového pozadí */
             background:
                 linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)),
-                url('img/schody.jpg');
+                url('img/schody.jpg?v=1');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -110,7 +111,7 @@
         .photo-container {
             max-width: 1000px;
             margin: 40px auto;
-            position: relative; /* Nutné pro ochrannou vrstvu */
+            position: relative;
             text-align: center;
         }
 
@@ -119,7 +120,7 @@
             height: auto;
             display: block;
             filter: grayscale(20%);
-            pointer-events: none; /* Zakáže interakci s fotkou */
+            pointer-events: none;
         }
 
         .protection-layer {
@@ -180,7 +181,7 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <!-- Globální zákaz pravého tlačítka -->
+<body oncontextmenu="return false;">
 
 <!-- ===== NAV ===== -->
 <nav>
@@ -211,10 +212,10 @@
     </p>
 </div>
 
-<!-- Fotka s ochrannou vrstvou -->
+<!-- Fotka s ochrannou vrstvou - přidán cache buster ?v=1 -->
 <div class="photo-container">
     <div class="protection-layer"></div>
-    <img src="img/canon-2000d-II.jpg" alt="Můj společník Canon EOS 2000D" draggable="false">
+    <img src="img/canon-2000d-II.jpg?v=1" alt="Můj společník Canon EOS 2000D" draggable="false">
 </div>
 
 <div class="content-block">
@@ -238,7 +239,6 @@
         <p>Jak si udržet směr, když se všechno sype.</p>
     </a>
 
-    <!-- Odkaz opraven na pohledy.html -->
     <a href="pohledy.html" class="nav-card">
         <h3>Pohledy</h3>
         <p>Svět skrz hledáček. Zpomalení.</p>
@@ -251,7 +251,18 @@
 </div>
 
 <script>
-    // Blokace F12 a dalších zkratek pro zobrazení kódu
+    // 1. ZABIJÁK STARÝCH SERVICE WORKERŮ
+    // Toto vynutí smazání staré paměti v prohlížečích návštěvníků
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+                console.log('Stará verze (Service Worker) odstraněna.');
+            }
+        });
+    }
+
+    // 2. OCHRANA KÓDU
     document.onkeydown = function(e) {
         if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
