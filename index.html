@@ -12,7 +12,7 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIMO TRASU | Restart</title>
+    <title>MIMO TRASU</title>
     <meta name="description" content="MIMO TRASU – Zápisník muže na cestě k životní změně. Autentický pohled na disciplínu, postoje a osobní rozvoj bez filtrů.">
 
     <style>
@@ -190,6 +190,32 @@
             text-align: center; /* V kartách nechat na střed */
         }
 
+        /* NOVÁ DECENTNÍ ŠIPKA NAHORU */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
@@ -206,10 +232,14 @@
             .grid-container { grid-template-columns: 1fr; margin: 40px auto; }
             .content-block { padding: 40px 20px; }
             nav a { margin: 0 10px; font-size: 0.75rem; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<!-- Tlačítko nahoru -->
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
 
 <nav>
     <a href="omne.html">O mně</a>
@@ -273,6 +303,22 @@
 </div>
 
 <script>
+    // Logika pro tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) {

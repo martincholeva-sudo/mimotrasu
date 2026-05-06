@@ -35,7 +35,44 @@
         /* Hlavní text do bloku */
         .container p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; font-weight: 300; }
 
-        .quote { text-align: center; font-style: italic; color: #fff; margin: 40px 0; letter-spacing: 1px; font-size: 1.15rem; line-height: 1.8; }
+        /* UPRAVENÁ CITACE NA STŘED */
+        .quote { 
+            text-align: center; 
+            font-style: italic; 
+            color: #fff; 
+            margin: 60px auto; 
+            letter-spacing: 1px; 
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            max-width: 90%;
+        }
+
+        /* DECENTNÍ ŠIPKA NAHORU */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
+        }
+
         .final-motto { text-align: center; padding: 40px 20px; color: #ff7e00; font-size: clamp(1.5rem, 5vw, 2.5rem); text-transform: uppercase; letter-spacing: 8px; font-weight: 300; }
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
@@ -43,10 +80,15 @@
             .parallax-photo { background-attachment: scroll; height: 30vh; }
             .container { padding: 20px 20px; }
             nav a { margin: 0 10px; font-size: 0.7rem; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<!-- Tlačítko nahoru -->
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+
 <nav><a href="index.html">Zpět na úvod</a></nav>
 <header class="header-image"><h1>Postoj</h1></header>
 <div class="intro-lead"><p>Postoj není názor.<br>Je to volba.<br>Každý den.</p></div>
@@ -61,14 +103,33 @@
     <p>Změna myšlení a mého postoje k životu zahrnuje i mou vědomou volbu v tom, na co budu reagovat. Učím se, že na věci a situace, které nemohu ovlivnit, reagovat nebudu. Prostě čas plyne a situace se dějí. Reaguji jen na ty věci, které mohu změnit.</p>
     <p>Pokud venku prší, tak prostě prší. Déšť neovlivním a neudělám z deště slunce. Mohu ale ovlivnit svou reakci na to, že venku prší.</p>
     <p>Budu z toho mrzutý a nechám si zkazit den jen proto, že jsem nebyl schopen rozlišit, čemu věnuji svou energii? Pokud se naštvu kvůli dešti, mám zkažený den svým vlastním rozhodnutím. Ten čas mi nikdo nevrátí. Promrhal jsem část svého daru na něco, co není v mých silách změnit.</p>
+    
     <p class="quote">
-    Učím se vybírat si své reakce.<br>
-    A tím i to, čemu věnuji to nejcennější, co mám.
-</p>
+        Učím se vybírat si své reakce.<br>
+        A tím i to, čemu věnuji to nejcennejší, co mám.
+    </p>
+
 </div>
 <div class="final-motto">ČAS.</div>
 <footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
+
 <script>
+    // Tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister(); } }); }
     document.onkeydown = function(e) { if(e.keyCode == 123) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; }
 </script>

@@ -34,7 +34,44 @@
         .container p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; font-weight: 300; }
 
         .highlight { color: #fff; font-style: italic; border-left: 3px solid #ff7e00; padding: 10px 0 10px 20px; margin: 40px 0; font-weight: 400; background: rgba(255, 126, 0, 0.05); }
-        .quote { text-align: center; font-style: italic; color: #fff; margin: 40px 0; letter-spacing: 1px; font-size: 1.15rem; line-height: 1.8; }
+        
+        .quote { 
+            text-align: center; 
+            font-style: italic; 
+            color: #fff; 
+            margin: 60px auto; 
+            letter-spacing: 1px; 
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            max-width: 90%;
+        }
+
+        /* DECENTNÍ ŠIPKA NAHORU */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
+        }
+
         .final-motto { text-align: center; padding: 60px 25px; color: #ff7e00; font-size: clamp(1.3rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 6px); font-weight: 300; line-height: 1.4; }
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
@@ -42,10 +79,15 @@
             .parallax-photo { background-attachment: scroll; height: 30vh; }
             .container { padding: 20px 20px; }
             nav a { margin: 0 10px; font-size: 0.7rem; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<!-- Tlačítko nahoru -->
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+
 <nav><a href="index.html">Zpět na úvod</a></nav>
 <header class="header-image"><h1>O mně</h1></header>
 <div class="intro-lead"><p>Nejsem kouč.<br>Nejsem motivátor.<br>Nejsem učitel.</p></div>
@@ -53,7 +95,12 @@
 <div class="container">
     <p class="highlight">Jsem obyčejný chlap. Jako každý jiný.</p>
     <p>V určitém životním období jsem si řekl:</p>
-    <p class="quote">„Dost. Opravdu nechceš od života více? Stačí ti toto?“</p>
+    
+    <p class="quote">
+        „Dost. Opravdu nechceš od života více?<br>
+        Stačí ti toto?“
+    </p>
+
     <p>Začal jsem přemýšlet, studovat a hledat cesty, jak zlepšit sám sebe. Jaké jsou možnosti, co jsem ještě neobjevil a co z toho mohu vytěžit. Posune mě ta změna k lepšímu? Budu se cítit lépe? Jaké jsou kroky ke změně?</p>
     <p class="highlight">Jak přežít v dnešním světě se vztyčenou hlavou a bez újmy?<br>Jak se zorientovat?<br>Jaké morální zásady by měl chlap mít a žít podle nich?</p>
     <p>Studoval jsem spoustu různých názorů, tipů a článků. Z každého jsem si vzal to podstatné – hlavně to, o čem jsem si myslel, že by mohlo fungovat i u mě.</p>
@@ -66,7 +113,24 @@
 </div>
 <div class="final-motto">JÍT VLASTNÍ CESTOU. I KDYŽ JE MIMO TRASU.</div>
 <footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
+
 <script>
+    // Tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister(); } }); }
     document.onkeydown = function(e) { if(e.keyCode == 123) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; }
 </script>
