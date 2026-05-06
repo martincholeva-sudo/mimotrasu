@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-HZ5QBXPRP1');
 </script>
     <meta charset="UTF-8">
@@ -37,29 +36,30 @@
         .highlight { color: #fff; font-style: italic; border-left: 3px solid #ff7e00; padding: 10px 0 10px 20px; margin: 40px 0; font-weight: 400; background: rgba(255, 126, 0, 0.05); }
         .final-motto { text-align: center; padding: 60px 25px; color: #ff7e00; font-size: clamp(1.4rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 6px); font-weight: 300; line-height: 1.4; }
         
-        /* DECENTNÍ ŠIPKA NAHORU */
+        /* NOVÁ DECENTNÍ ŠIPKA */
         #backToTop {
             display: none;
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             z-index: 99;
-            border: 1px solid rgba(255, 126, 0, 0.5);
-            background: rgba(0, 0, 0, 0.6);
-            color: #ff7e00;
+            border: 1px solid rgba(255, 126, 0, 0.3); /* Jemnější ohraničení */
+            background: rgba(17, 17, 17, 0.5); /* Poloprůhledné tmavé pozadí */
+            color: rgba(255, 126, 0, 0.7); /* Méně křiklavá oranžová */
             cursor: pointer;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            width: 38px;
+            height: 38px;
+            border-radius: 4px; /* Jen mírné zaoblení místo kruhu pro moderní vzhled */
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
         }
         #backToTop:hover {
             border-color: #ff7e00;
-            background: rgba(255, 126, 0, 0.1);
-            transform: translateY(-3px);
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
         }
 
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
@@ -68,7 +68,7 @@
             .parallax-photo { background-attachment: scroll; height: 30vh; }
             .container { padding: 20px 20px; }
             nav a { margin: 0 10px; font-size: 0.7rem; }
-            #backToTop { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
