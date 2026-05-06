@@ -67,6 +67,11 @@
             text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
+        /* Úvodní věty pod velkým nápisem uprostřed */
+        .hero-section p {
+            text-align: center !important;
+        }
+
         .btn-main {
             margin-top: 40px;
             padding: 15px 35px;
@@ -103,11 +108,12 @@
             font-size: 1.5rem;
         }
 
+        /* Hlavní texty do bloku */
         p {
             font-size: 1.1rem;
             color: #bbb;
             font-weight: 300;
-            text-align: left;
+            text-align: justify;
         }
 
         /* ===== FOTO S OCHRANOU ===== */
@@ -172,6 +178,7 @@
             font-size: 0.95rem;
             margin-bottom: 0;
             user-select: none;
+            text-align: center; /* V kartách nechat na střed */
         }
 
         /* ===== FOOTER ===== */
@@ -257,7 +264,6 @@
 </div>
 
 <script>
-    // 1. ZABIJÁK STARÝCH SERVICE WORKERŮ
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for(let registration of registrations) {
@@ -266,7 +272,6 @@
         });
     }
 
-    // 2. OCHRANA KÓDU
     document.onkeydown = function(e) {
         if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;

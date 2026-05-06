@@ -54,6 +54,7 @@
             font-size: clamp(2rem, 8vw, 3.5rem);
         }
 
+        /* Úvodní věty uprostřed */
         .intro-lead {
             max-width: 800px;
             margin: 0 auto;
@@ -69,6 +70,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin: 0;
+            text-align: center !important;
         }
 
         .container { 
@@ -77,10 +79,11 @@
             padding: 40px 25px; 
         }
 
+        /* Hlavní text do bloku */
         p { 
             font-size: 1.1rem; 
             margin-bottom: 25px; 
-            text-align: left; 
+            text-align: justify; 
             font-weight: 300;
         }
 
@@ -102,6 +105,14 @@
             background: #050505;
         }
 
+        .contact-box p {
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         /* ✅ VÝJIMKA PRO EMAIL: Povolení označení a kopírování */
         .allow-copy {
             user-select: all !important;
@@ -112,7 +123,7 @@
             letter-spacing: 1px;
             display: inline-block;
             transition: opacity 0.3s;
-            word-break: break-all; /* Pojistka pro velmi malé mobily */
+            word-break: break-all;
         }
         .allow-copy:hover {
             opacity: 0.8;
@@ -181,7 +192,7 @@
     </p>
 
     <div class="contact-box">
-        <p style="text-align: center; color: #777; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Napiš mi:</p>
+        <p>Napiš mi:</p>
         <a href="mailto:mimotrasu.photo@gmail.com" class="allow-copy">mimotrasu.photo@gmail.com</a>
     </div>
 
