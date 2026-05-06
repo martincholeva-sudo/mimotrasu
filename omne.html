@@ -6,279 +6,60 @@
     <title>O mně | MIMO TRASU</title>
     <meta name="description" content="Kdo stojí za projektem MIMO TRASU? Příběh obyčejného chlapa, který se rozhodl pro změnu a hledá udržitelnost místo dokonalosti.">
     <style>
-        body { 
-            background-color: #000; 
-            color: #ccc; 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            margin: 0; 
-            line-height: 1.7; 
-            user-select: none;
-            -webkit-user-select: none;
-            overflow-x: hidden;
-        }
-
-        nav { 
-            padding: 25px 15px; 
-            text-align: center; 
-        }
-
-        nav a { 
-            color: #fff; 
-            text-decoration: none; 
-            margin: 0 15px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 0.75rem; 
-            transition: color 0.3s;
-            font-weight: 300;
-        }
+        body { background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; line-height: 1.7; user-select: none; -webkit-user-select: none; overflow-x: hidden; }
+        nav { padding: 25px 15px; text-align: center; }
+        nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
         nav a:hover { color: #ff7e00; }
+        .header-image { height: 25vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: clamp(4px, 2vw, 10px); font-weight: 300; margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); }
+        
+        .intro-lead { max-width: 800px; margin: 0 auto; padding: 0 25px 40px 25px; text-align: center; }
+        .intro-lead p { font-size: clamp(0.85rem, 4vw, 1rem); color: #fff; font-weight: 300; line-height: 2; letter-spacing: 4px; text-transform: uppercase; margin: 0; text-align: center !important; }
 
-        .header-image {
-            height: 25vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-        }
+        .parallax-container { position: relative; width: 100%; margin: 30px 0; }
+        .parallax-photo { width: 100%; height: 40vh; background-image: url('img/cesta.jpg?v=1'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
+        .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; background: transparent; }
+        .separator-label { position: relative; z-index: 10; background: rgba(0,0,0,0.7); color: #ff7e00; padding: 12px 25px; text-transform: uppercase; letter-spacing: 6px; font-size: clamp(0.9rem, 3vw, 1.2rem); border: 1px solid #ff7e00; text-align: center; }
+        
+        .container { max-width: 750px; margin: 0 auto; padding: 40px 25px; }
+        .container p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; font-weight: 300; }
 
-        h1 { 
-            color: #ff7e00; 
-            text-transform: uppercase; 
-            letter-spacing: clamp(4px, 2vw, 10px); 
-            font-weight: 300; 
-            margin: 0; 
-            font-size: clamp(2rem, 8vw, 3.5rem);
-        }
-
-        .intro-lead {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 25px 40px 25px;
-            text-align: center;
-        }
-
-        .intro-lead p {
-            font-size: clamp(0.85rem, 4vw, 1rem);
-            color: #fff;
-            font-weight: 300;
-            line-height: 2;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .parallax-container {
-            position: relative;
-            width: 100%;
-            margin: 30px 0;
-        }
-
-        .parallax-photo {
-            width: 100%;
-            height: 40vh;
-            background-image: url('img/cesta.jpg?v=1');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .protection-layer {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5;
-            background: transparent;
-        }
-
-        .separator-label {
-            position: relative;
-            z-index: 10;
-            background: rgba(0,0,0,0.7);
-            color: #ff7e00;
-            padding: 12px 25px;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
-            border: 1px solid #ff7e00;
-            text-align: center;
-        }
-
-        .container { 
-            max-width: 750px; 
-            margin: 0 auto; 
-            padding: 40px 25px; 
-        }
-
-        p { 
-            font-size: 1.1rem; 
-            margin-bottom: 25px; 
-            text-align: left; 
-            font-weight: 300;
-        }
-
-        .highlight {
-            color: #fff;
-            font-style: italic;
-            border-left: 3px solid #ff7e00;
-            padding: 10px 0 10px 20px;
-            margin: 40px 0;
-            font-weight: 400;
-            background: rgba(255, 126, 0, 0.05);
-        }
-
-        .quote {
-            text-align: center;
-            font-style: italic;
-            color: #fff;
-            margin: 40px 0;
-            letter-spacing: 1px;
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-
-        .final-motto {
-            text-align: center;
-            padding: 60px 25px;
-            color: #ff7e00;
-            font-size: clamp(1.3rem, 5vw, 2.2rem);
-            text-transform: uppercase;
-            letter-spacing: clamp(2px, 1vw, 6px);
-            font-weight: 300;
-            line-height: 1.4;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: #444;
-            font-size: 0.8rem;
-            border-top: 1px solid #111;
-        }
+        .highlight { color: #fff; font-style: italic; border-left: 3px solid #ff7e00; padding: 10px 0 10px 20px; margin: 40px 0; font-weight: 400; background: rgba(255, 126, 0, 0.05); }
+        .quote { text-align: center; font-style: italic; color: #fff; margin: 40px 0; letter-spacing: 1px; font-size: 1.15rem; line-height: 1.8; }
+        .final-motto { text-align: center; padding: 60px 25px; color: #ff7e00; font-size: clamp(1.3rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 6px); font-weight: 300; line-height: 1.4; }
+        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
         @media (max-width: 768px) {
-            .parallax-photo { 
-                background-attachment: scroll; 
-                height: 30vh; 
-            }
+            .parallax-photo { background-attachment: scroll; height: 30vh; }
             .container { padding: 20px 20px; }
-            p { font-size: 1.05rem; }
             nav a { margin: 0 10px; font-size: 0.7rem; }
-            .highlight { padding-left: 15px; }
         }
     </style>
 </head>
-
 <body oncontextmenu="return false;">
-
-<nav>
-    <a href="index.html">Zpět na úvod</a>
-</nav>
-
-<header class="header-image">
-    <h1>O mně</h1>
-</header>
-
-<div class="intro-lead">
-    <p>
-        Nejsem kouč.<br>
-        Nejsem motivátor.<br>
-        Nejsem učitel.
-    </p>
-</div>
-
-<div class="parallax-container">
-    <div class="protection-layer"></div>
-    <div class="parallax-photo">
-        <div class="separator-label">Mimo trasu</div>
-    </div>
-</div>
-
+<nav><a href="index.html">Zpět na úvod</a></nav>
+<header class="header-image"><h1>O mně</h1></header>
+<div class="intro-lead"><p>Nejsem kouč.<br>Nejsem motivátor.<br>Nejsem učitel.</p></div>
+<div class="parallax-container"><div class="protection-layer"></div><div class="parallax-photo"><div class="separator-label">Mimo trasu</div></div></div>
 <div class="container">
-
-    <p class="highlight">
-        Jsem obyčejný chlap. Jako každý jiný.
-    </p>
-
-    <p>
-        V určitém životním období jsem si řekl:
-    </p>
-
-    <p class="quote">
-        „Dost. Opravdu nechceš od života více? Stačí ti toto?“
-    </p>
-
-    <p>
-        Začal jsem přemýšlet, studovat a hledat cesty, jak zlepšit sám sebe. Jaké jsou možnosti, co jsem ještě neobjevil a co z toho mohu vytěžit. Posune mě ta změna k lepšímu? Budu se cítit lépe? Jaké jsou kroky ke změně?
-    </p>
-
-    <p class="highlight">
-        Jak přežít v dnešním světě se vztyčenou hlavou a bez újmy?<br>
-        Jak se zorientovat?<br>
-        Jaké morální zásady by měl chlap mít a žít podle nich?
-    </p>
-
-    <p>
-        Studoval jsem spoustu různých názorů, tipů a článků. Z každého jsem si vzal to podstatné – hlavně to, o čem jsem si myslel, že by mohlo fungovat i u mě.
-    </p>
-
-    <p>
-        Začal jsem to zkoušet, aplikovat určité věci a postoje do každodenního života. U něčeho jsem si řekl, že tohle není pro mě, a v něčem jsem se prostě našel.
-    </p>
-
-    <p class="highlight">
-        Přesně o tomhle jsou tyto stránky.
-    </p>
-
-    <p>
-        Není to motivační web plný skvělých nápadů a rad. Není to vodítko na všechny problémy světa. A už vůbec to nejsou rady pro všechny lidi světa.
-    </p>
-
-    <p>
-        Popisuju tady svou cestu životní změnou. Své uvědomění, své kroky ke změně myšlení, názorů a životních postojů.
-    </p>
-
-    <p>
-        Pokud se někdo z vás vydá na tuto cestu <strong>MIMO TRASU</strong> se mnou, vítám vás. Pokud ne, je mi to jedno. Zní to možná tvrdě, ale taková je realita.
-    </p>
-
-    <p class="highlight">
-        Nehledám dokonalost.<br>
-        Hledám udržitelnost.
-    </p>
-
+    <p class="highlight">Jsem obyčejný chlap. Jako každý jiný.</p>
+    <p>V určitém životním období jsem si řekl:</p>
+    <p class="quote">„Dost. Opravdu nechceš od života více? Stačí ti toto?“</p>
+    <p>Začal jsem přemýšlet, studovat a hledat cesty, jak zlepšit sám sebe. Jaké jsou možnosti, co jsem ještě neobjevil a co z toho mohu vytěžit. Posune mě ta změna k lepšímu? Budu se cítit lépe? Jaké jsou kroky ke změně?</p>
+    <p class="highlight">Jak přežít v dnešním světě se vztyčenou hlavou a bez újmy?<br>Jak se zorientovat?<br>Jaké morální zásady by měl chlap mít a žít podle nich?</p>
+    <p>Studoval jsem spoustu různých názorů, tipů a článků. Z každého jsem si vzal to podstatné – hlavně to, o čem jsem si myslel, že by mohlo fungovat i u mě.</p>
+    <p>Začal jsem to zkoušet, aplikovat určité věci a postoje do každodenního života. U něčeho jsem si řekl, že tohle není pro mě, a v něčem jsem se prostě našel.</p>
+    <p class="highlight">Přesně o tomhle jsou tyto stránky.</p>
+    <p>Není to motivační web plný skvělých nápadů a rad. Není to vodítko na všechny problémy světa. A už vůbec to nejsou rady pro všechny lidi světa.</p>
+    <p>Popisuju tady svou cestu životní změnou. Své uvědomění, své kroky ke změně myšlení, názorů a životních postojů.</p>
+    <p>Pokud se někdo z vás vydá na tuto cestu <strong>MIMO TRASU</strong> se mnou, vítám vás. Pokud ne, je mi to jedno. Zní to možná tvrdě, ale taková je realita.</p>
+    <p class="highlight">Nehledám dokonalost.<br>Hledám udržitelnost.</p>
 </div>
-
-<div class="final-motto">
-    JÍT VLASTNÍ CESTOU. I KDYŽ JE MIMO TRASU.
-</div>
-
-<footer>
-    © 2026 MIMO TRASU | Martin | Bez filtru.
-</footer>
-
+<div class="final-motto">JÍT VLASTNÍ CESTOU. I KDYŽ JE MIMO TRASU.</div>
+<footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
 <script>
-    // Cache killer pro Service Workery
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-                registration.unregister();
-            }
-        });
-    }
-
-    // Ochrana kódu
-    document.onkeydown = function(e) {
-        if(e.keyCode == 123) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-    }
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) { for(let registration of registrations) { registration.unregister(); } }); }
+    document.onkeydown = function(e) { if(e.keyCode == 123) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; }
 </script>
-
 </body>
 </html>
