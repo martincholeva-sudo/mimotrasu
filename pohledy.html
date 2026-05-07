@@ -16,6 +16,9 @@
             background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; line-height: 1.6; user-select: none; -webkit-user-select: none; overflow-x: hidden;
         }
+        /* Zajištění, aby stránka neodskakovala při zmizení scrollbaru */
+        html { margin-right: calc(100vw - 100%); }
+
         nav { padding: 25px 15px; text-align: center; }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
         nav a:hover { color: #ff7e00; }
@@ -29,16 +32,16 @@
         .grid-item:hover img { filter: grayscale(20%); transform: scale(1.05); }
         .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; }
 
-        /* LIGHTBOX ZÁKLAD */
+        /* LIGHTBOX - OPRAVA DVOJITÉHO SCROLLBARU */
         .lightbox {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98);
             z-index: 1000;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            cursor: pointer; /* Změna kurzoru, že se na to dá kliknout */
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrolluje jen když je obsah větší než okno */
+            cursor: pointer;
         }
         .lightbox.active { display: block; }
 
@@ -47,23 +50,24 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100%;
-            padding: 70px 20px; /* Méně paddingu pro PC */
+            min-height: 100vh; /* Drží obsah vycentrovaný */
+            padding: 40px 20px;
             box-sizing: border-box;
         }
 
         .lightbox img {
-            max-width: 95vw;
+            max-width: 90vw;
             max-height: 80vh;
             width: auto; height: auto;
             box-shadow: 0 0 50px rgba(0,0,0,0.9);
             border: 1px solid #222;
             object-fit: contain;
+            display: block;
         }
 
         .lightbox-caption {
             color: #ff7e00;
-            margin-top: 30px;
+            margin-top: 25px;
             font-size: 1.1rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -73,33 +77,25 @@
             line-height: 1.5;
         }
 
-        /* MINIMALISTICKÝ A GEOMETRICKY PŘESNÝ KŘÍŽEK */
         .close-btn {
             position: fixed;
             top: 25px; right: 25px;
             color: rgba(255, 255, 255, 0.6); 
-            font-size: 26px; /* Jemnější křížek */
+            font-size: 26px; 
             cursor: pointer;
             z-index: 1100;
             background: rgba(255, 126, 0, 0.1);
-            width: 40px; height: 40px; /* Menší kolečko */
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
             line-height: 0;
-            padding-bottom: 2px; /* Perfektní optické vyvážení znaku × */
+            padding-bottom: 2px;
         }
 
-        .close-btn:hover {
-            background: rgba(255, 126, 0, 0.3);
-            color: #ff7e00;
-            transform: scale(1.05);
-            border-color: #ff7e00;
-        }
+        .close-btn:hover { background: rgba(255, 126, 0, 0.3); color: #ff7e00; transform: scale(1.05); border-color: #ff7e00; }
 
         #backToTop { display: none; position: fixed; bottom: 25px; right: 25px; z-index: 99; border: 1px solid rgba(255, 126, 0, 0.3); background: rgba(17, 17, 17, 0.5); color: rgba(255, 126, 0, 0.7); cursor: pointer; width: 38px; height: 38px; border-radius: 4px; }
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
@@ -108,18 +104,13 @@
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
             .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
-            .lightbox-content { padding: 90px 15px 40px 15px; }
-            .close-btn { 
-                top: 15px; right: 15px; 
-                width: 36px; height: 36px; 
-                font-size: 24px; 
-                padding-bottom: 2px;
-            }
+            .lightbox-content { padding: 80px 15px 40px 15px; }
+            .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 24px; padding-bottom: 2px; }
         }
 
         /* LANDSCAPE NA MOBILU */
         @media (max-width: 900px) and (orientation: landscape) {
-            .lightbox-content { flex-direction: row; padding: 60px 40px; gap: 30px; }
+            .lightbox-content { flex-direction: row; padding: 40px; gap: 30px; }
             .lightbox img { max-height: 80vh; max-width: 50vw; }
             .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
             .close-btn { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 22px; }
@@ -183,13 +174,20 @@
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-caption').innerText = caption;
         document.getElementById('lightbox').style.display = 'block';
+        
+        // ZABRÁNĚNÍ DVOJITÉMU POSUVNÍKU
+        document.body.style.overflow = 'hidden'; 
+        
         setTimeout(() => document.getElementById('lightbox').classList.add('active'), 10);
-        document.body.style.overflow = 'hidden';
     }
+
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
+        
+        // VRÁCENÍ POSUVNÍKU STRÁNKY
+        document.body.style.overflow = 'auto'; 
+
         setTimeout(() => document.getElementById('lightbox').style.display = 'none', 300);
-        document.body.style.overflow = 'auto';
     }
 </script>
 </body>
