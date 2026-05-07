@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ5QBXPRP1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -130,11 +129,13 @@
 
         .lightbox img {
             max-width: 95vw;
-            max-height: 70vh;
+            max-height: 75vh; /* Upraveno, aby byl prostor pro popisek */
+            width: auto;
+            height: auto;
             box-shadow: 0 0 40px rgba(0,0,0,0.8);
             border: 1px solid #222;
             pointer-events: none;
-            object-fit: contain;
+            object-fit: contain; /* Fotka se zobrazí celá bez ořezu */
         }
 
         .lightbox-caption {
@@ -215,7 +216,6 @@
 </head>
 <body oncontextmenu="return false;">
 
-<!-- Tlačítko nahoru -->
 <button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
 
 <nav>
@@ -261,6 +261,18 @@
 
     </div>
 </div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content">
+        <div style="position: relative; display: flex; justify-content: center;">
+            <div class="protection-layer"></div>
+            <img id="lightbox-img" src="" draggable="false">
+        </div>
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+</div>
+
 <footer>
     © 2026 MIMO TRASU | Martin | Bez filtru.
 </footer>
@@ -300,14 +312,7 @@
         document.body.style.overflow = 'auto';
     }
 
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-                registration.unregister();
-            }
-        });
-    }
-
+    // Ochrana kláves a kontextového menu
     document.onkeydown = function(e) {
         if(e.keyCode == 123) return false;
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
