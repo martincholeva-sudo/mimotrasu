@@ -12,12 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pohledy | MIMO TRASU</title>
     <style>
+        /* ZÁKLAD STRÁNKY */
         body { 
             background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; line-height: 1.6; user-select: none; -webkit-user-select: none; overflow-x: hidden;
-            -ms-overflow-style: none; scrollbar-width: none;
+            
+            /* DEFINITIVNÍ ŘEŠENÍ: Schováme scrollbar vizuálně, ale zachováme funkčnost */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
-        body::-webkit-scrollbar { display: none; }
+        
+        /* Skrytí scrollbaru pro Chrome, Brave, Safari */
+        body::-webkit-scrollbar { 
+            display: none; 
+        }
 
         nav { padding: 25px 15px; text-align: center; }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
@@ -26,50 +34,94 @@
         h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: clamp(4px, 2vw, 8px); font-weight: 300; margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px 60px 15px; }
         
+        /* MŘÍŽKA NÁHLEDŮ */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .grid-item { position: relative; cursor: pointer; overflow: hidden; background: #111; aspect-ratio: 1 / 1; border: 1px solid #111; transition: border-color 0.4s; }
         .grid-item:hover { border-color: #ff7e00; }
         .grid-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: all 0.5s ease; pointer-events: none; }
-        .grid-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .grid-item:hover img { filter: grayscale(20%); transform: scale(1.05); }
         .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; }
 
+        /* LIGHTBOX - TOTÁLNĚ ČISTÝ */
         .lightbox {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); z-index: 1000; overflow: hidden; cursor: pointer;
-            justify-content: center; align-items: center;
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98);
+            z-index: 1000;
+            overflow: hidden; /* Žádný scrollbar v lightboxu */
+            cursor: pointer;
+            
+            /* Centrování obsahu */
+            justify-content: center;
+            align-items: center;
         }
-        .lightbox.active { display: flex; }
+        .lightbox.active { display: flex; } /* Změněno na flex pro lepší centrování */
 
-        .lightbox-content { display: flex; flex-direction: column; align-items: center; max-width: 95vw; }
+        .lightbox-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 95vw; /* Aby se fotka nedotýkala krajů */
+        }
+
         .lightbox img {
-            max-width: 100%; max-height: 80vh; width: auto; height: auto;
-            box-shadow: 0 0 50px rgba(0,0,0,0.9); border: 1px solid #222;
-            object-fit: contain; display: block;
-        }
-        .lightbox-caption {
-            color: #ff7e00; margin-top: 25px; font-size: 1.1rem;
-            letter-spacing: 2px; text-transform: uppercase; text-align: center;
-            font-weight: 300; line-height: 1.5;
+            max-width: 100%; /* Přizpůsobí se kontejneru */
+            max-height: 80vh; /* Nechá místo pro text */
+            width: auto; height: auto;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border: 1px solid #222;
+            object-fit: contain;
+            display: block;
         }
 
-        .close-btn {
-            position: fixed; top: 25px; right: 25px;
-            color: rgba(255, 255, 255, 0.6); font-size: 26px; cursor: pointer;
-            z-index: 1100; background: rgba(255, 126, 0, 0.1);
-            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease; line-height: 0; padding-bottom: 2px;
+        .lightbox-caption {
+            color: #ff7e00;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 300;
+            line-height: 1.5;
         }
+
+        /* MINIMALISTICKÝ KŘÍŽEK */
+        .close-btn {
+            position: fixed;
+            top: 25px; right: 25px;
+            color: rgba(255, 255, 255, 0.6); 
+            font-size: 26px; 
+            cursor: pointer;
+            z-index: 1100;
+            background: rgba(255, 126, 0, 0.1);
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            line-height: 0;
+            padding-bottom: 2px;
+        }
+
         .close-btn:hover { background: rgba(255, 126, 0, 0.3); color: #ff7e00; transform: scale(1.05); border-color: #ff7e00; }
 
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
+        /* MOBILNÍ ÚPRAVY */
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
             .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
-            .lightbox img { max-height: 75vh; }
+            .lightbox img { max-height: 70vh; } /* Více místa pro text na mobilu */
             .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 24px; }
+        }
+
+        /* LANDSCAPE NA MOBILU */
+        @media (max-width: 900px) and (orientation: landscape) {
+            .lightbox-content { flex-direction: row; gap: 30px; }
+            .lightbox img { max-height: 80vh; max-width: 50vw; }
+            .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -80,41 +132,29 @@
 
 <div class="container">
     <div class="grid">
-        <div class="grid-item" onclick="openLightbox('img/1000029832.jpg', 'Klid na hladině. Světlo, které ukazuje směr')">
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (12).jpg?v=1', 'Barrandovské terasy – ozvěny minulosti')">
             <div class="protection-layer"></div>
-            <img src="img/1000029832.jpg" alt="Vltava detail">
+            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg?v=1" alt="Barrandov">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/1000029836.jpg', 'Když slunce zapadá za obzor a v duši je klid')">
+        <div class="grid-item" onclick="openLightbox('img/2026.04.11 - pupen.jpg?v=1', 'Nová síla. Trpělivost v detailech')">
             <div class="protection-layer"></div>
-            <img src="img/1000029836.jpg" alt="Vltava panorama">
+            <img src="img/2026.04.11 - pupen.jpg?v=1" alt="Pupen">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/20220326_061025-01.jpg', 'Ranní probuzení. Ostrý řez krajinou')">
+        <div class="grid-item" onclick="openLightbox('img/1000029836.jpg?v=1', 'Klid na hladině. Západ slunce nad Vltavou')">
             <div class="protection-layer"></div>
-            <img src="img/20220326_061025-01.jpg" alt="Svítání">
+            <img src="img/1000029836.jpg?v=1" alt="Vltava">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (18).jpg', 'Detail, který uniká. Krása v usínání přírody')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (25).jpg?v=1', 'I v hustém porostu se dá najít jasný bod')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.17 - podzimni rozjimani (18).jpg" alt="Podzim detail">
+            <img src="img/2025.11.17 - podzimni rozjimani (25).jpg?v=1" alt="Bílé květy">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (25).jpg', 'Jasný bod v hustém porostu. Vytrvalost')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (3).jpg?v=1', 'Někdy stačí jedna kapka, aby se v ní zrcadlilo vše podstatné')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.17 - podzimni rozjimani (25).jpg" alt="Podzim květy">
+            <img src="img/2025.11.17 - podzimni rozjimani (3).jpg?v=1" alt="Kapky">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (3).jpg', 'Světlo v kapce. Celý vesmír v jediném okamžiku')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.18 - prochazka Prahou (10).jpg?v=1', 'Když se do cesty opře světlo, i obyčejný list začne vyprávět příběh')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.17 - podzimni rozjimani (3).jpg" alt="Kapka">
-        </div>
-        <div class="grid-item" onclick="openLightbox('img/2025.11.18 - prochazka Prahou (10).jpg', 'Příběh listu. Když se do něj opře slunce')">
-            <div class="protection-layer"></div>
-            <img src="img/2025.11.18 - prochazka Prahou (10).jpg" alt="List detail">
-        </div>
-        <div class="grid-item" onclick="openLightbox('img/2026.04.11 - pupen.jpg', 'Nová síla. Trpělivost v detailech')">
-            <div class="protection-layer"></div>
-            <img src="img/2026.04.11 - pupen.jpg" alt="Pupen">
-        </div>
-        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (12).jpg', 'Ozvěny minulosti na Barrandovských terasách')">
-            <div class="protection-layer"></div>
-            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg" alt="Barrandov">
+            <img src="img/2025.11.18 - prochazka Prahou (10).jpg?v=1" alt="List">
         </div>
     </div>
 </div>
@@ -133,12 +173,19 @@
     function openLightbox(src, caption) {
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-caption').innerText = caption;
-        document.getElementById('lightbox').style.display = 'flex';
+        document.getElementById('lightbox').style.display = 'flex'; // Změněno na flex
+        
+        // UŽ ŽÁDNÉ SCHOVÁVÁNÍ SCROLLBARU V JS
+        // Stránka se přestane hýbat.
+
         setTimeout(() => document.getElementById('lightbox').classList.add('active'), 10);
     }
 
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
+        
+        // UŽ ŽÁDNÉ VRACENÍ SCROLLBARU V JS
+        
         setTimeout(() => document.getElementById('lightbox').style.display = 'none', 300);
     }
 </script>
