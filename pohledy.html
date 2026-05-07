@@ -68,14 +68,8 @@
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
             .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
-            .lightbox img { max-height: 70vh; }
+            .lightbox img { max-height: 75vh; }
             .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 24px; }
-        }
-
-        @media (max-width: 900px) and (orientation: landscape) {
-            .lightbox-content { flex-direction: row; gap: 30px; }
-            .lightbox img { max-height: 80vh; max-width: 50vw; }
-            .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -86,47 +80,53 @@
 
 <div class="container">
     <div class="grid">
-        <div class="grid-item" onclick="openLightbox('img/barrandov.jpg', 'Barrandovské terasy – ozvěny minulosti')">
+        <div class="grid-item" onclick="openLightbox('img/1000029832.jpg', 'Klid na hladině. Světlo, které ukazuje směr')">
             <div class="protection-layer"></div>
-            <img src="img/barrandov.jpg" alt="Barrandov">
+            <img src="img/1000029832.jpg" alt="Vltava detail">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/pupen.jpg', 'Nová síla. Trpělivost v detailech')">
+        <div class="grid-item" onclick="openLightbox('img/1000029836.jpg', 'Když slunce zapadá za obzor a v duši je klid')">
             <div class="protection-layer"></div>
-            <img src="img/pupen.jpg" alt="Pupen">
+            <img src="img/1000029836.jpg" alt="Vltava panorama">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/vltava_sunset.jpg', 'Klid na hladině. Západ slunce nad Vltavou')">
+        <div class="grid-item" onclick="openLightbox('img/20220326_061025-01.jpg', 'Ranní probuzení. Ostrý řez krajinou')">
             <div class="protection-layer"></div>
-            <img src="img/vltava_sunset.jpg" alt="Vltava ZÁPAD">
+            <img src="img/20220326_061025-01.jpg" alt="Svítání">
         </div>
-
-        <div class="grid-item" onclick="openLightbox('img/podzimni_rozjimani_kapka.jpg', 'Zrcadlení světa v jedné kapce')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (18).jpg', 'Detail, který uniká. Krása v usínání přírody')">
             <div class="protection-layer"></div>
-            <img src="img/podzimni_rozjimani_kapka.jpg" alt="Podzimní kapka">
+            <img src="img/2025.11.17 - podzimni rozjimani (18).jpg" alt="Podzim detail">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/podzimni_rozjimani_pupen.jpg', 'Podzimní detaily. Krása v malých věcech')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (25).jpg', 'Jasný bod v hustém porostu. Vytrvalost')">
             <div class="protection-layer"></div>
-            <img src="img/podzimni_rozjimani_pupen.jpg" alt="Podzimní pupen">
+            <img src="img/2025.11.17 - podzimni rozjimani (25).jpg" alt="Podzim květy">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/podzimni_rozjimani_listek.jpg', 'Zamlžená krása. Poslední dechy podzimu')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (3).jpg', 'Světlo v kapce. Celý vesmír v jediném okamžiku')">
             <div class="protection-layer"></div>
-            <img src="img/podzimni_rozjimani_listek.jpg" alt="Podzimní lístek">
+            <img src="img/2025.11.17 - podzimni rozjimani (3).jpg" alt="Kapka">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/podzimni_rozjimani_trava.jpg', 'Podzimní tóny v detailech. Barvy mimo trasu')">
+        <div class="grid-item" onclick="openLightbox('img/2025.11.18 - prochazka Prahou (10).jpg', 'Příběh listu. Když se do něj opře slunce')">
             <div class="protection-layer"></div>
-            <img src="img/podzimni_rozjimani_trava.jpg" alt="Podzimní tráva">
+            <img src="img/2025.11.18 - prochazka Prahou (10).jpg" alt="List detail">
         </div>
-
-        <div class="grid-item" onclick="openLightbox('img/praha_most_sunset.jpg', 'Praha zlatá. Západ slunce z mostu')">
+        <div class="grid-item" onclick="openLightbox('img/2026.04.11 - pupen.jpg', 'Nová síla. Trpělivost v detailech')">
             <div class="protection-layer"></div>
-            <img src="img/praha_most_sunset.jpg" alt="Praha most">
+            <img src="img/2026.04.11 - pupen.jpg" alt="Pupen">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/praha_reka_sunset.jpg', 'Klid u Vltavy. Západ slunce na cestách')">
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (12).jpg', 'Ozvěny minulosti na Barrandovských terasách')">
             <div class="protection-layer"></div>
-            <img src="img/praha_reka_sunset.jpg" alt="Praha řeka">
+            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg" alt="Barrandov">
         </div>
-        <div class="grid-item" onclick="openLightbox('img/praha_strom_sunset.jpg', 'Zlaté tóny Prahy. Hledání krásy v detailech')">
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (22).jpg', 'Architektura času. Místa, kde se zastavil svět')">
             <div class="protection-layer"></div>
-            <img src="img/praha_strom_sunset.jpg" alt="Praha strom">
+            <img src="img/2026.05.01 - Barrandovske terasy (22).jpg" alt="Barrandov detail">
+        </div>
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (24).jpg', 'Hledání úhlů tam, kam jiní nechodí')">
+            <div class="protection-layer"></div>
+            <img src="img/2026.05.01 - Barrandovske terasy (24).jpg" alt="Barrandov úhel">
+        </div>
+        <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (26).jpg', 'Ticho po bouři. Mimo hlavní trasu')">
+            <div class="protection-layer"></div>
+            <img src="img/2026.05.01 - Barrandovske terasy (26).jpg" alt="Barrandov ticho">
         </div>
     </div>
 </div>
