@@ -12,12 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pohledy | MIMO TRASU</title>
     <style>
+        /* ZÁKLAD STRÁNKY */
         body { 
             background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; 
             margin: 0; line-height: 1.6; user-select: none; -webkit-user-select: none; overflow-x: hidden;
+            
+            /* DEFINITIVNÍ ŘEŠENÍ: Schováme scrollbar vizuálně, ale zachováme funkčnost */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
-        /* Zajištění, aby stránka neodskakovala při zmizení scrollbaru */
-        html { margin-right: calc(100vw - 100%); }
+        
+        /* Skrytí scrollbaru pro Chrome, Brave, Safari */
+        body::-webkit-scrollbar { 
+            display: none; 
+        }
 
         nav { padding: 25px 15px; text-align: center; }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
@@ -25,6 +33,8 @@
         .header-image { height: 25vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
         h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: clamp(4px, 2vw, 8px); font-weight: 300; margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px 60px 15px; }
+        
+        /* MŘÍŽKA NÁHLEDŮ */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .grid-item { position: relative; cursor: pointer; overflow: hidden; background: #111; aspect-ratio: 1 / 1; border: 1px solid #111; transition: border-color 0.4s; }
         .grid-item:hover { border-color: #ff7e00; }
@@ -32,32 +42,32 @@
         .grid-item:hover img { filter: grayscale(20%); transform: scale(1.05); }
         .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; }
 
-        /* LIGHTBOX - OPRAVA DVOJITÉHO SCROLLBARU */
+        /* LIGHTBOX - TOTÁLNĚ ČISTÝ */
         .lightbox {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98);
             z-index: 1000;
-            overflow-x: hidden;
-            overflow-y: auto; /* Scrolluje jen když je obsah větší než okno */
+            overflow: hidden; /* Žádný scrollbar v lightboxu */
             cursor: pointer;
+            
+            /* Centrování obsahu */
+            justify-content: center;
+            align-items: center;
         }
-        .lightbox.active { display: block; }
+        .lightbox.active { display: flex; } /* Změněno na flex pro lepší centrování */
 
         .lightbox-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh; /* Drží obsah vycentrovaný */
-            padding: 40px 20px;
-            box-sizing: border-box;
+            max-width: 95vw; /* Aby se fotka nedotýkala krajů */
         }
 
         .lightbox img {
-            max-width: 90vw;
-            max-height: 80vh;
+            max-width: 100%; /* Přizpůsobí se kontejneru */
+            max-height: 80vh; /* Nechá místo pro text */
             width: auto; height: auto;
             box-shadow: 0 0 50px rgba(0,0,0,0.9);
             border: 1px solid #222;
@@ -73,10 +83,10 @@
             text-transform: uppercase;
             text-align: center;
             font-weight: 300;
-            max-width: 800px;
             line-height: 1.5;
         }
 
+        /* MINIMALISTICKÝ KŘÍŽEK */
         .close-btn {
             position: fixed;
             top: 25px; right: 25px;
@@ -97,29 +107,26 @@
 
         .close-btn:hover { background: rgba(255, 126, 0, 0.3); color: #ff7e00; transform: scale(1.05); border-color: #ff7e00; }
 
-        #backToTop { display: none; position: fixed; bottom: 25px; right: 25px; z-index: 99; border: 1px solid rgba(255, 126, 0, 0.3); background: rgba(17, 17, 17, 0.5); color: rgba(255, 126, 0, 0.7); cursor: pointer; width: 38px; height: 38px; border-radius: 4px; }
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
         /* MOBILNÍ ÚPRAVY */
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
             .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
-            .lightbox-content { padding: 80px 15px 40px 15px; }
-            .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 24px; padding-bottom: 2px; }
+            .lightbox img { max-height: 70vh; } /* Více místa pro text na mobilu */
+            .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 24px; }
         }
 
         /* LANDSCAPE NA MOBILU */
         @media (max-width: 900px) and (orientation: landscape) {
-            .lightbox-content { flex-direction: row; padding: 40px; gap: 30px; }
+            .lightbox-content { flex-direction: row; gap: 30px; }
             .lightbox img { max-height: 80vh; max-width: 50vw; }
             .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
-            .close-btn { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 22px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<button onclick="scrollToTop()" id="backToTop">↑</button>
 <nav><a href="index.html">Zpět na úvod</a></nav>
 <header class="header-image"><h1>Pohledy</h1></header>
 
@@ -163,30 +170,22 @@
 <footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
 
 <script>
-    let mybutton = document.getElementById("backToTop");
-    window.onscroll = function() {
-        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) mybutton.style.display = "block";
-        else mybutton.style.display = "none";
-    };
-    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
     function openLightbox(src, caption) {
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-caption').innerText = caption;
-        document.getElementById('lightbox').style.display = 'block';
+        document.getElementById('lightbox').style.display = 'flex'; // Změněno na flex
         
-        // ZABRÁNĚNÍ DVOJITÉMU POSUVNÍKU
-        document.body.style.overflow = 'hidden'; 
-        
+        // UŽ ŽÁDNÉ SCHOVÁVÁNÍ SCROLLBARU V JS
+        // Stránka se přestane hýbat.
+
         setTimeout(() => document.getElementById('lightbox').classList.add('active'), 10);
     }
 
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
         
-        // VRÁCENÍ POSUVNÍKU STRÁNKY
-        document.body.style.overflow = 'auto'; 
-
+        // UŽ ŽÁDNÉ VRACENÍ SCROLLBARU V JS
+        
         setTimeout(() => document.getElementById('lightbox').style.display = 'none', 300);
     }
 </script>
