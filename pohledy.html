@@ -6,293 +6,133 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-HZ5QBXPRP1');
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pohledy | MIMO TRASU</title>
-    <meta name="description" content="Svět mýma očima. Fotografie a postřehy zachycené skrz objektiv Canon EOS 2000D na cestách mimo vyšlapané trasy.">
     <style>
         body { 
-            background-color: #000; 
-            color: #ccc; 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            margin: 0; 
-            line-height: 1.6;
-            user-select: none;
-            -webkit-user-select: none;
-            overflow-x: hidden;
+            background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; 
+            margin: 0; line-height: 1.6; user-select: none; -webkit-user-select: none; overflow-x: hidden;
         }
-        
         nav { padding: 25px 15px; text-align: center; }
-        nav a { 
-            color: #fff; 
-            text-decoration: none; 
-            margin: 0 15px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 0.75rem; 
-            transition: color 0.3s;
-            font-weight: 300;
-        }
+        nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
         nav a:hover { color: #ff7e00; }
-        
-        .header-image { 
-            height: 25vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            padding: 0 20px;
-        }
-        
-        h1 { 
-            color: #ff7e00; 
-            text-transform: uppercase; 
-            letter-spacing: clamp(4px, 2vw, 8px); 
-            font-weight: 300; 
-            margin: 0; 
-            font-size: clamp(2rem, 8vw, 3.5rem);
-        }
-        
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 20px 15px 60px 15px; 
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-
-        .grid-item {
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            background: #111;
-            aspect-ratio: 1 / 1;
-            border: 1px solid #111;
-            transition: border-color 0.4s;
-        }
-        
+        .header-image { height: 25vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+        h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: clamp(4px, 2vw, 8px); font-weight: 300; margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px 60px 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .grid-item { position: relative; cursor: pointer; overflow: hidden; background: #111; aspect-ratio: 1 / 1; border: 1px solid #111; transition: border-color 0.4s; }
         .grid-item:hover { border-color: #ff7e00; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: all 0.5s ease; pointer-events: none; }
+        .grid-item:hover img { filter: grayscale(20%); transform: scale(1.05); }
+        .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; }
 
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: all 0.5s ease;
-            pointer-events: none;
-        }
-
-        .grid-item:hover img {
-            filter: grayscale(20%);
-            transform: scale(1.05);
-        }
-
-        .protection-layer {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10;
-            background: transparent;
-        }
-
-        /* Lightbox - ZÁKLADNÍ NASTAVENÍ (Desktop) */
+        /* LIGHTBOX - OPRAVENÁ VERZE PRO MOBIL */
         .lightbox {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.98);
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            overflow-y: auto; /* POVOLUJE ROLOVÁNÍ NA VÝŠKU */
+            -webkit-overflow-scrolling: touch;
         }
-
-        .lightbox.active { display: flex; }
+        .lightbox.active { display: block; }
 
         .lightbox-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 100%;
+            justify-content: center;
+            min-height: 100%;
+            padding: 60px 20px; /* Prostor pro křížek a odsazení */
+            box-sizing: border-box;
         }
 
         .lightbox img {
-            max-width: 95vw;
-            max-height: 75vh;
-            width: auto;
-            height: auto;
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto; height: auto;
             box-shadow: 0 0 40px rgba(0,0,0,0.8);
             border: 1px solid #222;
-            pointer-events: none;
             object-fit: contain;
         }
 
         .lightbox-caption {
             color: #ff7e00;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 1.1rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             text-align: center;
             font-weight: 300;
-            max-width: 85%;
+            max-width: 800px;
             line-height: 1.4;
         }
 
         .close-btn {
-            position: absolute;
-            top: 20px; 
-            right: 25px;
-            color: #fff; 
-            font-size: 35px; 
-            cursor: pointer;
-            z-index: 1010;
-            background: rgba(255,126,0,0.1);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; /* KŘÍŽEK JE POŘÁD VIDĚT */
+            top: 20px; right: 20px;
+            color: #fff; font-size: 30px; cursor: pointer;
+            z-index: 1100;
+            background: rgba(255,126,0,0.3);
+            width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
+            backdrop-filter: blur(5px);
         }
 
-        #backToTop {
-            display: none;
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 99;
-            border: 1px solid rgba(255, 126, 0, 0.3);
-            background: rgba(17, 17, 17, 0.5);
-            color: rgba(255, 126, 0, 0.7);
-            cursor: pointer;
-            width: 38px;
-            height: 38px;
-            border-radius: 4px;
-        }
+        #backToTop { display: none; position: fixed; bottom: 25px; right: 25px; z-index: 99; border: 1px solid rgba(255, 126, 0, 0.3); background: rgba(17, 17, 17, 0.5); color: rgba(255, 126, 0, 0.7); cursor: pointer; width: 38px; height: 38px; border-radius: 4px; }
+        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
-        footer { 
-            text-align: center; 
-            padding: 60px 20px; 
-            color: #444; 
-            font-size: 0.8rem;
-            border-top: 1px solid #111;
-        }
-
-        /* SPECIFICKÉ ÚPRAVY PRO MOBIL (Na výšku) */
-        @media (max-width: 600px) and (orientation: portrait) {
+        /* MOBILNÍ ÚPRAVY */
+        @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
-            .container { padding: 8px; }
-            
-            .lightbox-content {
-                width: 90vw;
-                height: 90vh;
-                justify-content: center; /* Vycentruje fotku s textem uprostřed */
-            }
-
-            .lightbox img {
-                max-width: 90vw;
-                max-height: 60vh; /* Nechá místo pro text pod fotkou */
-            }
-
-            .lightbox-caption {
-                font-size: 0.85rem;
-                margin-top: 15px;
-                letter-spacing: 1px;
-                max-width: 100%;
-            }
-
-            .close-btn { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 30px; }
+            .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
+            .lightbox-content { padding: 80px 15px 40px 15px; }
         }
 
-        /* SPECIFICKÉ ÚPRAVY PRO MOBIL (Na šířku - Landscape) */
+        /* LANDSCAPE NA MOBILU (Šířka) */
         @media (max-width: 900px) and (orientation: landscape) {
-            .grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-            .header-image { height: 35vh; }
-            
-            .lightbox-content {
-                flex-direction: row; /* Zásadní změna: Fotka a text vedle sebe */
-                align-items: center;
-                justify-content: center;
-                gap: 20px;
-                width: 90vw;
-                height: 80vh;
-            }
-
-            .lightbox-image-wrapper {
-                flex: 1 1 60%; /* Fotka zabere cca 60% šířky */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .lightbox img {
-                max-width: 100%;
-                max-height: 80vh; /* Fotka se roztáhne na výšku displeje */
-            }
-
-            .lightbox-caption {
-                flex: 1 1 40%; /* Text zabere cca 40% šířky */
-                font-size: 0.75rem;
-                text-align: left; /* Text zarovnán doleva, líp se to čte */
-                margin-top: 0;
-                letter-spacing: 1px;
-                max-width: 100%;
-                color: #ff7e00;
-            }
-
-            .close-btn { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 25px; }
+            .lightbox-content { flex-direction: row; padding: 40px; gap: 30px; }
+            .lightbox img { max-height: 80vh; max-width: 50vw; }
+            .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
-
-<nav>
-    <a href="index.html">Zpět na úvod</a>
-</nav>
-
-<header class="header-image">
-    <h1>Pohledy</h1>
-</header>
+<button onclick="scrollToTop()" id="backToTop">↑</button>
+<nav><a href="index.html">Zpět na úvod</a></nav>
+<header class="header-image"><h1>Pohledy</h1></header>
 
 <div class="container">
     <div class="grid">
         <div class="grid-item" onclick="openLightbox('img/2026.05.01 - Barrandovske terasy (12).jpg?v=1', 'Barrandovské terasy – ozvěny minulosti')">
             <div class="protection-layer"></div>
-            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg?v=1" alt="Barrandov" draggable="false">
+            <img src="img/2026.05.01 - Barrandovske terasy (12).jpg?v=1" alt="Barrandov">
         </div>
-
         <div class="grid-item" onclick="openLightbox('img/2026.04.11 - pupen.jpg?v=1', 'Nová síla. Trpělivost v detailech')">
             <div class="protection-layer"></div>
-            <img src="img/2026.04.11 - pupen.jpg?v=1" alt="Pupen" draggable="false">
+            <img src="img/2026.04.11 - pupen.jpg?v=1" alt="Pupen">
         </div>
-
         <div class="grid-item" onclick="openLightbox('img/1000029836.jpg?v=1', 'Klid na hladině. Západ slunce nad Vltavou')">
             <div class="protection-layer"></div>
-            <img src="img/1000029836.jpg?v=1" alt="Vltava" draggable="false">
+            <img src="img/1000029836.jpg?v=1" alt="Vltava">
         </div>
-
         <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (25).jpg?v=1', 'I v hustém porostu se dá najít jasný bod')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.17 - podzimni rozjimani (25).jpg?v=1" alt="Bílé květy" draggable="false">
+            <img src="img/2025.11.17 - podzimni rozjimani (25).jpg?v=1" alt="Bílé květy">
         </div>
-
         <div class="grid-item" onclick="openLightbox('img/2025.11.17 - podzimni rozjimani (3).jpg?v=1', 'Někdy stačí jedna kapka, aby se v ní zrcadlilo vše podstatné')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.17 - podzimni rozjimani (3).jpg?v=1" alt="Kapky s odrazem" draggable="false">
+            <img src="img/2025.11.17 - podzimni rozjimani (3).jpg?v=1" alt="Kapky">
         </div>
-
         <div class="grid-item" onclick="openLightbox('img/2025.11.18 - prochazka Prahou (10).jpg?v=1', 'Když se do cesty opře světlo, i obyčejný list začne vyprávět příběh')">
             <div class="protection-layer"></div>
-            <img src="img/2025.11.18 - prochazka Prahou (10).jpg?v=1" alt="Zlatavý list" draggable="false">
+            <img src="img/2025.11.18 - prochazka Prahou (10).jpg?v=1" alt="List">
         </div>
     </div>
 </div>
@@ -300,48 +140,33 @@
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <span class="close-btn" onclick="closeLightbox()">&times;</span>
     <div class="lightbox-content">
-        <div class="lightbox-image-wrapper">
-            <div class="protection-layer"></div>
-            <img id="lightbox-img" src="" draggable="false">
-        </div>
+        <img id="lightbox-img" src="">
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 </div>
 
-<footer>
-    © 2026 MIMO TRASU | Martin | Bez filtru.
-</footer>
+<footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
 
 <script>
     let mybutton = document.getElementById("backToTop");
     window.onscroll = function() {
-        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) mybutton.style.display = "block";
+        else mybutton.style.display = "none";
     };
-
     function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
     function openLightbox(src, caption) {
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-caption').innerText = caption;
-        document.getElementById('lightbox').style.display = 'flex'; // Změněno z grid na flex
-        setTimeout(() => { document.getElementById('lightbox').classList.add('active'); }, 10);
+        document.getElementById('lightbox').style.display = 'block';
+        setTimeout(() => document.getElementById('lightbox').classList.add('active'), 10);
         document.body.style.overflow = 'hidden';
     }
-
     function closeLightbox() {
         document.getElementById('lightbox').classList.remove('active');
-        setTimeout(() => { document.getElementById('lightbox').style.display = 'none'; }, 300);
+        setTimeout(() => document.getElementById('lightbox').style.display = 'none', 300);
         document.body.style.overflow = 'auto';
     }
-
-    document.onkeydown = function(e) {
-        if(e.keyCode == 27) closeLightbox();
-    }
 </script>
-
 </body>
 </html>
