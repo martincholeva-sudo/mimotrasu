@@ -29,7 +29,7 @@
         .grid-item:hover img { filter: grayscale(20%); transform: scale(1.05); }
         .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; }
 
-        /* LIGHTBOX ZÁKLAD */
+        /* LIGHTBOX */
         .lightbox {
             display: none;
             position: fixed;
@@ -72,44 +72,47 @@
             line-height: 1.5;
         }
 
-        /* VYLEPŠENÝ KŘÍŽEK PRO PC */
+        /* OPRAVENÝ A VYCENTROVANÝ KŘÍŽEK */
         .close-btn {
             position: fixed;
-            top: 30px; right: 40px;
-            color: rgba(255, 255, 255, 0.8); 
-            font-size: 45px; 
+            top: 30px; right: 30px;
+            color: rgba(255, 255, 255, 0.7); 
+            font-size: 32px; /* Menší křížek */
             cursor: pointer;
             z-index: 1100;
-            background: rgba(255, 126, 0, 0.15); /* Jemný oranžový nádech */
-            width: 60px; height: 60px;
-            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 126, 0, 0.15);
+            width: 50px; height: 50px; /* Menší kolečko */
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             border-radius: 50%;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            line-height: 1;
+            line-height: 0; /* Klíč pro vertikální vycentrování */
+            padding-bottom: 4px; /* Optické vyvážení znaku × */
         }
 
         .close-btn:hover {
             background: rgba(255, 126, 0, 0.4);
             color: #ff7e00;
-            transform: scale(1.1);
+            transform: scale(1.05);
             border-color: #ff7e00;
         }
 
         #backToTop { display: none; position: fixed; bottom: 25px; right: 25px; z-index: 99; border: 1px solid rgba(255, 126, 0, 0.3); background: rgba(17, 17, 17, 0.5); color: rgba(255, 126, 0, 0.7); cursor: pointer; width: 38px; height: 38px; border-radius: 4px; }
         footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
 
-        /* MOBILNÍ ÚPRAVY (Zůstávají beze změny) */
+        /* MOBILNÍ ÚPRAVY */
         @media (max-width: 600px) {
             .grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
             .lightbox-caption { font-size: 0.9rem; letter-spacing: 1px; }
             .lightbox-content { padding: 100px 15px 40px 15px; }
             .close-btn { 
-                top: 20px; right: 20px; 
-                width: 45px; height: 45px; 
-                font-size: 32px; 
-                background: rgba(255, 126, 0, 0.3);
+                top: 15px; right: 15px; 
+                width: 42px; height: 42px; 
+                font-size: 28px; 
+                padding-bottom: 3px;
             }
         }
 
@@ -118,7 +121,7 @@
             .lightbox-content { flex-direction: row; padding: 60px 40px; gap: 30px; }
             .lightbox img { max-height: 80vh; max-width: 50vw; }
             .lightbox-caption { text-align: left; margin-top: 0; font-size: 0.8rem; }
-            .close-btn { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 28px; }
+            .close-btn { top: 10px; right: 10px; width: 38px; height: 38px; font-size: 24px; }
         }
     </style>
 </head>
