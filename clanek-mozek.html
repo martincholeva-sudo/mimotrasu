@@ -11,6 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             line-height: 1.8;
+            scroll-behavior: smooth; /* Pro plynulý skok nahoru */
             user-select: none;
             -webkit-user-select: none;
             overflow-x: hidden;
@@ -72,10 +73,35 @@
             margin-bottom: 25px;
         }
 
-        /* Zvýraznění důležitých myšlenek */
         .highlight {
             color: #ff7e00;
             font-style: italic;
+        }
+
+        /* ===== ŠIPKA NAHORU (stejná jako na indexu) ===== */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
         }
 
         /* ===== TLAČÍTKO ZPĚT ===== */
@@ -105,10 +131,13 @@
         @media (max-width: 600px) {
             .article-container { margin: 40px auto; }
             .article-content p { text-align: left; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
 
 <nav>
     <a href="index.html">Domů</a>
@@ -131,7 +160,7 @@
 
         <p>Začal jsem do svého života postupně změny zapracovávat. Začal jsem například tím, že jsem značně omezil sociální sítě. A víte, co se v ten moment stalo? Nic. Vůbec nic. Chodil jsem na ně dál, dál jsem scrolloval nesmyslná videa a četl hloupé příspěvky. Jen po kratší dobu. Stejně tak to bylo se cvičením. První dny jsem za to vzal a chtěl všechno hned. Vysnil jsem si, že budu cvičit každý den, že ujdu denně deset kilometrů, že začnu cvičit dvoufázově a další a další mety, které ale v celkovém kontextu byly blbosti. Nedal jsem to. Neudržel jsem tempo. Zapomněl jsem, že jsem člověk, ne robot.</p>
 
-        <p>Stejné to bylo i s cigaretami. S těmi normálními jsem přestal už dávno, ale spadnul jsem do elektronických cigaret. Do vapingu. Tak jsem si k tomu cvičení a k té změně ještě zakázal i to kouření. Všechny zařízení jsem vzal a schoval. Abych je neměl na očích, šly do sklepa. Vydržel jsem to čtyřicet dnů. Co se stalo potom? Asi tušíte – jednoho dne moje kroky směřovaly do sklepa. Byl jsem zpátky. Impuls bylo jen pivko s kámošem v zahradní restauraci. On kouřil, já si potáhnul a už jsem byl tam, kde jsem přestal. Ještě hůře – začal jsem kouřit více. Po určité době se ozvalo svědomí. „Co to děláš?“ ptalo se. „Vždyť jsi říkal, že už nebudeš, a koukej se na sebe!“</p>
+        <p>Stejné to bylo i s cigaretami. S těmi normálními jsem přestal už dávno, ale spadnul jsem do elektronických cigaret. Do vapingu. Tak jsem si k tomu cvičení a k té změně ještě zakázal i to kouření. Všechny zařízení jsem vzal a schoval. Abych je neměl na očích, šly do sklepa. Vydržel jsem to čtyřiicet dnů. Co se stalo potom? Asi tušíte – jednoho dne moje kroky směřovaly do sklepa. Byl jsem zpátky. Impuls bylo jen pivko s kámošem v zahradní restauraci. On kouřil, já si potáhnul a už jsem byl tam, kde jsem přestal. Ještě hůře – začal jsem kouřit více. Po určité době se ozvalo svědomí. „Co to děláš?“ ptalo se. „Vždyť jsi říkal, že už nebudeš, a koukej se na sebe!“</p>
 
         <p>Vzal jsem všechna zařízení na kouření a nemilosrdně je vyhodil. Ano, šly do koše. Do kontejneru, abych na ně už nemohl a neměl je k dispozici. Fajn. Jenže přišla záludnost číslo dvě. Tou bylo to, že jsem si jedno zařízení koupil. Opět jsem to nedal. Řekl jsem si: občas si párkrát potáhneš za den, to přece dáš. Skončilo to tím, že jsem si koupil karton náplní a vydržel mi týden. Tisíc korun za týden. Začal jsem opět přemýšlet, jak to vzít z jiného konce a kde jsem minule udělal chybu.</p>
 
@@ -152,6 +181,24 @@
 <div class="footer">
     © 2026 MIMO TRASU | Martin | Bez filtru.
 </div>
+
+<script>
+    // Logika pro tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
