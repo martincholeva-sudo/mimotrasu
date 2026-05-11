@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             line-height: 1.8;
-            scroll-behavior: smooth; /* Pro plynulý skok nahoru */
+            scroll-behavior: smooth;
             user-select: none;
             -webkit-user-select: none;
             overflow-x: hidden;
@@ -78,7 +78,25 @@
             font-style: italic;
         }
 
-        /* ===== ŠIPKA NAHORU (stejná jako na indexu) ===== */
+        /* ===== FOTO V TEXTU ===== */
+        .article-image {
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        .article-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 2px;
+            filter: grayscale(100%); /* Černobílý efekt */
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+        }
+        .article-image img:hover {
+            opacity: 1;
+        }
+
+        /* ===== ŠIPKA NAHORU ===== */
         #backToTop {
             display: none;
             position: fixed;
@@ -172,6 +190,10 @@
 
         <p>Zvládl jsem nekouřit při čekání na zastávce tramvaje. Tam jsem vždycky kouřil. Teď ne. První impuls v mozku byl jasný: čekáš – čas na potáhnutí. Neudělal jsem to a <span class="highlight">přepsal kousek z toho návyku v mozku</span>. Mozek zažil situaci, kdy byl zvyklý, že se kouří, a najednou nic. A přežil jsem to. Tím jsem přepsal kousek vazby.</p>
 
+        <div class="article-image">
+            <img src="img/ranni_klid.jpg" alt="Zastávka ráno" oncontextmenu="return false;">
+        </div>
+
         <p>Krůček po krůčku jdu k cíli. Vědomě, protože vím, co to způsobuje a proč. Vím, jak reagovat na to, když přijde chuť. Dýchat, zaměstnat se, napít se vody. Odvést myšlenku. A hlavně – uvědomit si, že mozek vyslal ten signál. To je pro mě klíč k úspěchu, kterého se chci a budu držet. Vnímat své touhy a to, co mi mozek vysílá, a vědomě je rozlišovat. To je cesta mimo trasu.</p>
     </div>
 
@@ -183,7 +205,6 @@
 </div>
 
 <script>
-    // Logika pro tlačítko Nahoru
     let mybutton = document.getElementById("backToTop");
     window.onscroll = function() { scrollFunction() };
 
