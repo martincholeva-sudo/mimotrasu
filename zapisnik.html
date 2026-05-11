@@ -11,6 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             line-height: 1.8;
+            scroll-behavior: smooth;
             user-select: none;
             -webkit-user-select: none;
         }
@@ -97,6 +98,32 @@
             color: #ff7e00;
         }
 
+        /* ===== ŠIPKA NAHORU ===== */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
+        }
+
         .footer {
             text-align: center;
             padding: 60px 20px;
@@ -109,10 +136,13 @@
         @media (max-width: 600px) {
             .container { margin: 40px auto; }
             h1 { font-size: 1.8rem; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
 
 <nav>
     <a href="index.html">Domů</a>
@@ -138,6 +168,24 @@
 <div class="footer">
     © 2026 MIMO TRASU | Martin | Bez filtru.
 </div>
+
+<script>
+    // Logika pro tlačítko Nahoru
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
