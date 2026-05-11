@@ -133,12 +133,18 @@
             margin-top: 100px;
         }
 
-        @media (max-width: 600px) {
-            .container { margin: 40px auto; }
-            h1 { font-size: 1.8rem; }
-            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
-        }
-    </style>
+@media (max-width: 600px) {
+    .container { margin: 40px auto; }
+    h1 { 
+        font-size: 1.8rem; 
+        text-align: center; /* Nadpis zůstane na střed */
+    }
+    .article-card p { 
+        text-align: justify; /* Text náhledu do bloku */
+    }
+    #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
+}
+</style>
 </head>
 <body oncontextmenu="return false;">
 

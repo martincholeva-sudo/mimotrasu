@@ -146,12 +146,17 @@
             margin-top: 80px;
         }
 
-        @media (max-width: 600px) {
-            .article-container { margin: 40px auto; }
-            .article-content p { text-align: left; }
-            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
-        }
-    </style>
+@media (max-width: 600px) {
+    .article-container { margin: 40px auto; }
+    .article-header h1 {
+        text-align: center; /* Nadpis článku na střed */
+    }
+    .article-content p { 
+        text-align: justify; /* Samotný text článku do bloku */
+    }
+    #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
+}
+</style>
 </head>
 <body oncontextmenu="return false;">
 
