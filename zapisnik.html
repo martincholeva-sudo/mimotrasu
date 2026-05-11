@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZÁPISNÍK | MIMO TRASU</title>
+    <style>
+        body { 
+            background-color: #000; 
+            color: #f5f5f5; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            line-height: 1.8;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* ===== NAVIGACE ===== */
+        nav {
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            font-weight: 300;
+        }
+        nav a:hover { color: #ff7e00; }
+
+        .container {
+            max-width: 750px;
+            margin: 60px auto;
+            padding: 0 25px;
+        }
+
+        h1 {
+            color: #ff7e00;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* ===== ČLÁNEK V SEZNAMU ===== */
+        .article-card {
+            margin-bottom: 80px;
+            border-left: 1px solid #222;
+            padding-left: 30px;
+            transition: all 0.4s ease;
+        }
+        .article-card:hover {
+            border-left-color: #ff7e00;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .article-card h2 {
+            color: #ff7e00;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px 0 20px 0;
+        }
+
+        .article-card p {
+            color: #bbb;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .btn-read {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: 1px solid #333;
+            color: #777;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .btn-read:hover {
+            border-color: #ff7e00;
+            color: #ff7e00;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #444;
+            font-size: 0.85rem;
+            border-top: 1px solid #111;
+            margin-top: 100px;
+        }
+
+        @media (max-width: 600px) {
+            .container { margin: 40px auto; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<nav>
+    <a href="index.html">Domů</a>
+    <a href="omne.html">O mně</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<div class="container">
+    <h1>Zápisník</h1>
+
+    <div class="article-card">
+        <div class="date">11. Května 2026</div>
+        <h2>Jak jsem začal přepisovat svůj mozek</h2>
+        <p>
+            Každý člověk má ve svém životě něco, co by rád změnil. Něco, co by rád přetavil v něco lepšího, jiného a plnohodnotnějšího. 
+            Z vlastní zkušenosti mohu říct, že je úplně jedno, kdy k tomuto zjištění dojdete...
+        </p>
+        <a href="clanek-mozek.html" class="btn-read">Číst dál</a>
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 MIMO TRASU | Martin | Bez filtru.
+</div>
+
+</body>
+</html>
