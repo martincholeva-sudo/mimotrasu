@@ -203,7 +203,6 @@
             letter-spacing: 1px;
         }
 
-        /* --- NOVÁ ŠIPKA NAHORU (Z OMNE.HTML) --- */
         #backToTop {
             display: none;
             position: fixed;
@@ -227,6 +226,26 @@
             background: rgba(255, 126, 0, 0.15);
             color: #ff7e00;
             transform: translateY(-2px);
+        }
+
+        /* --- POUZE ÚPRAVA PRO MOBIL --- */
+        @media (max-width: 600px) {
+            .nav-card {
+                padding: 25px 15px; /* Menší vnitřní okraje, aby rámeček nebyl tak vysoký */
+                margin-bottom: 10px;
+            }
+            .nav-card h3 {
+                font-size: 1.1rem; /* Mírně menší nadpis */
+                margin-bottom: 8px;
+            }
+            .nav-card p {
+                font-size: 0.85rem; /* Mírně menší text, aby se neroztahoval na výšku */
+                line-height: 1.4;
+            }
+            .grid-container {
+                margin: 40px auto; /* Menší mezera nad a pod celým blokem karet */
+                gap: 15px;
+            }
         }
     </style>
 </head>
