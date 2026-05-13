@@ -3,6 +3,15 @@
 <head>
 <link rel="icon" type="image/png" href="favicon.png">
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ5QBXPRP1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HZ5QBXPRP1');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
@@ -17,6 +26,11 @@
 <meta property="og:image" content="https://www.mimotrasu.cz/img/og.jpg">
 
 <style>
+    /* OPRAVA ŠEDÉHO PRUHU */
+    html {
+        background-color: #000;
+    }
+
     body { 
         background-color: #000; 
         color: #f5f5f5; 
@@ -26,7 +40,14 @@
         scroll-behavior: smooth;
         user-select: none;
         -webkit-user-select: none;
+        min-height: 100vh; /* Zajistí černou barvu na celou výšku */
+        display: flex;
+        flex-direction: column;
     }
+
+    /* Skrytí scrollbaru pro čistý vzhled */
+    body::-webkit-scrollbar { display: none; }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
 
     nav {
         padding: 30px 0;
@@ -44,6 +65,10 @@
         font-weight: 300;
     }
     nav a:hover { color: #ff7e00; }
+
+    .main-content {
+        flex: 1; /* Roztáhne obsah, aby footer byl až dole */
+    }
 
     .container {
         max-width: 750px;
@@ -139,7 +164,7 @@
         color: #444;
         font-size: 0.85rem;
         border-top: 1px solid #111;
-        margin-top: 100px;
+        margin-top: auto; /* Footer bude vždy dole */
     }
 
     @media (max-width: 600px) {
@@ -161,20 +186,21 @@
     <a href="kontakt.html">Kontakt</a>
 </nav>
 
-<div class="container">
-    <h1>Zápisník</h1>
+<main class="main-content">
+    <div class="container">
+        <h1>Zápisník</h1>
 
-    <div class="article-card">
-        <div class="date">11. Května 2026</div>
-        <h2>Jak jsem začal přepisovat svůj mozek</h2>
-        <p>
-            Každý člověk má ve svém životě něco, co by rád změnil. Něco, co by rád přetavil v něco lepšího, jiného a plnohodnotnějšího. 
-            Z vlastní zkušenosti mohu říct, že je úplně jedno, kdy k tomuto zjištění dojdete...
-        </p>
-        <a href="clanek-mozek.html" class="btn-read">Číst dál</a>
+        <div class="article-card">
+            <div class="date">11. Května 2026</div>
+            <h2>Jak jsem začal přepisovat svůj mozek</h2>
+            <p>
+                Každý člověk má ve svém životě něco, co by rád změnil. Něco, co by rád přetavil v něco lepšího, jiného a plnohodnotnějšího. 
+                Z vlastní zkušenosti mohu říct, že je úplně jedno, kdy k tomuto zjištění dojdete...
+            </p>
+            <a href="clanek-mozek.html" class="btn-read">Číst dál</a>
+        </div>
     </div>
-
-</div>
+</main>
 
 <div class="footer">
     © 2026 MIMO TRASU | Martin | Bez filtru.
