@@ -59,7 +59,9 @@
             letter-spacing: 3px;
             font-size: 0.85rem;
             font-weight: 300;
+            transition: color 0.3s;
         }
+        nav a:hover { color: #ff7e00; }
 
         .hero-section {
             height: 100vh;
@@ -83,6 +85,7 @@
             font-weight: 300;
             color: #ff7e00;
             margin: 0;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .btn-main {
@@ -94,6 +97,13 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-size: 0.9rem;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        .btn-main:hover {
+            background: #ff7e00;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 126, 0, 0.4);
         }
 
         .content-block {
@@ -109,6 +119,7 @@
             letter-spacing: 4px;
             border-top: 1px solid #ff7e00;
             padding-top: 25px;
+            margin-bottom: 30px;
         }
 
         p {
@@ -116,6 +127,19 @@
             color: #bbb;
             font-weight: 300;
             text-align: justify;
+        }
+
+        /* Styl pro fotku foťáku */
+        .photo-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(20%);
         }
 
         .grid-container {
@@ -127,7 +151,6 @@
             padding: 0 20px;
         }
 
-        /* ✅ SPRÁVNÉ ŘÍZENÍ ODKAZŮ */
         .nav-card {
             text-decoration: none;
             border: 1px solid #222;
@@ -135,16 +158,13 @@
             text-align: center;
             background: #050505;
             color: #ff7e00;
-            transition: all 0.3s ease;
-        }
-
-        .nav-card:visited {
-            color: #d86800;
+            transition: all 0.4s ease;
         }
 
         .nav-card:hover {
-            color: #d86800;
             border-color: #ff7e00;
+            background: #111;
+            transform: translateY(-10px);
         }
 
         .nav-card h3 {
@@ -163,10 +183,11 @@
 
         .footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             color: #444;
             font-size: 0.85rem;
             border-top: 1px solid #111;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -181,30 +202,50 @@
 <main>
 
 <section class="hero-section">
-    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; color:#ccc;">Cesta muže</p>
+    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; color:#ccc; margin-bottom: 10px;">Cesta muže</p>
     <h1 class="hero-title">MIMO TRASU</h1>
-    <a href="zapisnik.html" class="btn-main">Číst zápisník</a>
+    <a href="#zacatek" class="btn-main">Číst zápisník</a>
 </section>
+
+<!-- Vrácená sekce Uvědomění -->
+<div id="zacatek" class="content-block">
+    <h2>Uvědomění</h2>
+    <p>
+        Tady začíná moje nová cesta. Moment, kdy jsem si uvědomil, že bych toho chtěl od života víc, mě na tuhle cestu dovedl.
+        A jdu po ní krok po kroku, den po dni dál a dál ...
+    </p>
+    <p>
+        Tohle není časopis ani magazín. Je to můj zápisník životní změny v digitální podobě.
+    </p>
+</div>
+
+<!-- Vrácená fotka foťáku -->
+<div class="photo-container">
+    <img src="img/canon-2000d-II.jpg" alt="Můj společník Canon EOS 2000D">
+</div>
 
 <section class="content-block">
     <h2>Objektivem</h2>
-    <p>Foťák se stal mým společníkem na cestě. Skrz hledáček je svět klidnější.</p>
+    <p>
+        Foťák se stal mým společníkem na toulkách novou životní cestou. Skrz čočku fotoaparátu je pohled na svět jiný. Detaily. Foťák je odhalí, zachytí a uchová. 
+        Je to připomenutí začátku cesty a jejího průběhu. Protože životní změna a cesta k ní je proces na celý život.
+    </p>
 </section>
 
 <div class="grid-container">
     <a href="disciplina.html" class="nav-card">
         <h3>Disciplína</h3>
-        <p>Síla těla jako základ pro sílu hlavy.</p>
+        <p>Síla těla jako základ pro sílu hlavy. Jak na stravu a trénink bez nesmyslů.</p>
     </a>
 
     <a href="postoj.html" class="nav-card">
         <h3>Postoj</h3>
-        <p>Jak si udržet směr, když se všechno sype.</p>
+        <p>Stoicismus a realita dnešního světa. Jak si udržet směr, když se všechno sype.</p>
     </a>
 
     <a href="pohledy.html" class="nav-card">
         <h3>Pohledy</h3>
-        <p>Svět skrz hledáček. Zpomalení.</p>
+        <p>Svět skrze hledáček. Fotografie jako způsob, jak se zpomalit a vnímat život jinak.</p>
     </a>
 </div>
 
