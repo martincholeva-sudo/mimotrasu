@@ -228,23 +228,27 @@
             transform: translateY(-2px);
         }
 
-        /* --- POUZE ÚPRAVA PRO MOBIL --- */
+        /* --- ÚPRAVY PRO MOBIL --- */
         @media (max-width: 600px) {
             .nav-card {
-                padding: 25px 15px; /* Menší vnitřní okraje, aby rámeček nebyl tak vysoký */
-                margin-bottom: 10px;
-            }
-            .nav-card h3 {
-                font-size: 1.1rem; /* Mírně menší nadpis */
+                padding: 15px 10px; /* Extrémně zúžené rámečky */
                 margin-bottom: 8px;
             }
+            .nav-card h3 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+                letter-spacing: 1px;
+            }
             .nav-card p {
-                font-size: 0.85rem; /* Mírně menší text, aby se neroztahoval na výšku */
-                line-height: 1.4;
+                font-size: 0.8rem;
+                line-height: 1.3;
             }
             .grid-container {
-                margin: 40px auto; /* Menší mezera nad a pod celým blokem karet */
-                gap: 15px;
+                margin: 30px auto;
+                gap: 10px;
+            }
+            .content-block {
+                padding: 40px 20px; /* Zmenšení prázdna nad textem */
             }
         }
     </style>
@@ -264,7 +268,8 @@
 <section class="hero-section">
     <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; color:#ccc; margin-bottom: 10px;">Cesta muže</p>
     <h1 class="hero-title">MIMO TRASU</h1>
-    <a href="#zacatek" class="btn-main">Číst zápisník</a>
+    <!-- OPRAVENÝ ODKAZ NA ZAPISNIK.HTML -->
+    <a href="zapisnik.html" class="btn-main">Číst zápisník</a>
 </section>
 
 <div id="zacatek" class="content-block">
