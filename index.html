@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+    <meta charset="UTF-8">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ5QBXPRP1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,30 +12,37 @@
       gtag('config', 'G-HZ5QBXPRP1');
     </script>
 
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mimotrasu.cz/">
+
+    <title>MIMO TRASU – osobní zápisník změny</title>
+    <meta name="description" content="MIMO TRASU – Zápisník muže na cestě k životní změně. Autentický pohled na disciplínu, postoje a osobní rozvoj bez filtrů.">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="MIMO TRASU">
+    <meta property="og:description" content="Autentický zápisník muže na cestě k životní změně. Bez filtrů.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.mimotrasu.cz/">
+    <meta property="og:image" content="https://www.mimotrasu.cz/img/og.jpg">
+
+    <!-- Ikony -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    
-    <title>MIMO TRASU</title>
-    <meta name="description" content="MIMO TRASU – Zápisník muže na cestě k životní změně. Autentický pohled na disciplínu, postoje a osobní rozvoj bez filtrů.">
-    
+
     <style>
-        body { 
-            background-color: #000; 
-            color: #f5f5f5; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
+        body {
+            background-color: #000;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             line-height: 1.8;
             scroll-behavior: smooth;
-            /* Ochrana proti označování textu/obrazků */
             user-select: none;
             -webkit-user-select: none;
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGACE ===== */
         nav {
             position: absolute;
             top: 0;
@@ -48,12 +58,9 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-size: 0.85rem;
-            transition: color 0.3s;
             font-weight: 300;
         }
-        nav a:hover { color: #ff7e00; }
 
-        /* ===== HERO ===== */
         .hero-section {
             height: 100vh;
             background:
@@ -76,12 +83,6 @@
             font-weight: 300;
             color: #ff7e00;
             margin: 0;
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        /* Úvodní věty pod velkým nápisem uprostřed */
-        .hero-section p {
-            text-align: center !important;
         }
 
         .btn-main {
@@ -93,34 +94,23 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-size: 0.9rem;
-            transition: all 0.4s ease;
-            background: transparent;
-        }
-        .btn-main:hover {
-            background: #ff7e00;
-            color: #000;
-            box-shadow: 0 0 20px rgba(255, 126, 0, 0.4);
         }
 
-        /* ===== OBSAH ===== */
         .content-block {
             max-width: 750px;
             margin: 0 auto;
             padding: 80px 25px;
         }
 
-        h2 { 
-            color: #ff7e00; 
-            font-weight: 300; 
-            text-transform: uppercase; 
+        h2 {
+            color: #ff7e00;
+            font-weight: 300;
+            text-transform: uppercase;
             letter-spacing: 4px;
             border-top: 1px solid #ff7e00;
             padding-top: 25px;
-            margin-bottom: 30px;
-            font-size: 1.5rem;
         }
 
-        /* Hlavní texty do bloku */
         p {
             font-size: 1.1rem;
             color: #bbb;
@@ -128,34 +118,6 @@
             text-align: justify;
         }
 
-        /* ===== FOTO S OCHRANOU ===== */
-        .photo-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            position: relative;
-            text-align: center;
-            padding: 0 15px;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(20%);
-            pointer-events: none;
-        }
-
-        .protection-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            background: transparent;
-        }
-
-        /* ===== ROZCESTNÍK ===== */
         .grid-container {
             max-width: 1000px;
             margin: 80px auto;
@@ -165,124 +127,69 @@
             padding: 0 20px;
         }
 
+        /* ✅ SPRÁVNÉ ŘÍZENÍ ODKAZŮ */
         .nav-card {
             text-decoration: none;
             border: 1px solid #222;
             padding: 40px 30px;
             text-align: center;
-            transition: all 0.4s ease;
             background: #050505;
-        }
-        .nav-card:hover {
-            border-color: #ff7e00;
-            background: #111;
-            transform: translateY(-5px);
-        }
-        .nav-card h3 {
             color: #ff7e00;
+            transition: all 0.3s ease;
+        }
+
+        .nav-card:visited {
+            color: #d86800;
+        }
+
+        .nav-card:hover {
+            color: #d86800;
+            border-color: #ff7e00;
+        }
+
+        .nav-card h3 {
+            margin-top: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 0;
             font-weight: 400;
         }
+
         .nav-card p {
             color: #777;
             font-size: 0.95rem;
             margin-bottom: 0;
-            user-select: none;
-            text-align: center; /* V kartách nechat na střed */
+            text-align: center;
         }
 
-        /* NOVÁ DECENTNÍ ŠIPKA NAHORU */
-        #backToTop {
-            display: none;
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 99;
-            border: 1px solid rgba(255, 126, 0, 0.3);
-            background: rgba(17, 17, 17, 0.5);
-            color: rgba(255, 126, 0, 0.7);
-            cursor: pointer;
-            width: 38px;
-            height: 38px;
-            border-radius: 4px;
-            font-size: 18px;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-        }
-        #backToTop:hover {
-            border-color: #ff7e00;
-            background: rgba(255, 126, 0, 0.15);
-            color: #ff7e00;
-            transform: translateY(-2px);
-        }
-
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             padding: 60px 20px;
             color: #444;
             font-size: 0.85rem;
-            letter-spacing: 1px;
             border-top: 1px solid #111;
-        }
-
-        /* MOBILNÍ ÚPRAVY */
-        @media (max-width: 600px) {
-            .hero-section { padding-top: 60px; }
-            .grid-container { grid-template-columns: 1fr; margin: 40px auto; }
-            .content-block { padding: 40px 20px; }
-            nav a { margin: 0 10px; font-size: 0.75rem; }
-            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
 
-<!-- Tlačítko nahoru -->
-<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+<body>
 
 <nav>
     <a href="omne.html">O mně</a>
     <a href="kontakt.html">Kontakt</a>
 </nav>
 
+<main>
+
 <section class="hero-section">
-    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 10px; font-weight: 300; color: #ccc;">
-        Cesta muže
-    </p>
+    <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; color:#ccc;">Cesta muže</p>
     <h1 class="hero-title">MIMO TRASU</h1>
-<a href="zapisnik.html" class="btn-main">Číst zápisník</a>
+    <a href="zapisnik.html" class="btn-main">Číst zápisník</a>
 </section>
 
-<div id="zacatek" class="content-block">
-    <h2>Uvědomění</h2>
-    <p>
-        Tady začíná moje nová cesta. Moment, kdy jsem si uvědomil,
-        že bych chtěl od života víc, mě na tuhle cestu dovedl.
-        Jdu po ní krok po kroku, den po dni dál a dál…
-    </p>
-    <p>
-        Není to časopis ani magazín. Je to můj zápisník životní změny
-        v digitální podobě.
-    </p>
-</div>
-
-<div class="photo-container">
-    <div class="protection-layer"></div>
-    <img src="img/canon-2000d-II.jpg?v=1" alt="Můj společník Canon EOS 2000D" draggable="false">
-</div>
-
-<div class="content-block">
+<section class="content-block">
     <h2>Objektivem</h2>
-    <p>
-        Foťák se stal mým společníkem na cestě. Skrz hledáček
-        je svět klidnější. Detaily, které běžně míjíme, zůstávají.
-        Cesta změny je proces na celý život.
-    </p>
-</div>
+    <p>Foťák se stal mým společníkem na cestě. Skrz hledáček je svět klidnější.</p>
+</section>
 
 <div class="grid-container">
     <a href="disciplina.html" class="nav-card">
@@ -301,43 +208,11 @@
     </a>
 </div>
 
-<div class="footer" id="kontakt">
+</main>
+
+<footer class="footer">
     © 2026 MIMO TRASU | Martin | Bez filtru.
-</div>
-
-<script>
-    // Logika pro tlačítko Nahoru
-    let mybutton = document.getElementById("backToTop");
-    window.onscroll = function() { scrollFunction() };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-    }
-
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-                registration.unregister();
-            }
-        });
-    }
-
-    document.onkeydown = function(e) {
-        if(e.keyCode == 123) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-    }
-</script>
+</footer>
 
 </body>
 </html>
