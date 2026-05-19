@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.mimotrasu.cz/level-2026.html">
+
+    <title>Chlap 21. století | MIMO TRASU</title>
+    <meta name="description" content="Digitálně čistý, emočně vyrovnaný, spolehlivý a nezávislý. Osobní zápis o digitálním detoxu, vědomém užívání technologií a další úrovni svobody.">
+
+    <meta property="og:title" content="Chlap 21. století">
+    <meta property="og:description" content="Digitálně čistý, emočně vyrovnaný, spolehlivý a nezávislý. Osobní zápis o digitálním detoxu a vědomém užívání technologií.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.mimotrasu.cz/level-2026.html">
+    <meta property="og:image" content="https://www.mimotrasu.cz/img/cesta-svobody.jpg">
+
+    <style>
+        body { 
+            background-color: #000; 
+            color: #f5f5f5; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            line-height: 1.8;
+            scroll-behavior: smooth;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGACE ===== */
+        nav {
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 1px solid #111;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            font-weight: 300;
+        }
+        nav a:hover { color: #ff7e00; }
+
+        /* ===== OBSAH ČLÁNKU ===== */
+        .article-container {
+            max-width: 750px;
+            margin: 60px auto;
+            padding: 0 25px;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #ff7e00;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: clamp(1.6rem, 5vw, 2.5rem);
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        h3 {
+            color: #ff7e00;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .article-content p {
+            font-size: 1.15rem;
+            color: #bbb;
+            font-weight: 300;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #ff7e00;
+            font-style: italic;
+        }
+
+        /* ===== FOTO V TEXTU ===== */
+        .article-image {
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        .article-image img {
+            max-width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            height: auto;
+            border-radius: 2px;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+        }
+        .article-image img:hover {
+            opacity: 1;
+        }
+
+        /* ===== ŠIPKA NAHORU ===== */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 99;
+            border: 1px solid rgba(255, 126, 0, 0.3);
+            background: rgba(17, 17, 17, 0.5);
+            color: rgba(255, 126, 0, 0.7);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        #backToTop:hover {
+            border-color: #ff7e00;
+            background: rgba(255, 126, 0, 0.15);
+            color: #ff7e00;
+            transform: translateY(-2px);
+        }
+
+        /* ===== TLAČÍTKO ZPĚT ===== */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 60px;
+            text-decoration: none;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: #ff7e00; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #444;
+            font-size: 0.85rem;
+            border-top: 1px solid #111;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 600px) {
+            .article-container { margin: 40px auto; }
+            .article-header h1 { text-align: center; }
+            .subtitle { text-align: center; font-size: 1rem; margin-bottom: 30px; }
+            .article-content p { text-align: justify; }
+            #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
+            .article-image img { max-height: none; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+
+<nav>
+    <a href="index.html">Domů</a>
+    <a href="zapisnik.html">Zápisník</a>
+    <a href="kontakt.html">Kontakt</a>
+</nav>
+
+<article class="article-container">
+    <header class="article-header">
+        <span class="date">19. května 2026</span>
+        <h1>Chlap 21. století</h1>
+        <p class="subtitle">Digitálně čistý, emočně vyrovnaný, spolehlivý a nezávislý.</p>
+    </header>
+
+    <div class="article-content">
+        <p>Před krátkým časem jsem napsal článek o tom, jak jsem začal přepisovat svůj mozek. Psal jsem o elektronických cigaretách. Jak jsem je zahodil a nekouřím. Je to pravda. Držím se toho a daří se mi to bez větších problémů realizovat. Jsem na začátku, já vím. Čas od doby posledního potahu není nijak extra velký, ale mně se v tomto nastavení mysli a v pohodě, kterou teďka mám, prostě líbí.</p>
+
+        <p>Mám v hlavě nastavený nový vzorec – nekouřím. Ne že nesmím kouřit a že si něco zakazuji, ale vždycky, když mě na chvíli přepadne chuť, snažím se si říct: „Žádné cigarety už do mého života nepatří“. Chuť zase odejde, když nedostane šanci.</p>
+
+        <p>Jakmile si můj mozek osahal novou změnu, chtěl jsem přidat další krok. Změnu mého digitálního života. Šel jsem na to razantně a jasně. Mám chytrý telefon, asi jako pomalu každý člověk tady v republice. Udělal jsem z něj nechytrý telefon. Vědomě.</p>
+
+        <p>Vypnul jsem data, skryl jsem ikony aplikací, které nepoužívám a které by mi mohly krást můj drahocenný čas. Přepnul jsem telefon do úsporného režimu. Sociální sítě nepoužívám už delší dobu. Facebook jsem smazal už dávno a Instagram jsem smazal až s tímto životním krokem. Využívám Pinterest, kde propaguju články na mém webu, a TikTok, který mám pouze na tabletu a za velmi specifickým účelem. Na sociálních sítích trávím tak možná deset minut týdně a to je všechno.</p>
+
+        <h3>Vědomá dvě ťapnutí</h3>
+
+        <p>Pamatuji si dobu, kdy neexistovaly chytré telefony. Vyrůstal jsem v ní. Byla k mání pouze pevná linka a jen v některých domácnostech. Sociální sítě, WhatsApp a další „vychytávky“ moderní doby nebyly. Tímto krokem jsem si chtěl tu dobu dávno minulou trochu připomenout. A nejen to. Zjistit, jak moc jsem na těchto věcech, jako je mobilní telefon, závislý.</p>
+
+        <p>V dnešní době asi nejde úplně stoprocentně vypustit mobilní telefon ze svého života a vrátit se do „osmdesátek“. Mám internetové bankovnictví, jízdní řády online a mail. Víceméně používám nejčastěji jen tyhle tři aplikace. Začal jsem přemýšlet, jak se době „bez chytrých vychytávek“ aspoň co nejvíce přiblížit. Jde to.</p>
+
+        <p>Vypnul jsem data na mobilu, zapnul jsem úsporný režim a přepnul telefon do černobílého módu – mozek chce barvičky. Pokud potřebuji něco náhle najít, zapnu data a zruším úsporný režim. Dvě ťapnutí. Vědomá. Udělaná ke konkrétnímu účelu. Trávím čas na internetu a před telefonní obrazovkou vědomě. To je velký rozdíl.</p>
+
+        <p>Neustále scrollování mi vůbec nechybí. Dar je, že mám spoustu času, který mohu využít pro sebe. Nepotřebuju vědět, jaké katastrofy se staly, o kolik co zdraží a jaká šílenost ve formě počasí nás už za rohem čeká. Přijde to, co přijít má, a je celkově jedno, kdy. Protože to je věc, kterou rozhodně neovlivním, takže se jí nezabývám.</p>
+
+        <div class="article-image">
+            <img src="img/cesta-svobody.jpg" alt="Cesta lesem zalitá sluncem - MIMO TRASU" oncontextmenu="return false;">
+        </div>
+
+        <p>Nevím, kdo z mých známých měl na večeři maso a kdo jogurt nebo nic. Žiju i bez toho, aniž bych viděl videa roztomilých kočiček před spaním. Dá se bez toho naprosto normálně a bez problémů fungovat. Nejsem dostupný pro někoho, kdo si zrovna řekl, že mi napíše nebo zavolá, protože něco chce. Reaguju v momentě, kdy chci já. Je to můj čas, který mi nikdo nedá zpátky, nevrátí mi nikdo ani půl vteřiny času, který jsem věnoval „jen tak“. Svůj čas trávím podle svého přesvědčení a vědomě. Čas je můj dar.</p>
+
+        <p>Netvrdím, že si internet nezapnu, ale na omezenou dobu. V čase, který mám volný, dělám věci, které mě obohatí jako člověka. Věnuju se svému webu, protože mě to baví. Rád se procházím a fotím zajímavé věci, o které se s vámi časem podělím. Je to koníček. Cvičím a posiluju svoje tělo. A samozřejmě chodím do práce.</p>
+
+        <p>Tohle je můj nový a další level pro normálního chlapa dvacátého prvního století tak, jak si ho představuji já. Nezávislého na nějaké barevné chytré krabičce, svědomitého a v neposlední řadě disciplinovaného. <span class="highlight">Tohle je pro mě svoboda.</span> Proč zrovna tohle? Protože nechci být otrokem věcí a situací, kterým se musím podřizovat proto, že jim nejsem schopen čelit.</p>
+
+        <p>Rozhodl jsem se jít cestou svobodného chlapa bez závislosti na moderních věcech, s vlastním rozumem a vlastním myšlením.</p>
+    </div>
+
+    <a href="zapisnik.html" class="back-link">← Zpět do zápisníku</a>
+</article>
+
+<div class="footer">
+    © 2026 MIMO TRASU | Martin | Bez filtru.
+</div>
+
+<script>
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
