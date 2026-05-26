@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ5QBXPRP1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HZ5QBXPRP1');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://www.mimotrasu.cz/memento-mori.html">
+
+<title>Memento mori | MIMO TRASU</title>
+<meta name="description" content="Můj čas je omezený. Proč jsem přestal rozdávat svůj čas na potkání a nenechám lidi, aby mi kradli můj život.">
+
+<meta property="og:title" content="Memento mori | MIMO TRASU">
+<meta property="og:description" content="Náš čas je omezený. Proč jsem přestal rozdávat svůj čas na potkání a nenechám lidi, aby mi kradli můj život.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.mimotrasu.cz/memento-mori.html">
+<meta property="og:image" content="https://www.mimotrasu.cz/img/memento-mori.jpg">
+
+<style>
+    body { background-color: #000; color: #ccc; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; line-height: 1.7; user-select: none; -webkit-user-select: none; overflow-x: hidden; }
+    nav { padding: 25px 15px; text-align: center; }
+    nav a { color: #fff; text-decoration: none; margin: 0 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; transition: color 0.3s; font-weight: 300; }
+    nav a:hover { color: #ff7e00; }
+    
+    /* ČISTÝ TEXTOVÝ HEADER BEZ OBRÁZKU */
+    .header-image { height: 25vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+    h1 { color: #ff7e00; text-transform: uppercase; letter-spacing: clamp(4px, 2vw, 10px); font-weight: 300; margin: 0; font-size: clamp(2rem, 8vw, 3.5rem); }
+    
+    .intro-lead { max-width: 800px; margin: 0 auto; padding: 0 25px 40px 25px; text-align: center; }
+    .intro-lead p { font-size: clamp(0.85rem, 4vw, 1rem); color: #fff; font-weight: 300; line-height: 2; letter-spacing: 4px; text-transform: uppercase; margin: 0; text-align: center !important; }
+
+    /* OBNOVENÝ PARALLAX KONTEJNER PRO TVŮJ PLAKÁT */
+    .parallax-container { position: relative; width: 100%; margin: 30px 0; }
+    .parallax-photo { 
+        width: 100%; 
+        height: 60vh; /* Dostatečná výška, aby plakát vynikl */
+        background-image: url('img/memento-mori.jpg?v=1'); /* Cesta k tvému plakátu image_7.png */
+        background-size: contain; /* Zobrazí celý plakát bez ořezu */
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Toto dělá den parallax efekt */
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+    }
+    .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; background: transparent; }
+    .separator-label { 
+        position: relative; 
+        z-index: 10; 
+        background: rgba(0,0,0,0.8); /* Tmavší pozadí pro štítek, aby byl čitelný */
+        color: #ff7e00; 
+        padding: 12px 25px; 
+        text-transform: uppercase; 
+        letter-spacing: 6px; 
+        font-size: clamp(0.9rem, 3vw, 1.2rem); 
+        border: 1px solid #ff7e00; 
+        text-align: center; 
+    }
+    
+    .container { max-width: 750px; margin: 0 auto; padding: 40px 25px; }
+    h2 { color: #ff7e00; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; border-top: 1px solid #222; padding-top: 30px; margin-top: 60px; font-size: 1.4rem; }
+    .container p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; font-weight: 300; }
+    
+    .highlight { color: #fff; font-style: italic; border-left: 3px solid #ff7e00; padding: 10px 0 10px 20px; margin: 40px 0; font-weight: 400; background: rgba(255, 126, 0, 0.05); }
+    .final-motto { text-align: center; padding: 60px 25px; color: #ff7e00; font-size: clamp(1.4rem, 5vw, 2.2rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 6px); font-weight: 300; line-height: 1.4; }
+
+    #backToTop {
+        display: none;
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 99;
+        border: 1px solid rgba(255, 126, 0, 0.3);
+        background: rgba(17, 17, 17, 0.5);
+        color: rgba(255, 126, 0, 0.7);
+        cursor: pointer;
+        width: 38px;
+        height: 38px;
+        border-radius: 4px;
+        font-size: 18px;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+    }
+    #backToTop:hover {
+        border-color: #ff7e00;
+        background: rgba(255, 126, 0, 0.15);
+        color: #ff7e00;
+        transform: translateY(-2px);
+    }
+
+    footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
+
+    @media (max-width: 768px) {
+        .parallax-photo { background-attachment: scroll; height: 40vh; background-size: contain; } /* Na mobilu bez parallaxu, contain zachován */
+        .container { padding: 20px 20px; }
+        nav a { margin: 0 10px; font-size: 0.7rem; }
+        #backToTop { bottom: 15px; right: 15px; width: 35px; height: 35px; }
+    }
+</style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<button onclick="scrollToTop()" id="backToTop" title="Nahoru">↑</button>
+
+<nav><a href="index.html">Zpět na úvod</a></nav>
+
+<header class="header-image"><h1>Memento mori</h1></header>
+
+<div class="intro-lead"><p>Můj čas je omezený a nevím, kolik ho mám.<br>Přestal jsem rozdávat svůj čas na potkání.<br>Žít s vědomím vlastní konečnosti znamená<br>převzít absolutní kontrolu nad tím, komu a<br>čemu věnuji svou pozornost.</p></div>
+
+<div class="parallax-container">
+    <div class="protection-layer"></div>
+    <div class="parallax-photo">
+        <div class="separator-label">Kalendář života: 4 264 týdnů? Možná…</div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Iluze nesmrtelnosti</h2>
+    <p>Ve svém nedávném článku jsem zmiňoval myšlenku o tom, jak moc si vážím svého času. Proč? Protože je omezený a nevím, kolik mi ho ještě zbývá. Nikdo to neví.</p>
+    <p>Začal jsem nad tím přemýšlet v rámci seberozvoje. Byl jsem nespokojený se svým životem a sám se sebou. Nebylo to prostě ono. Cítil jsem, že potřebuju změnu. Začal jsem hledat inspiraci. Co mě hodně zaujalo, bylo <em>memento mori</em>. Nikdy předtím jsem o ničem takovém neslyšel a nestudoval jsem ani filozofii. Přitom stoicismus a memento mori jdou ruku v ruce.</p>
+    <p>„Co to vůbec znamená a o čem to je? Využiju to?“ – ptal jsem se sám sebe.</p>
+    <p>Je to uvědomění si, že náš čas na tomto světě je omezený. Je nám prostě dán. My vůbec nevíme, kolik ho máme. V tom je ten vtip.</p>
+    <p class="highlight">Bohužel se většinou chováme, jako bychom byli nesmrtelní.</p>
+    <p>Jenže nejsme. Choval jsem se tak i já a ještě se tak někdy stále chovám. Učení je cesta po celý život a nikdy nejste na konci. Nikdo z nás.</p>
+
+    <h2>Kdo ti dovolil mi krást čas?</h2>
+    <p>Věčné neustálé skrolování a stálý online stav. Jsme k dispozici celé dny a už se těžce soustředíme. Něco děláme, pracujeme na počítači, máme myšlenku, něco vytváříme. Cink. Zpráva. Co uděláme? První věc – odložíme práci a okamžitě se věnujeme zprávě. Najednou se naše pozornost soustředí na něco jiného. Byli jsme vyrušeni.</p>
+    <p class="highlight">Právě nás někdo násilně okradl o to nejcennější, co je nevratné. Čas.</p>
+    <p>Toto je přesně ta situace, která se mi už přestala líbit a pracuju na tom, aby to u mě bylo jinak. Nejsem dostupný, když si kdokoliv usmyslí. Prostě nejsem. Vybírám si, kdy odepíšu. Vybírám si, na co odepíšu, protože není moje povinnost reagovat na vše a hned. To není arogance. To není sebestřednost. Je to moje životní filozofie. Vážím si svého času. Jenom to. Nic víc.</p>
+    <p>Když na něčem pracuju, nenechám se rozptylovat. Vyhradím si čas na odpověď a na reakci, ale podle mých priorit.</p>
+
+    <h2>Už na mě nebudete nahrnovat svoje problémy</h2>
+    <p>Nepřijímám telefonní hovory kdykoli. Nejsem infolinka ani emocionální studna. Pracovní rozhovory jsou samozřejmě něco jiného, to je profese. Bavím se o soukromí.</p>
+    <p class="highlight">Nejsem tady od toho, aby mi kdokoliv zavolal a nahrnul na mě své problémy!</p>
+    <p>Do nedávné doby jsem to dělal. Byl jsem tady vždy a pro všechny a kdykoli. Už to stačilo. Takovým osobním přístupem docílím pouze toho, že lidé kradou můj čas. Kradou něco, co je moje. Nikdo z nich mi to nikdy nevrátí a nikdo mi to nevykompenzuje, because to nejde. Opravdu nejsem povinen tenhle dar dávat každému jen tak zbůhdarma a na potkání. Fakt nejsem a už to nedělám.</p>
+    <p>Toto je pro mě <em>memento mori</em>. Vážení si svého času a žití s vědomím smrti. Jednou opravdu zemřu. Není to žádné morbidní myšlení na smrt, týrání se nebo depky z toho, kdy to přijde. Vůbec ne. Je to uvědomění si, že nejsem nesmrtelný.</p>
+    <p>Nikdo není nesmrtelný. Máme vyměřený určitý čas na tomhle světě. Ten čas nám byl dán a teď je na každém z nás, jak ho využije. Jestli udělá svůj život hodnotný, dobrý a skvělý, nebo ho naopak promrhá na nesmysly. Na věci, které nejsou důležité a pak mu jen tak proteče mezi prsty.</p>
+</div>
+
+<div class="final-motto">Toto je pro mě memento mori.</div>
+
+<footer>© 2026 MIMO TRASU | Martin | Bez filtru.</footer>
+
+<script>
+    let mybutton = document.getElementById("backToTop");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

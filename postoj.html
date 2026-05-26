@@ -3,7 +3,6 @@
 <head>
 <link rel="icon" type="image/png" href="favicon.png">
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ5QBXPRP1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -20,7 +19,6 @@
 <title>Postoj | MIMO TRASU</title>
 <meta name="description" content="Postoj k životu v době digitálního šumu. O hodnotě času, vědomém rozhodování a reakcích na věci, které nemůžeme ovlivnit.">
 
-<!-- OpenGraph -->
 <meta property="og:title" content="Postoj | MIMO TRASU">
 <meta property="og:description" content="Postoj není názor. Je to volba. Každý den.">
 <meta property="og:type" content="article">
@@ -41,7 +39,10 @@
     .parallax-container { position: relative; width: 100%; margin: 30px 0; }
     .parallax-photo { width: 100%; height: 40vh; background-image: url('img/postoj.jpg?v=1'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; }
     .protection-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; background: transparent; }
-    .separator-label { position: relative; z-index: 10; background: rgba(0,0,0,0.7); color: #ff7e00; padding: 12px 25px; text-transform: uppercase; letter-spacing: 6px; font-size: clamp(0.9rem, 3vw, 1.2rem); border: 1px solid #ff7e00; text-align: center; }
+    
+    /* Vyladěný štítek pro funkčnost tlačítka */
+    .separator-label { position: relative; z-index: 10; background: rgba(0,0,0,0.7); color: #ff7e00; padding: 12px 25px; text-transform: uppercase; letter-spacing: 6px; font-size: clamp(0.9rem, 3vw, 1.2rem); border: 1px solid #ff7e00; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+    .separator-label:hover { background: rgba(255, 126, 0, 0.2); transform: scale(1.05); }
 
     .container { max-width: 750px; margin: 0 auto; padding: 40px 25px; }
     .container p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; font-weight: 300; }
@@ -107,7 +108,9 @@
 <div class="parallax-container">
     <div class="protection-layer"></div>
     <div class="parallax-photo">
-        <div class="separator-label">Postoj</div>
+        <a href="postoj-clanky.html" style="text-decoration: none;">
+            <div class="separator-label">Postoj</div>
+        </a>
     </div>
 </div>
 
