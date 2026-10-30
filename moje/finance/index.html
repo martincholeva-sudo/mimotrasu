@@ -1,25 +1,39 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="referrer" content="no-referrer">
+  <meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#08090a">
+  
   <title>Moje finance · MIMO TRASU</title>
-  <link rel="icon" href="/favicon.png">
-  <link rel="stylesheet" href="/moje/portal.css">
-  <script src="/moje/finance/finance.js" defer></script>
+  <link rel="stylesheet" href="/moje/finance/finance-native.css">
 </head>
 <body>
-  <header class="portal-header"><a class="brand" href="/">MIMO TRASU<span>MOJE FINANCE</span></a><nav aria-label="Hlavní navigace"><a href="/moje/">Můj prostor</a><a href="/">Zápisník</a></nav></header>
-  <main>
-    <section class="status finance-status" id="status" aria-live="polite">
-      <p class="eyebrow">Jen pro tebe</p><h1 id="status-title">Otevírám tvoje finance…</h1>
-      <p id="status-text">Čekám na soukromou aplikaci Google.</p>
-      <div class="actions" id="finance-actions" hidden><a class="button" id="google-link" target="_blank" rel="noopener noreferrer">Přihlásit se u Googlu ↗</a><button class="secondary" id="retry" type="button">Načíst znovu</button></div>
-    </section>
-    <iframe id="finance-frame" class="pending" title="Moje soukromé finance" referrerpolicy="no-referrer"></iframe>
-    <noscript><p class="status">Pro zobrazení financí povol JavaScript.</p></noscript>
-  </main>
+  <div class="app">
+    <aside class="sidebar" aria-label="Hlavní navigace">
+      <a class="brand" href="#prehled" data-action="view" data-view="calendar" aria-label="Moje finance — kalendář"><span class="brand-mark" id="brandIcon"></span><span class="brand-copy"><span class="brand-word">MIMO TRASU</span><span class="brand-sub finance-inline-0">OSOBNÍ FINANCE</span></span></a>
+      <div class="nav-label">MOJE FINANCE</div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-note"><div class="note-icon" id="sidebarNoteIcon"></div><p>Přehled o penězích.<br>Více klidu na všechno ostatní.</p></div>
+      <div class="sidebar-bottom"><span class="avatar">M</span><span class="profile-copy"><span class="profile-name">Martine</span><span class="profile-meta finance-inline-0">Soukromý přehled</span></span><span class="version">V2</span></div>
+    </aside>
+    <main class="main" id="main"><nav class="finance-site-nav" aria-label="MIMO TRASU"><a href="/moje/">Můj prostor</a><a href="/moje/?sekce=fitness">Fitness</a><a href="/">Zápisník</a></nav><section class="finance-connection" id="finance-connection" aria-live="polite"><p id="finance-connection-message">Načítám tvoje soukromé finanční údaje…</p><button class="btn primary" id="finance-login" type="button" hidden>Přihlásit Google</button><button class="btn" id="finance-retry" type="button" hidden>Načíst znovu</button></section>
+      <div class="mobile-brand" id="mobileBrand"></div>
+      <header class="topbar"><div><p class="eyebrow">SOUKROMÝ FINANČNÍ PŘEHLED</p><h1>Moje finance<span class="finance-inline-1">.</span></h1><p class="subtitle">Tvoje platby, směny a výplata.</p></div><div class="top-actions"><span class="status-chip" id="connectionChip"><span class="dot"></span>Připojování</span><button class="btn refresh" id="refreshBtn" data-action="refresh" aria-label="Načíst aktuální údaje" title="Načíst aktuální údaje"><span id="refreshIcon"></span><span>Obnovit</span></button><button class="btn primary" data-action="new" aria-label="Přidat platbu"><span id="addIcon"></span><span>Přidat platbu</span></button></div></header>
+      <div id="banners" class="banners" aria-live="polite"></div>
+      <div class="period-toolbar"><div class="period-switcher"><div class="arrow-group"><button data-action="previous" aria-label="Předchozí období" id="prevIcon"></button><button data-action="next" aria-label="Následující období" id="nextIcon"></button></div><div><div class="period-title" id="periodTitle">Načítám období…</div><div class="period-caption" id="periodCaption">Přehled kalendářního měsíce</div></div><input class="month-picker" id="monthPicker" type="month" aria-label="Vybrat měsíc" min="2000-01" max="2100-12"><button class="btn text" data-action="today" title="Přejít na aktuální období">Dnes</button></div><div class="segmented" aria-label="Typ období"><button data-action="mode" data-mode="cycle" class="active" aria-pressed="true">10. → 9.</button><button data-action="mode" data-mode="month" aria-pressed="false">Kalendářní měsíc</button></div></div>
+      <div id="summaryGrid" class="summary-grid"></div>
+      <div id="viewRoot" class="view"></div>
+      <footer class="footer"><div class="footer-mark"><span id="lockIcon"></span><span>Soukromé finance · MIMO TRASU</span></div><span id="footerStatus">Načítám tvoje údaje…</span></footer>
+    </main>
+  </div>
+  <dialog id="entryDialog" aria-labelledby="entryHeading"><form id="entryForm" novalidate><div class="modal-head"><div><h2 id="entryHeading">Nová platba</h2><p id="entrySubheading">Zapiš částku a termín. O součty se postará přehled.</p></div><button class="btn icon ghost" type="button" data-action="close-modal" aria-label="Zavřít detail" id="closeIcon"></button></div><div class="modal-body"><div class="form-grid"><div class="field"><label for="entryKind">Typ platby</label><select id="entryKind" name="calendarKey"><option value="expense">Výdaj</option><option value="income">Příjem</option></select></div><div class="field"><label for="entryDate">Datum</label><input id="entryDate" name="date" type="date" required min="2000-01-01" max="2100-12-31"></div><div class="field full"><label for="entryLabel">Název</label><input id="entryLabel" name="label" type="text" autocomplete="off" maxlength="160" placeholder="Například nájem, telefon nebo výplata" required></div><div class="field"><label for="entryAmount">Částka</label><div class="input-amount"><input id="entryAmount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="0" required><span>Kč</span></div></div><div class="field" id="repeatField"><label for="entryRepeat">Opakování</label><select id="entryRepeat" name="repeat"><option value="none">Jednorázově</option><option value="monthly">Každý měsíc</option></select></div><div class="field hidden" id="repeatCountField"><label for="entryRepeatCount">Počet plateb</label><input id="entryRepeatCount" name="repeatCount" type="number" min="2" max="120" step="1" value="12"><small>Stejný den v měsíci. V kratším měsíci poslední den.</small></div><div class="field hidden" id="salaryField"><label for="entrySalary">Druh příjmu</label><select id="entrySalary"><option value="no">Běžný příjem</option><option value="yes">Výplata za konkrétní měsíc</option></select></div><div class="field hidden" id="payrollMonthField"><label for="entryPayrollMonth">Za odpracovaný měsíc</label><input id="entryPayrollMonth" type="month" min="2000-01" max="2100-12"><small>Například říjnová práce vyplacená v listopadu patří k říjnu.</small></div><div class="field full"><label for="entryDescription">Poznámka <span class="muted finance-inline-2">· nepovinné</span></label><textarea id="entryDescription" maxlength="6000" placeholder="Poznámka k této platbě…"></textarea></div><div class="field full" id="paidField"><label class="form-check"><input id="entryPaid" type="checkbox"><span><strong id="entryPaidLabel">Peníze už skutečně odešly</strong><small>Zaškrtnutím potvrdíš skutečnost. Samotné datum platbu nepotvrzuje.</small></span></label></div><div class="field full hidden" id="existingState"></div></div><div id="entryRecurrenceNote" class="inline-note hidden"></div><div id="entryMessage" aria-live="assertive"></div><div class="modal-source hidden" id="entrySource"></div></div><div class="modal-bottom"><button type="button" class="danger-link hidden" data-action="delete" id="deleteButton"></button><span class="spacer"></span><button type="button" class="btn" data-action="close-modal">Zrušit</button><button type="submit" class="btn primary" id="saveButton">Uložit platbu</button></div></form></dialog>
+  <dialog id="confirmDialog" aria-labelledby="confirmHeading"><div class="modal-head"><div><h2 id="confirmHeading">Smazat tuto platbu?</h2><p>Odstranění se projeví i ve zdrojovém kalendáři.</p></div><button class="btn icon ghost" data-action="cancel-delete" aria-label="Zrušit smazání" id="confirmCloseIcon"></button></div><div class="confirm-content" id="confirmContent"></div><div class="modal-bottom"><span class="spacer"></span><button class="btn" data-action="cancel-delete">Ponechat platbu</button><button class="btn danger" data-action="confirm-delete" id="confirmDeleteButton">Smazat tuto platbu</button></div></dialog>
+<dialog id="shiftDialog" aria-labelledby="shiftHeading"><form id="shiftForm"><div class="modal-head"><div><h2 id="shiftHeading">Nová brigáda</h2><p>Uloží se do kalendáře řidič / instruktor. Výplata se přepočítá podle původního skriptu.</p></div><button type="button" class="btn icon ghost" data-action="close-shift" aria-label="Zavřít směnu">×</button></div><div class="modal-body"><div class="form-grid"><div class="field full"><label for="shiftTitle">Název jako v Google Kalendáři</label><input id="shiftTitle" required maxlength="180" placeholder="Např. ŘÍZENÍ nebo ZBC" autocomplete="off"><small>Zachovej označení ZBC, pokud jde o zácvik s příplatkem.</small></div><div class="field"><label for="shiftStartDate">Začátek · datum</label><input id="shiftStartDate" type="date" required min="2000-01-01" max="2100-12-31"></div><div class="field"><label for="shiftStartTime">Od</label><input id="shiftStartTime" type="time" required></div><div class="field"><label for="shiftEndDate">Konec · datum</label><input id="shiftEndDate" type="date" required min="2000-01-01" max="2100-12-31"></div><div class="field"><label for="shiftEndTime">Do</label><input id="shiftEndTime" type="time" required></div><div class="field full"><label for="shiftDescription">Poznámka</label><textarea id="shiftDescription" maxlength="6000"></textarea></div></div><p class="inline-note">U noční směny vyber následující den konce. Celé opakované série a směny MOV upravuj v Google Kalendáři.</p><div id="shiftMessage" aria-live="assertive"></div></div><div class="modal-bottom"><span class="spacer"></span><button type="button" class="btn" data-action="close-shift">Zrušit</button><button class="btn primary" type="submit" id="shiftSave">Uložit a přepočítat</button></div></form></dialog>
+  <div id="toast" class="toast hidden" role="status"></div>
+  <script src="/moje/finance/finance-native-bridge.js?v=20261030b" defer></script>
+<script src="/moje/finance/finance-native-app.js?v=20261030b" defer></script>
+<iframe class="finance-backend" id="finance-backend" title="Zabezpečené připojení finančních údajů" aria-hidden="true" tabindex="-1" referrerpolicy="no-referrer"></iframe>
 </body>
 </html>
