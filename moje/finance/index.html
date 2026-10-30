@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Moje finance · MIMO TRASU</title>
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/moje/portal.css">
+  <script src="/moje/finance/finance.js" defer></script>
+</head>
+<body>
+  <header class="portal-header"><a class="brand" href="/">MIMO TRASU<span>MOJE FINANCE</span></a><nav aria-label="Hlavní navigace"><a href="/moje/">Můj prostor</a><a href="/">Zápisník</a></nav></header>
+  <main>
+    <section class="status finance-status" id="status" aria-live="polite">
+      <p class="eyebrow">Jen pro tebe</p><h1 id="status-title">Otevírám tvoje finance…</h1>
+      <p id="status-text">Čekám na soukromou aplikaci Google.</p>
+      <div class="actions" id="finance-actions" hidden><a class="button" id="google-link" target="_blank" rel="noopener noreferrer">Přihlásit se u Googlu ↗</a><button class="secondary" id="retry" type="button">Načíst znovu</button></div>
+    </section>
+    <iframe id="finance-frame" class="pending" title="Moje soukromé finance" referrerpolicy="no-referrer"></iframe>
+    <noscript><p class="status">Pro zobrazení financí povol JavaScript.</p></noscript>
+  </main>
+</body>
+</html>
