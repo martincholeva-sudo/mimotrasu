@@ -177,6 +177,7 @@
     ['entryDialog','confirmDialog'].forEach(id=>$(id).addEventListener('cancel',event=>{if(state.mutation)event.preventDefault();}));
     document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!state.mutation&&!modalOpen()&&Date.now()-state.lastFetch>30000)refresh();});window.addEventListener('focus',()=>{if(!document.hidden&&!state.mutation&&!modalOpen()&&Date.now()-state.lastFetch>30000)refresh();});setInterval(()=>{if(!document.hidden&&!state.mutation&&!modalOpen()&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&Date.now()-state.lastFetch>55000)refresh();},60000);
     window.addEventListener('mimo-finance-connected',()=>{if(!state.mutation&&!modalOpen())refresh();});
+    window.addEventListener('mimo-finance-disconnected',()=>{state.stale=Boolean(state.data);state.error='Spojení s Googlem se přerušilo. Připoj Google znovu.';render();});
     render();refresh();
   })();
   

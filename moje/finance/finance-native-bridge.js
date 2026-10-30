@@ -10,8 +10,11 @@
   const login = document.getElementById('finance-login');
   const retry = document.getElementById('finance-retry');
   const pending = new Map();
-  let nonce, source, sourceOrigin, ready = false, connecting = null, resolveConnection;
-  let connectionTimer, lastAttempt = 0, popup = null, authTimer, authStarted = 0;
+  let nonce, source, sourceOrigin, ready = false, active = false, transport = 'frame';
+  let connecting = null, resolveConnection, connectionTimer, lastAttempt = 0;
+  let popup = null, popupTimer;
+  login.textContent = 'Připojit Google';
+
   function notice(text, actions = true) {
     panel.hidden = false; message.textContent = text;
     login.hidden = !actions; retry.hidden = !actions;
@@ -24,42 +27,73 @@
     const resolve = resolveConnection; resolveConnection = null; connecting = null;
     if (resolve) resolve(ok);
   }
+  function disconnect(text) {
+    ready = false; active = false; source = null; sourceOrigin = null;
+    settleConnection(false); clearInterval(popupTimer);
+    for (const call of pending.values()) {
+      clearTimeout(call.timer);
+      call.resolve(failure(call.writing?'SAVE_UNCERTAIN':'CONNECTION',call.writing?
+        'Výsledek změny není potvrzený. Po připojení obnov přehled a ověř stav; změnu neposílej znovu.':
+        'Spojení s Googlem se přerušilo. Připoj ho znovu.',call.writing));
+    }
+    pending.clear(); notice(text);
+    window.dispatchEvent(new Event('mimo-finance-disconnected'));
+  }
+  function relayUrl(mode) {
+    const url = new URL(original);
+    url.searchParams.set('portal','mimo-rpc');
+    url.searchParams.set('parentOrigin',location.origin);
+    url.searchParams.set('nonce',nonce);
+    url.searchParams.set('transport',mode);
+    return url.toString();
+  }
+  function begin(mode) {
+    settleConnection(false);
+    transport = mode; ready = false; active = true;
+    nonce = crypto.randomUUID(); source = null; sourceOrigin = null;
+    lastAttempt = Date.now();
+    connecting = new Promise(resolve => { resolveConnection = resolve; });
+    connectionTimer = setTimeout(() => {
+      active = false;
+      notice(mode === 'popup'?
+        'Google nepotvrdil propojení. Pokud v malém okně vidíš celý finanční přehled, není nasazená nová verze propojení. Pokud ses právě přihlásil, zavři malé okno a zvol Připojit Google znovu.':
+        'Připojení uvnitř stránky se nepodařilo. Zvol Připojit Google; otevře se malé připojovací okno.');
+      settleConnection(false);
+    },mode === 'popup'?45000:25000);
+    return connecting;
+  }
   function connect(force = false) {
     if (ready) return Promise.resolve(true);
     if (connecting) return connecting;
+    if (transport === 'popup' && !force) return Promise.resolve(false);
     if (!force && Date.now() - lastAttempt < 55000) return Promise.resolve(false);
-    lastAttempt = Date.now(); nonce = crypto.randomUUID(); source = null; sourceOrigin = null;
-    connecting = new Promise(resolve => { resolveConnection = resolve; });
+    const connection = begin('frame');
     notice('Načítám tvoje soukromé finanční údaje…', false);
-    const url = new URL(original);
-    url.searchParams.set('portal','mimo-rpc');
-    url.searchParams.set('parentOrigin',location.origin); url.searchParams.set('nonce',nonce);
-    frame.src = url.toString();
-    connectionTimer = setTimeout(() => {
-      notice('Finanční údaje zatím nejsou připojené. Pokud už máš propojení nastavené, přihlas se svým Google účtem a zkus načtení znovu.');
-      settleConnection(false);
-    },25000);
-    return connecting;
+    frame.src = relayUrl('frame');
+    return connection;
   }
   window.addEventListener('message', event => {
     const data = event.data;
     let origin; try { origin = new URL(event.origin); } catch { return; }
-    if (origin.protocol !== 'https:' || !origin.hostname.endsWith('.googleusercontent.com') ||
+    if (!active || origin.protocol !== 'https:' || !origin.hostname.endsWith('.googleusercontent.com') ||
         !data || data.channel !== channel || data.nonce !== nonce || !event.source ||
-        source && source !== event.source) return;
+        source && source !== event.source || transport === 'popup' && data.transport !== 'popup') return;
     if (data.type === 'ready' && !ready) {
       source = event.source; sourceOrigin = event.origin;
       source.postMessage({channel, nonce, type:'open'}, sourceOrigin);
     } else if (data.type === 'connected' && source === event.source && data.version === 2) {
-      ready = true; panel.hidden = true; settleConnection(true); clearInterval(authTimer);
-      if (popup && !popup.closed) { popup.close(); window.focus(); }
-      popup = null; window.dispatchEvent(new Event('mimo-finance-connected'));
+      ready = true; settleConnection(true);
+      if (transport === 'popup') notice('Google je připojený. Malé okno nech otevřené; finance ovládáš tady.',false);
+      else panel.hidden = true;
+      window.dispatchEvent(new Event('mimo-finance-connected'));
     } else if (data.type === 'error' && !ready) {
-      notice('Google nepotvrdil přístup k financím. Přihlas se svým účtem a obnov připojení.');
+      active = false;
+      notice('Google nepotvrdil přístup k financím. Ověř přihlášený účet a nasazení nové verze propojení.');
       settleConnection(false);
     } else if (data.type === 'response' && source === event.source) {
       const call = pending.get(data.id); if (!call) return;
       clearTimeout(call.timer); pending.delete(data.id); call.resolve(data.result);
+      if (data.result?.error?.code === 'OWNER_REQUIRED') disconnect('Přihlášení ke Googlu skončilo. Připoj Google znovu.');
     }
   });
   async function request(method, args = {}) {
@@ -69,6 +103,7 @@
     const reading = readMethods.has(method);
     if (!reading && !ready) return failure('NOT_CONNECTED','Nejdřív připoj finanční údaje. Změna nebyla odeslána.');
     if (!ready && !await connect()) return failure('NOT_CONNECTED','Finanční údaje se zatím nepodařilo načíst.');
+    if (!ready || !source) return failure('NOT_CONNECTED','Spojení s Googlem se přerušilo.');
     if (pending.size >= 4 || !reading && [...pending.values()].some(call => call.writing)) {
       return failure('BUSY','Počkej na dokončení předchozího požadavku.');
     }
@@ -79,29 +114,27 @@
         resolve(failure(reading?'TIMEOUT':'SAVE_UNCERTAIN',reading?'Načtení trvá příliš dlouho. Zkus obnovit přehled.':'Výsledek změny není potvrzený. Obnov přehled a ověř stav; změnu neposílej znovu.',!reading));
       },reading?45000:90000);
       pending.set(id,{resolve,timer,writing:!reading});
-      source.postMessage({channel, nonce, type:'request', id, method, args},sourceOrigin);
+      try { source.postMessage({channel, nonce, type:'request', id, method, args},sourceOrigin); }
+      catch { disconnect('Spojení s Googlem se přerušilo. Připoj ho znovu.'); }
     });
   }
-  retry.addEventListener('click', () => { void connect(true); });
+  retry.addEventListener('click', () => { if (transport === 'popup' && popup && !popup.closed) popup.focus(); else void connect(true); });
   login.addEventListener('click', () => {
-    if (popup && !popup.closed) { popup.focus(); return; }
-    // A real click opens the existing owner-only Google login. No cookies or
-    // credentials are copied; all finance controls remain in this document.
-    popup = window.open(original,'mimo-finance-google-signin','popup,width=600,height=760');
-    if (!popup) { notice('Pro přihlášení povol vyskakovací okno pro tento web a zkus to znovu.'); return; }
-    try { popup.opener = null; } catch { /* Browser may already isolate it. */ }
-    authStarted = Date.now();
-    notice('Dokonči přihlášení v okně Googlu. Finanční přehled zůstává tady.');
-    clearInterval(authTimer);
-    authTimer = setInterval(() => {
-      if (ready || Date.now()-authStarted > 120000) { clearInterval(authTimer); return; }
-      if (popup?.closed) { popup = null; clearInterval(authTimer); void connect(true); return; }
-      if (Date.now()-lastAttempt > 15000 && !connecting) void connect(true);
+    if (ready || pending.size) return;
+    if (popup && !popup.closed && connecting && transport === 'popup') { popup.focus(); return; }
+    clearInterval(popupTimer);
+    begin('popup');
+    // This explicit click opens only the owner's Google Web App. The opener is
+    // needed for the nonce/origin-checked relay; no credentials are forwarded.
+    popup = window.open(relayUrl('popup'),'mimo-finance-google-connection','popup,width=480,height=380');
+    if (!popup) { active = false; settleConnection(false); notice('Povol pro tento web vyskakovací okno a zvol Připojit Google znovu.'); return; }
+    notice('Dokonči připojení v malém okně Googlu. Až se připojí, nech ho otevřené.',false);
+    popupTimer = setInterval(() => {
+      if (popup && popup.closed) { popup = null; disconnect('Připojovací okno Googlu je zavřené. Pro práci s financemi zvol Připojit Google.'); }
     },1000);
-    void connect(true);
   });
   function onReturn() {
-    if (!ready && document.visibilityState === 'visible' && !connecting) void connect(true);
+    if (!ready && transport === 'frame' && document.visibilityState === 'visible' && !connecting) void connect();
   }
   window.addEventListener('focus',onReturn);
   document.addEventListener('visibilitychange',onReturn);
