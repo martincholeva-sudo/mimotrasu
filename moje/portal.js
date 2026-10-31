@@ -5,7 +5,7 @@
   if (!frame || !status) return;
   const text = document.getElementById('status-text');
   const params = new URLSearchParams(location.search),section=params.get('sekce');
-  const sections={fitness:'/moje/trenink',garmin:'/moje/garmin',disk:'/moje/disk',tyden:'/moje/tyden',kondice:'/moje/kondice',hledat:'/moje/hledat',zapisnik:'/moje/zapisnik',nastaveni:'/moje/nastaveni',weby:'/moje/weby',ukoly:'/moje/ukoly',archiv:'/moje/archiv',rozpocet:'/moje/rozpocet'};
+  const sections={fitness:'/moje/trenink',garmin:'/moje/garmin',disk:'/moje/disk',tyden:'/moje/tyden',kondice:'/moje/kondice',hledat:'/moje/hledat',zapisnik:'/moje/zapisnik',nastaveni:'/moje/nastaveni',weby:'/moje/weby',ukoly:'/moje/ukoly',archiv:'/moje/archiv',rozpocet:'/moje/rozpocet',uctenka:'/moje/uctenka'};
   const path=location.pathname.startsWith('/moje/disk/')?'/moje/disk':frame.id==='finance-private'?'/api/finance/ui':Object.hasOwn(sections,section)?sections[section]:'/moje';
   function copyParams(from,to){
     for(const key of ['slozka','soubor']){const value=from.get(key);if(value&&/^[A-Za-z0-9_-]{1,200}$/.test(value))to.set(key,value);}
@@ -16,9 +16,12 @@
     if(from.get('zobrazeni')==='spolecny')to.set('zobrazeni','spolecny');
     if(from.get('zapsat')==='1')to.set('zapsat','1');
     for(const key of ['pridat','pozdeji','nahrat'])if(from.get(key)==='1')to.set(key,'1');
+    const draft=from.get('koncept');if(draft&&/^(?:finance-entry|finance-shift|budget-private|budget-shared):[A-Za-z0-9_.:@-]{1,240}$/.test(draft))to.set('koncept',draft);
     const id=from.get('id');if(id&&/^[A-Za-z0-9_-]{1,100}$/.test(id))to.set('id',id);
   }
   const target=new URL(path,'https://moje.mimotrasu.cz');copyParams(params,target.searchParams);frame.src=target.toString();
+  function publishViewport(){if(typeof frame.getBoundingClientRect!=='function')return;const rect=frame.getBoundingClientRect(),v=window.visualViewport,top=v?.offsetTop??0,visibleTop=Math.max(rect.top,top),height=Math.min(rect.bottom,top+(v?.height??window.innerHeight))-visibleTop;if(Number.isFinite(height)&&height>=80)frame.contentWindow?.postMessage({channel:'mimo-portal-v1',type:'viewport',height,offsetTop:Math.max(0,visibleTop-rect.top)},'https://moje.mimotrasu.cz');}
+  frame.addEventListener?.('load',publishViewport);window.addEventListener('resize',publishViewport);window.visualViewport?.addEventListener('resize',publishViewport);window.visualViewport?.addEventListener('scroll',publishViewport);
   let ready = false;
   window.addEventListener('message', event => {
     if (event.origin !== 'https://moje.mimotrasu.cz' || event.source !== frame.contentWindow) return;
@@ -27,8 +30,8 @@
     status.hidden = true;
     frame.hidden = false;
     if(event.data.navigation===2){
-      document.documentElement.classList.add('portal-ready');
-      const paths={'/moje':'/moje/','/moje/trenink':'/moje/?sekce=fitness','/moje/garmin':'/moje/?sekce=garmin','/moje/disk':'/moje/disk/','/api/finance/ui':'/moje/finance/','/moje/tyden':'/moje/?sekce=tyden','/moje/kondice':'/moje/?sekce=kondice','/moje/hledat':'/moje/?sekce=hledat','/moje/zapisnik':'/moje/?sekce=zapisnik','/moje/nastaveni':'/moje/?sekce=nastaveni','/moje/weby':'/moje/?sekce=weby','/moje/ukoly':'/moje/?sekce=ukoly','/moje/archiv':'/moje/?sekce=archiv','/moje/rozpocet':'/moje/?sekce=rozpocet'};
+      document.documentElement.classList.add('portal-ready');if(typeof requestAnimationFrame==='function')requestAnimationFrame(publishViewport);else publishViewport();
+      const paths={'/moje':'/moje/','/moje/trenink':'/moje/?sekce=fitness','/moje/garmin':'/moje/?sekce=garmin','/moje/disk':'/moje/disk/','/api/finance/ui':'/moje/finance/','/moje/tyden':'/moje/?sekce=tyden','/moje/kondice':'/moje/?sekce=kondice','/moje/hledat':'/moje/?sekce=hledat','/moje/zapisnik':'/moje/?sekce=zapisnik','/moje/nastaveni':'/moje/?sekce=nastaveni','/moje/weby':'/moje/?sekce=weby','/moje/ukoly':'/moje/?sekce=ukoly','/moje/archiv':'/moje/?sekce=archiv','/moje/rozpocet':'/moje/?sekce=rozpocet','/moje/uctenka':'/moje/?sekce=uctenka'};
       if(typeof event.data.path==='string'&&event.data.path.startsWith('/')&&!event.data.path.startsWith('//')&&event.data.path.length<=1500){
         const child=new URL(event.data.path,'https://moje.mimotrasu.cz');
         if(child.origin==='https://moje.mimotrasu.cz'&&Object.hasOwn(paths,child.pathname)){const url=new URL(paths[child.pathname],location.origin);copyParams(child.searchParams,url.searchParams);history.replaceState(null,'',url.pathname+url.search);}
