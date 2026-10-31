@@ -5,7 +5,7 @@
   if (!frame || !status) return;
   const text = document.getElementById('status-text');
   const params = new URLSearchParams(location.search),section=params.get('sekce');
-  const sections={fitness:'/moje/trenink',garmin:'/moje/garmin',disk:'/moje/disk',tyden:'/moje/tyden',kondice:'/moje/kondice',hledat:'/moje/hledat',zapisnik:'/moje/zapisnik',nastaveni:'/moje/nastaveni'};
+  const sections={fitness:'/moje/trenink',garmin:'/moje/garmin',disk:'/moje/disk',tyden:'/moje/tyden',kondice:'/moje/kondice',hledat:'/moje/hledat',zapisnik:'/moje/zapisnik',nastaveni:'/moje/nastaveni',weby:'/moje/weby'};
   const path=location.pathname.startsWith('/moje/disk/')?'/moje/disk':frame.id==='finance-private'?'/api/finance/ui':Object.hasOwn(sections,section)?sections[section]:'/moje';
   function copyParams(from,to){
     for(const key of ['slozka','soubor']){const value=from.get(key);if(value&&/^[A-Za-z0-9_-]{1,200}$/.test(value))to.set(key,value);}
@@ -25,7 +25,7 @@
     frame.hidden = false;
     if(event.data.navigation===2){
       document.documentElement.classList.add('portal-ready');
-      const paths={'/moje':'/moje/','/moje/trenink':'/moje/?sekce=fitness','/moje/garmin':'/moje/?sekce=garmin','/moje/disk':'/moje/disk/','/api/finance/ui':'/moje/finance/','/moje/tyden':'/moje/?sekce=tyden','/moje/kondice':'/moje/?sekce=kondice','/moje/hledat':'/moje/?sekce=hledat','/moje/zapisnik':'/moje/?sekce=zapisnik','/moje/nastaveni':'/moje/?sekce=nastaveni'};
+      const paths={'/moje':'/moje/','/moje/trenink':'/moje/?sekce=fitness','/moje/garmin':'/moje/?sekce=garmin','/moje/disk':'/moje/disk/','/api/finance/ui':'/moje/finance/','/moje/tyden':'/moje/?sekce=tyden','/moje/kondice':'/moje/?sekce=kondice','/moje/hledat':'/moje/?sekce=hledat','/moje/zapisnik':'/moje/?sekce=zapisnik','/moje/nastaveni':'/moje/?sekce=nastaveni','/moje/weby':'/moje/?sekce=weby'};
       if(typeof event.data.path==='string'&&event.data.path.startsWith('/')&&!event.data.path.startsWith('//')&&event.data.path.length<=1500){
         const child=new URL(event.data.path,'https://moje.mimotrasu.cz');
         if(child.origin==='https://moje.mimotrasu.cz'&&Object.hasOwn(paths,child.pathname)){const url=new URL(paths[child.pathname],location.origin);copyParams(child.searchParams,url.searchParams);history.replaceState(null,'',url.pathname+url.search);}
