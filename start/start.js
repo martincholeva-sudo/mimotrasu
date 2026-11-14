@@ -1,11 +1,15 @@
 'use strict';
-const $=id=>document.getElementById(id), key='mimotrasu-start-photo-v1', presets=['ranni_klid.jpg','vychod_slunce.jpg','klid_na_hladine.jpg'];
+const $=id=>document.getElementById(id), key='mimotrasu-start-photo-v1', presets=['auto','spring','summer','autumn','winter','ranni_klid.jpg','vychod_slunce.jpg','klid_na_hladine.jpg'];
+const seasonalTheme=MimoSeasonal.create(window.MIMO_START_PHOTOS,$('backdrop')); 
 let mode='web';
-function tick(){const now=new Date(),opts={timeZone:'Europe/Prague'};$('clock').textContent=new Intl.DateTimeFormat('cs-CZ',{...opts,hour:'2-digit',minute:'2-digit'}).format(now);$('date').textContent=new Intl.DateTimeFormat('cs-CZ',{...opts,weekday:'long',day:'numeric',month:'long'}).format(now);const h=Number(new Intl.DateTimeFormat('en-GB',{...opts,hour:'2-digit',hourCycle:'h23'}).format(now));$('greeting').textContent=h<5?'Hezkou klidnou noc.':h<11?'Dobré ráno.':h<18?'Hezký den.':'Příjemný večer.';}
+function tick(){const now=new Date(),opts={timeZone:'Europe/Prague'};$('clock').textContent=new Intl.DateTimeFormat('cs-CZ',{...opts,hour:'2-digit',minute:'2-digit'}).format(now);$('date').textContent=new Intl.DateTimeFormat('cs-CZ',{...opts,weekday:'long',day:'numeric',month:'long'}).format(now);$('greeting').textContent=MimoSeasonal.greeting(MimoSeasonal.context(now));}
 tick();setInterval(tick,15000);
-function setPhoto(value,save=false){if(!presets.includes(value)&&!/^data:image\/(jpeg|png|webp);base64,/.test(value))return;$('backdrop').src=presets.includes(value)?'/start/'+value.replace('.jpg','.webp'):value;document.querySelectorAll('[data-photo]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.photo===value)));if(save){try{localStorage.setItem(key,value);$('status').textContent='Uloženo v tomto prohlížeči.';}catch{$('status').textContent='Fotografie je zobrazena, ale nelze ji uložit. Zkus menší soubor.';}}}
-try{setPhoto(localStorage.getItem(key)||presets[0]);}catch{setPhoto(presets[0]);}
-$('backdrop').addEventListener('error',()=>{$('backdrop').hidden=true;});$('backdrop').addEventListener('load',()=>{$('backdrop').hidden=false;});
+function setPhoto(value,save=false){if(!presets.includes(value)&&!/^data:image\/(jpeg|png|webp);base64,/.test(value))return;seasonalTheme.set(value);document.querySelectorAll('[data-photo]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.photo===value)));if(save){try{localStorage.setItem(key,value);$('status').textContent=value==='auto'?'Zapnuto střídání podle dne a ročního období.':'Uloženo v tomto prohlížeči.';}catch{$('status').textContent='Pozadí je zobrazené, ale nelze je uložit v prohlížeči.';}}}
+let initialPhoto='auto';
+try{const stored=localStorage.getItem(key);initialPhoto=stored||'auto';if(!localStorage.getItem('mimo-start-seasonal-v1')){if(!stored||['ranni_klid.jpg','vychod_slunce.jpg','klid_na_hladine.jpg'].includes(stored)){initialPhoto='auto';localStorage.setItem(key,initialPhoto);}localStorage.setItem('mimo-start-seasonal-v1','1');}}catch{}
+if(!presets.includes(initialPhoto)&&!/^data:image\/(jpeg|png|webp);base64,/.test(initialPhoto))initialPhoto='auto';
+setPhoto(initialPhoto);
+window.addEventListener('storage',e=>{if(e.key===key)setPhoto(e.newValue||'auto');});
 $('settingsOpen').addEventListener('click',()=>$('settings').showModal());$('settingsClose').addEventListener('click',()=>$('settings').close());
 document.querySelectorAll('[data-photo]').forEach(b=>b.addEventListener('click',()=>setPhoto(b.dataset.photo,true)));
 $('photo').addEventListener('change',()=>{const f=$('photo').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>3*1024*1024){$('status').textContent='Vyber JPG, PNG nebo WebP do 3 MB.';return;}const reader=new FileReader();reader.onload=()=>{const probe=new Image();probe.onload=()=>setPhoto(String(reader.result),true);probe.onerror=()=>{$('status').textContent='Obrázek se nepodařilo načíst.';};probe.src=String(reader.result);};reader.onerror=()=>{$('status').textContent='Soubor se nepodařilo přečíst.';};reader.readAsDataURL(f);});

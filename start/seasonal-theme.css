@@ -1,0 +1,40 @@
+.backdrop{transition:opacity 1.4s ease;filter:saturate(.7) brightness(.92);object-position:50% 50%}
+body[data-daypart="morning"] .backdrop{filter:saturate(.74) brightness(.98)}
+body[data-daypart="evening"] .backdrop{filter:saturate(.66) brightness(.82)}
+body[data-daypart="night"] .backdrop{filter:saturate(.48) brightness(.6)}
+.shade{background:linear-gradient(90deg,#091210e8,#0a1511a0 46%,#0a15113f),linear-gradient(0deg,#07100eca,transparent 65%)}
+#photoCredit{max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+#photoCredit[hidden]{display:none}
+#photoCredit:hover{text-decoration:underline;color:#eee9de}
+.themes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.themes button{min-height:44px}
+.themes [data-photo="auto"]{grid-column:1/-1;font-size:14px;min-height:46px}
+#themeCurrent{font-size:12px;margin:12px 0 0;min-height:2.9em}
+@media(max-width:700px){
+ body{min-height:100svh;min-height:100dvh}
+ .shade{background:linear-gradient(90deg,#091210d9,#0a15118f),linear-gradient(0deg,#07100ec9,transparent 75%)}
+ header{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:10px}
+ footer{padding-bottom:max(9px,env(safe-area-inset-bottom));white-space:nowrap}
+ footer>span{white-space:nowrap}
+ #photoCredit{max-width:54%}
+ .top-actions button{min-height:40px}
+ .shortcuts a{min-height:60px}
+ .shortcuts a span{width:40px;height:40px}
+ .modes button{min-height:34px}
+ .small-actions .quiet{min-height:40px}
+ .submit{min-width:44px;height:44px}
+ .primary{min-height:44px}
+ dialog{max-height:calc(100dvh - 24px);padding:18px}
+ .themes{gap:6px}
+}
+@media(max-width:700px) and (max-height:700px){
+ main{display:grid;grid-template-columns:116px minmax(0,1fr);column-gap:12px;padding:4px 0 6px}
+ main>#date{grid-column:1/-1;margin-bottom:4px;font-size:9px}
+ main>#clock{grid-column:1;grid-row:2/4;font-size:56px;line-height:1.05;margin:0;align-self:center}
+ main>#greeting{grid-column:2;grid-row:2;font-size:22px;align-self:end}
+ main>.intro{grid-column:2;grid-row:3;font-size:11px;line-height:1.4;margin:4px 0 8px}
+ main>section,main>nav,main>.small-actions,main>#nextPanel,main>.portal{grid-column:1/-1}
+ .modes{margin:4px 0 8px}
+ .is-calm main>#clock{grid-column:1/-1;grid-row:auto;font-size:70px;margin-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){.backdrop{transition:none}}
