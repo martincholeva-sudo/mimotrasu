@@ -1,0 +1,40 @@
+/* Phone chrome and font metrics can leave less space than a desktop viewport. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.shortcuts a .shortcut-label{display:block;width:auto;height:auto;border:0;border-radius:0;background:none;font-size:inherit;transform:none;font-weight:inherit}
+@media(max-width:700px){
+ body{min-height:var(--start-height,100svh)}
+ header,footer{flex-shrink:0}
+ main{flex-shrink:0;min-width:0}
+ footer #photoCredit{min-width:0;max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ footer>span{flex-shrink:0}
+ #shortcuts [hidden]{display:none!important}
+ #shortcuts .shortcut-more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:54px;padding:0;border:0;background:none;color:#ffc18a;font:inherit;font-size:10px}
+ .shortcut-more span{display:grid;place-items:center;width:38px;height:38px;border:1px solid #ffffff30;border-radius:11px;font-size:23px}
+ body[data-start-density="compact"] main,body[data-start-density="tight"] main{display:grid;grid-template-columns:116px minmax(0,1fr);column-gap:12px;padding:4px 0 6px}
+ body[data-start-density] main>#date{grid-column:1/-1;margin-bottom:4px}
+ body[data-start-density] main>#clock{grid-column:1;grid-row:2/4;font-size:56px;line-height:1.05;letter-spacing:-4px;margin:0;align-self:center}
+ body[data-start-density] main>h1{grid-column:2;grid-row:2;font-size:22px;align-self:end}
+ body[data-start-density] main>.intro{grid-column:2;grid-row:3;font-size:11px;line-height:1.4;margin:4px 0 8px}
+ body[data-start-density] main>section,body[data-start-density] main>nav,body[data-start-density] main>.small-actions,body[data-start-density] main>#nextPanel,body[data-start-density] main>.portal{grid-column:1/-1}
+ body[data-start-density="tight"] header{padding-block:6px}
+ body[data-start-density="tight"] .brand small{display:none}
+ body[data-start-density="tight"] main{grid-template-columns:96px minmax(0,1fr);padding-block:2px}
+ body[data-start-density="tight"] main>#clock{grid-row:2;font-size:46px}
+ body[data-start-density="tight"] main>h1{align-self:center;font-size:21px}
+ body[data-start-density="tight"] main>.intro{display:none}
+ body[data-start-density="tight"] main>section{margin-top:5px}
+ body[data-start-density="tight"] #search{padding-block:2px}
+ body[data-start-density="tight"] .submit{height:40px}
+ body[data-start-density="tight"] .modes{margin:3px 0 6px;gap:4px 12px}
+ body[data-start-density="tight"] .modes button{min-height:28px;padding-block:4px}
+ body[data-start-density="tight"] .shortcuts{row-gap:5px}
+ body[data-start-density="tight"] .shortcuts a{min-height:54px;gap:4px}
+ body[data-start-density="tight"] .shortcuts a span{width:38px;height:38px}
+ body[data-start-density="tight"] .shortcuts a .shortcut-label{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;width:100%;height:auto;max-height:2.4em}
+ body[data-start-density="tight"] .small-actions{margin-top:0}
+ body[data-start-density="tight"] .small-actions .quiet{min-height:36px;padding-block:6px}
+ body[data-start-density="tight"] .portal{margin-top:0;padding-top:6px}
+ body[data-start-density="tight"] footer{padding-block:6px;font-size:8px}
+ body.is-calm[data-start-density] main>#clock{grid-column:1/-1;grid-row:auto;text-align:center;margin-bottom:12px}
+ body.is-calm[data-start-density] main{padding-block:8px}
+}
