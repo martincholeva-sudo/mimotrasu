@@ -8,9 +8,11 @@
   if(u.protocol!=='https:'||u.username||u.password)return null;
   let pkg,appUrl=u;
   if(u.hostname==='mail.google.com'){
-   // The domain root is a website redirect; hand Android a Gmail /mail/ destination.
+   // Current Gmail registers gmail.app.goo.gl, not mail.google.com, on Android.
+   // Only generic inbox shortcuts may become a launcher; keep account/search links intact.
+   if(!/^\/(?:mail\/(?:u\/0\/)?)?$/.test(u.pathname)||u.search)return null;
    pkg='com.google.android.gm';
-   if(u.pathname==='/')appUrl=new URL('https://mail.google.com/mail/u/0/');
+   appUrl=new URL('https://gmail.app.goo.gl/');
   }
   else if(u.hostname==='calendar.google.com')pkg='com.google.android.calendar';
   else if(u.hostname==='moje.mimotrasu.cz'&&u.pathname==='/moje/kalendar'&&!u.search&&!u.hash){pkg='com.google.android.calendar';appUrl=new URL('https://calendar.google.com/calendar/u/0/r');}
