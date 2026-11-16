@@ -1,11 +1,8 @@
-#bookmarksPanel{display:none;position:fixed;right:5vw;top:50%;transform:translateY(-46%);width:clamp(320px,26vw,440px);height:min(580px,calc(100dvh - 160px));border:1px solid #dce6d126;border-radius:20px;background:#142019b8;backdrop-filter:blur(24px);box-shadow:0 20px 70px #0002;overflow:hidden}
-#bookmarksFrame{display:block;width:100%;height:100%;border:0;background:transparent}
-#bookmarksOpen{color:#ffc18a}
-#bookmarksDialog{width:min(540px,calc(100vw - 24px));height:min(700px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);padding:0;overflow:hidden}
-#bookmarksDialog[open]{display:flex;flex-direction:column}
-#bookmarksDialog>.dialog-head{padding:8px 16px 0;flex:none;justify-content:flex-end}
-#bookmarksClose{min-height:40px;min-width:40px}
-#bookmarksSlot{flex:1;min-height:0}
-@media(min-width:1360px){#bookmarksPanel{display:block}#bookmarksOpen{display:none}main{margin-left:10vw}.is-calm #bookmarksPanel{display:none}}
-@media(min-width:1800px){main{margin-left:14vw}}
-@media(max-width:700px){.small-actions{gap:4px}.small-actions .quiet{padding-inline:0;font-size:10px}#linksOpen{font-size:10px}}
+#bookmarksPanel{position:fixed;z-index:35;top:78px;left:4.5vw;right:4.5vw;height:52px;overflow:visible;transition:height .18s ease;filter:drop-shadow(0 12px 24px #0004)}
+#bookmarksFrame{display:block;width:100%;height:52px;border:0;background:transparent;transition:height .18s ease}
+#bookmarksPanel.open{z-index:70}
+.is-calm #bookmarksPanel{display:none}
+@media(min-width:1600px){#bookmarksPanel{left:7vw;right:7vw}}
+@media(max-width:700px){#bookmarksPanel{top:59px;left:5vw;right:5vw}main{padding-top:58px!important}}
+@media(max-width:420px){#bookmarksPanel{left:4vw;right:4vw}}
+@media(prefers-reduced-motion:reduce){#bookmarksPanel,#bookmarksFrame{transition:none}}
