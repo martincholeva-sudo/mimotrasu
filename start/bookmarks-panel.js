@@ -11,7 +11,7 @@
   const height=Math.max(52,Math.min(430,Number(event.data.height)||52));
   panel.style.height=height+'px';frame.style.height=height+'px';panel.classList.toggle('open',Boolean(event.data.open));
  });
- window.addEventListener('resize',()=>{if(mobile())close();});
+ window.addEventListener('resize',()=>{if(mobile())close();else if(!panel.classList.contains('open'))compact();});
  document.addEventListener('pointerdown',event=>{if(!panel.contains(event.target))close();});
  document.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
  compact();
