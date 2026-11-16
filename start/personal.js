@@ -1,5 +1,6 @@
 'use strict';
 const linksKey='mimo-start-links-v1',calmKey='mimo-start-calm-v1';
+const siteBack=document.getElementById('siteBack');if(siteBack)siteBack.addEventListener('click',()=>{if(history.length>1)history.back();else location.assign('/');});
 const defaultLinks=Array.from(document.querySelectorAll('#shortcuts a'),a=>({id:crypto.randomUUID(),title:a.textContent.trim().replace(/^[^\p{L}\p{N}]+/u,''),url:a.href,icon:a.querySelector('span').textContent}));
 let links=defaultLinks,editing=null;
 function safeUrl(value){try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)&&!u.username&&!u.password?u.href:null;}catch{return null;}}
