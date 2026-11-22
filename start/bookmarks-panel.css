@@ -48,7 +48,7 @@
 }
 #bookmarksPanel.open .bookmarks-chevron{transform:translateY(2px) rotate(225deg)}
 #bookmarksDrawer{
- position:relative;width:100%;margin-top:-1px;padding:13px 16px 12px;
+ position:relative;width:100%;margin-top:-1px;padding:16px 20px 15px;
  overflow-y:auto;overflow-x:hidden;max-height:calc(100dvh - 154px);
  border:1px solid rgba(245,241,225,.19);border-top:0;border-radius:0 0 17px 17px;
  background:linear-gradient(145deg,rgba(13,19,23,.80),rgba(13,19,23,.73)),rgba(var(--photo-rgb, 50, 56, 58),.18);
@@ -56,7 +56,7 @@
  box-shadow:0 24px 55px rgba(0,0,0,.44)
 }
 #bookmarksDrawer[hidden]{display:none!important}
-.bookmarks-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.bookmarks-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:15px}
 .bookmarks-drawer-head p{margin:0;color:#ddd0c4;font-size:12px;line-height:1.4}
 #bookmarksClose{
  display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;
@@ -65,12 +65,20 @@
  border-radius:10px;color:#efede5;font-size:12px
 }
 #bookmarksClose:hover{background:rgba(255,255,255,.12)}
+/* Drop the redundant outer rectangle. Give the embedded categories breathing room.
+   The bookmarks strip itself is served by the private domain, so only its rendered
+   colors can be softened here; its individual badges remain controlled by that site. */
 #bookmarksViewport{
- overflow:hidden;width:100%;min-width:0;
- border:1px solid rgba(245,243,230,.12);
- border-radius:12px;background:rgba(12,19,22,.43)
+ width:100%;min-width:0;
+ padding:4px 12px 7px;
+ overflow:hidden;
+ border:0;border-radius:0;background:transparent
 }
-#bookmarksFrame{display:block;width:100%;height:64px;border:0;background:transparent}
+#bookmarksFrame{
+ display:block;width:100%;height:64px;
+ border:0;border-radius:9px;background:transparent;
+ filter:saturate(.36)
+}
 .bookmarks-drawer-foot{display:flex;justify-content:flex-end;padding-top:9px}
 .bookmarks-drawer-foot a{color:#e5b686;text-decoration:none;font-size:11px}
 .bookmarks-drawer-foot a:hover{text-decoration:underline}
@@ -82,6 +90,7 @@
  .bookmarks-title{font-size:13px}.bookmarks-description{font-size:10px}
  .bookmarks-action{display:none}
  #bookmarksDrawer{max-height:calc(100dvh - 125px);padding:12px 10px 11px}
+ #bookmarksViewport{padding:3px 6px 6px}
  .bookmarks-drawer-head p{font-size:11px}
  #bookmarksClose{min-height:38px;padding:8px 11px}
  #bookmarksFrame{height:58px}

@@ -25,7 +25,7 @@
   const limit=Math.max(baseHeight(),Math.min(mobile()?440:400,visibleHeight-top-reserved));
   const height=childOpen?Math.min(limit,Math.max(baseHeight(),childHeight)):baseHeight();
   frame.style.height=height+'px';
-  viewport.style.height=height+'px';
+  viewport.style.height='auto'; // Allow for the transparent inner spacing.
  }
  function close(returnFocus=false){
   if(!expanded)return;
