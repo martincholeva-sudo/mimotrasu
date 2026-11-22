@@ -1,7 +1,22 @@
-#bookmarksPanel{position:fixed;z-index:35;top:76px;left:50%;width:min(1500px,91vw);height:52px;overflow:visible;transform:translateX(-50%);transition:height .2s ease,filter .2s ease;filter:drop-shadow(0 10px 24px #0002);isolation:isolate}
-#bookmarksFrame{display:block;width:100%;height:52px;border:0;border-radius:15px;background:transparent;transition:height .2s ease}
-#bookmarksPanel.open{z-index:70;filter:drop-shadow(0 18px 42px #0007)}
+/* Full-width bookmark strip with responsive height and safe-area padding. */
+#bookmarksPanel{
+ position:fixed;z-index:35;top:76px;left:0;right:0;
+ width:100%;max-width:none;height:52px;
+ padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px);
+ overflow:hidden;isolation:isolate;
+ filter:drop-shadow(0 10px 24px #0002);
+ transition:height .2s ease,filter .2s ease
+}
+#bookmarksFrame{
+ display:block;width:100%;height:52px;border:0;border-radius:0;
+ background:transparent;transition:height .2s ease
+}
+#bookmarksPanel.open{z-index:70;overflow:visible;filter:drop-shadow(0 18px 42px #0007)}
 .is-calm #bookmarksPanel{display:none}
-@media(max-width:700px){#bookmarksPanel{top:62px;width:90vw;height:48px;overflow:hidden;filter:none}#bookmarksFrame{height:48px!important;border-radius:12px}#bookmarksPanel.open{height:48px!important}main{padding-top:54px!important}}
-@media(max-width:420px){#bookmarksPanel{width:92vw}}
+@media(max-width:700px){
+ #bookmarksPanel{top:62px;height:48px;filter:none}
+ #bookmarksFrame{height:48px}
+ #bookmarksPanel.open{filter:drop-shadow(0 12px 28px #0005)}
+ main{padding-top:54px!important}
+}
 @media(prefers-reduced-motion:reduce){#bookmarksPanel,#bookmarksFrame{transition:none}}
