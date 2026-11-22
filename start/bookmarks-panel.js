@@ -1,62 +1,71 @@
 (function(){
  'use strict';
  const panel=document.getElementById('bookmarksPanel');
+ const toggle=document.getElementById('bookmarksToggle');
+ const drawer=document.getElementById('bookmarksDrawer');
+ const closeButton=document.getElementById('bookmarksClose');
+ const viewport=document.getElementById('bookmarksViewport');
  const frame=document.getElementById('bookmarksFrame');
- if(!panel||!frame)return;
- const origin='https://moje.mimotrasu.cz';
- const channel='mimo-bookmark-strip-v1';
+ if(!panel||!toggle||!drawer||!closeButton||!viewport||!frame)return;
+ const origin='https://moje.mimotrasu.cz',channel='mimo-bookmark-strip-v1';
  const mobile=()=>matchMedia('(max-width:700px)').matches;
- const compactHeight=()=>mobile()?48:52;
- let activated=false;
+ const baseHeight=()=>mobile()?58:64;
+ let expanded=false,childOpen=false,childHeight=baseHeight();
  function post(action){
-  frame.contentWindow?.postMessage({channel,action},origin);
+  if(frame.hasAttribute('src'))frame.contentWindow?.postMessage({channel,action},origin);
  }
  function sendTheme(theme=window.mimoPhotoPalette){
-  if(theme)frame.contentWindow?.postMessage({channel,action:'theme',theme},origin);
+  if(theme&&frame.hasAttribute('src'))
+   frame.contentWindow?.postMessage({channel,action:'theme',theme},origin);
  }
- function compact(){
-  const height=compactHeight()+'px';
-  panel.style.height=height;
-  frame.style.height=height;
-  panel.classList.remove('open');
+ function resizeFrame(){
+  const visibleHeight=window.visualViewport?.height||window.innerHeight;
+  const top=panel.getBoundingClientRect().top;
+  const reserved=mobile()?155:164;
+  const limit=Math.max(baseHeight(),Math.min(mobile()?440:400,visibleHeight-top-reserved));
+  const height=childOpen?Math.min(limit,Math.max(baseHeight(),childHeight)):baseHeight();
+  frame.style.height=height+'px';
+  viewport.style.height=height+'px';
  }
- function close(){
-  if(panel.classList.contains('open'))post('close');
-  compact();
- }
- function reset(){
-  activated=false;
-  compact();
+ function close(returnFocus=false){
+  if(!expanded)return;
+  expanded=false;childOpen=false;
+  panel.classList.remove('open');drawer.hidden=true;
+  toggle.setAttribute('aria-expanded','false');
   post('close');
+  if(returnFocus)toggle.focus();
  }
- // The embedded bookmark menu is cross-origin; focus proves the visitor
- // interacted with it. Ignore unsolicited open messages on initial load.
- frame.addEventListener('focus',()=>{activated=true;});
- window.addEventListener('blur',()=>{
-  if(document.activeElement===frame)activated=true;
+ function open(){
+  if(expanded)return;
+  expanded=true;childOpen=false;
+  panel.classList.add('open');drawer.hidden=false;
+  toggle.setAttribute('aria-expanded','true');resizeFrame();
+  // Do not load the private content before the user explicitly opens it.
+  if(!frame.hasAttribute('src'))frame.src=frame.dataset.src;
+  else{post('close');sendTheme();}
+ }
+ toggle.addEventListener('click',()=>expanded?close():open());
+ closeButton.addEventListener('click',()=>close(true));
+ document.addEventListener('pointerdown',event=>{
+  if(expanded&&!panel.contains(event.target))close();
  });
+ document.addEventListener('keydown',event=>{
+  if(expanded&&event.key==='Escape'){event.preventDefault();close(true);}
+ });
+ window.addEventListener('pageshow',()=>close());
+ window.addEventListener('resize',resizeFrame);
+ window.visualViewport?.addEventListener('resize',resizeFrame);
  window.addEventListener('message',event=>{
   if(event.origin!==origin||event.source!==frame.contentWindow||event.data?.channel!==channel)return;
-  if(!event.data.open){compact();return;}
-  if(!activated&&document.activeElement!==frame){compact();return;}
-  activated=true;
-  const top=panel.getBoundingClientRect().top;
-  const available=Math.max(compactHeight(),window.innerHeight-top-12);
-  const maxHeight=Math.min(mobile()?420:340,available);
+  if(!expanded)return;
+  childOpen=Boolean(event.data.open);
   const requested=Number(event.data.height);
-  const height=Math.max(compactHeight(),Math.min(maxHeight,Number.isFinite(requested)?requested:compactHeight()));
-  panel.style.height=height+'px';
-  frame.style.height=height+'px';
-  panel.classList.add('open');
+  childHeight=Number.isFinite(requested)?requested:baseHeight();
+  resizeFrame();
  });
- frame.addEventListener('load',()=>{
-  reset();
-  sendTheme();
- });
- window.addEventListener('pageshow',reset);
+ frame.addEventListener('load',()=>{sendTheme();post('close');});
  document.addEventListener('mimo:photo-theme',event=>sendTheme(event.detail));
- window.addEventListener('resize',close);
- document.addEventListener('pointerdown',event=>{if(!panel.contains(event.target))close();});
- document.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
- compact();
+ drawer.hidden=true;
+ toggle.setAttribute('aria-expanded','false');
+ resizeFrame();
 })();
