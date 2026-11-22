@@ -1,5 +1,5 @@
 /* Calm bookmark launcher and its responsive private-content drawer. */
-/* Warm smoked bronze. A subtle tint follows the current photo palette via --photo-rgb. */
+/* Neutral translucent glass: the current seasonal photo subtly tints the panel. */
 #bookmarksPanel{
  position:fixed;z-index:35;top:76px;
  left:clamp(16px,4.5vw,88px);right:clamp(16px,4.5vw,88px);
@@ -9,13 +9,13 @@
  display:flex;align-items:center;justify-content:space-between;gap:20px;
  width:100%;min-height:56px;padding:8px 18px;
  color:inherit;text-align:left;
- background:linear-gradient(108deg,rgba(49,35,35,.89),rgba(78,55,47,.79)),rgba(var(--photo-rgb, 61, 47, 41),.38);
- border:1px solid rgba(237,195,156,.29);border-radius:15px;
- box-shadow:0 12px 36px rgba(0,0,0,.20),inset 0 1px 0 rgba(250,220,182,.08);
- -webkit-backdrop-filter:blur(20px) saturate(.9);backdrop-filter:blur(20px) saturate(.9);
+ background:linear-gradient(110deg,rgba(12,17,20,.57),rgba(12,17,20,.46)),rgba(var(--photo-rgb, 50, 56, 58),.22);
+ border:1px solid rgba(241,239,227,.24);border-radius:15px;
+ box-shadow:0 12px 36px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.09);
+ -webkit-backdrop-filter:blur(17px) saturate(.85);backdrop-filter:blur(17px) saturate(.85);
  transition:background .2s,border-color .2s,box-shadow .2s,border-radius .2s
 }
-#bookmarksToggle:hover{background:linear-gradient(108deg,rgba(63,43,40,.95),rgba(93,65,52,.90));border-color:rgba(246,200,155,.52)}
+#bookmarksToggle:hover{background:linear-gradient(110deg,rgba(13,20,23,.66),rgba(13,20,23,.55)),rgba(var(--photo-rgb, 50, 56, 58),.24);border-color:rgba(248,241,224,.38)}
 #bookmarksToggle:focus-visible,#bookmarksClose:focus-visible{outline:2px solid #ffc18a;outline-offset:3px}
 .bookmarks-toggle-main,.bookmarks-toggle-end{display:flex;align-items:center;min-width:0}
 .bookmarks-toggle-main{gap:12px}
@@ -43,7 +43,7 @@
 }
 #bookmarksPanel.open{z-index:72}
 #bookmarksPanel.open #bookmarksToggle{
- background:rgba(51,37,36,.97);border-radius:15px 15px 0 0;
+ background:linear-gradient(110deg,rgba(12,18,21,.68),rgba(12,18,21,.59)),rgba(var(--photo-rgb, 50, 56, 58),.24);border-radius:15px 15px 0 0;
  border-bottom-color:rgba(255,255,255,.08);box-shadow:none
 }
 #bookmarksPanel.open .bookmarks-chevron{transform:translateY(2px) rotate(225deg)}
@@ -51,8 +51,8 @@
  position:relative;width:100%;margin-top:-1px;padding:13px 16px 12px;
  overflow-y:auto;overflow-x:hidden;max-height:calc(100dvh - 154px);
  border:1px solid rgba(245,241,225,.19);border-top:0;border-radius:0 0 17px 17px;
- background:linear-gradient(145deg,rgba(42,33,34,.98),rgba(56,40,36,.97));
- -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+ background:linear-gradient(145deg,rgba(13,19,23,.80),rgba(13,19,23,.73)),rgba(var(--photo-rgb, 50, 56, 58),.18);
+ -webkit-backdrop-filter:blur(22px) saturate(.84);backdrop-filter:blur(22px) saturate(.84);
  box-shadow:0 24px 55px rgba(0,0,0,.44)
 }
 #bookmarksDrawer[hidden]{display:none!important}
@@ -68,7 +68,7 @@
 #bookmarksViewport{
  overflow:hidden;width:100%;min-width:0;
  border:1px solid rgba(245,243,230,.12);
- border-radius:12px;background:rgba(19,14,16,.55)
+ border-radius:12px;background:rgba(12,19,22,.43)
 }
 #bookmarksFrame{display:block;width:100%;height:64px;border:0;background:transparent}
 .bookmarks-drawer-foot{display:flex;justify-content:flex-end;padding-top:9px}
