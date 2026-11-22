@@ -19,18 +19,26 @@
    frame.contentWindow?.postMessage({channel,action:'theme',theme},origin);
  }
  function resizeFrame(){
-  const visibleHeight=window.visualViewport?.height||window.innerHeight;
+  // Allow the drawer to follow the visual viewport, including the mobile keyboard.
+  const vv=window.visualViewport;
+  const visibleBottom=vv ? vv.offsetTop+vv.height : window.innerHeight;
   const top=panel.getBoundingClientRect().top;
-  const reserved=mobile()?155:164;
-  const limit=Math.max(baseHeight(),Math.min(mobile()?440:400,visibleHeight-top-reserved));
-  const height=childOpen?Math.min(limit,Math.max(baseHeight(),childHeight)):baseHeight();
+  const toggleHeight=toggle.getBoundingClientRect().height||baseHeight();
+  const available=Math.max(80,Math.floor(visibleBottom-top-toggleHeight-12));
+  drawer.style.maxHeight=available+'px';
+  // Head, fallback link and padding remain usable on a narrow/short phone.
+  const reserved=mobile()?89:91;
+  const limit=Math.max(baseHeight(),Math.min(mobile()?460:420,available-reserved));
+  const requested=Number.isFinite(childHeight)?childHeight:baseHeight();
+  const height=childOpen?Math.min(limit,Math.max(baseHeight(),requested)):baseHeight();
   frame.style.height=height+'px';
-  viewport.style.height='auto'; // Allow for the transparent inner spacing.
+  viewport.style.height='auto';
  }
  function close(returnFocus=false){
   if(!expanded)return;
   expanded=false;childOpen=false;
   panel.classList.remove('open');drawer.hidden=true;
+  document.body.classList.remove('bookmarks-expanded');
   toggle.setAttribute('aria-expanded','false');
   post('close');
   if(returnFocus)toggle.focus();
@@ -39,6 +47,7 @@
   if(expanded)return;
   expanded=true;childOpen=false;
   panel.classList.add('open');drawer.hidden=false;
+  document.body.classList.add('bookmarks-expanded');
   toggle.setAttribute('aria-expanded','true');resizeFrame();
   // Do not load the private content before the user explicitly opens it.
   if(!frame.hasAttribute('src'))frame.src=frame.dataset.src;
@@ -55,6 +64,7 @@
  window.addEventListener('pageshow',()=>close());
  window.addEventListener('resize',resizeFrame);
  window.visualViewport?.addEventListener('resize',resizeFrame);
+ window.visualViewport?.addEventListener('scroll',resizeFrame);
  window.addEventListener('message',event=>{
   if(event.origin!==origin||event.source!==frame.contentWindow||event.data?.channel!==channel)return;
   if(!expanded)return;
